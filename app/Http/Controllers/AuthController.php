@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\FormPertanyaan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
-class FormPertanyaanController extends Controller
+class AuthController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,37 @@ class FormPertanyaanController extends Controller
      */
     public function index()
     {
-        //
+        return view('auth.login');
+    }
+
+    public function login(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email'    => 'required|string',
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            // flash('error')->error();
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            return redirect()->route('home');
+        }else{
+            Session::flash('error-password','Password Salah');
+            return redirect()->back()->withInput();
+        }
+
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('auth.form');
     }
 
     /**
@@ -36,16 +67,7 @@ class FormPertanyaanController extends Controller
      */
     public function store(Request $request)
     {
-        FormPertanyaan::create([
-            'form_id'       => $request->formid,
-            'tipe'          => $request->tipe,
-            'pertanyaan'    => $request->pertanyaan,
-            'opsi'          => $request->opsi,
-        ]);
-
-        Session::flash('success','Sukses menambah pertanyaan');
-
-        return redirect()->back();
+        //
     }
 
     /**
@@ -90,8 +112,6 @@ class FormPertanyaanController extends Controller
      */
     public function destroy($id)
     {
-        FormPertanyaan::find($id)->delete();
-        Session::flash('success','Sukses menghapus pertanyaan');
-        return redirect()->back();
+        //
     }
 }

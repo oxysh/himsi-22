@@ -1,7 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
 
-        <a class="navbar-brand" href="{{ route('home') }}">HIMSI</a>
+        <a class="navbar-brand" href="{{ route('home') }}">
+            <img src="{{ url('assets/image/himsi.png') }}" width="30" height="30"
+                class="d-inline-block align-top" alt="">
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -12,12 +15,13 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{{ route('home') }}">Home</a>
                 </li>
+                @if (Auth::User())
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('responden.index') }}">Responden</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{{ route('form.index') }}" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="{{ route('form.index') }}" id="navbarDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Form
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -27,6 +31,7 @@
                         <a class="dropdown-item" href="#">Something else here</a> --}}
                     </div>
                 </li>
+                @endif
                 {{-- <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li> --}}
@@ -35,6 +40,17 @@
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form> --}}
+            <div class="form-inline my-2 my-lg-0">
+                @if (Auth::User())
+                    <a href="{{ route('auth.logout') }}">
+                        <button class="btn btn-danger my-2 my-sm-0" type="submit">Logout</button>
+                    </a>
+                @else
+                    <a href="{{ route('auth.form') }}">
+                        <button class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
+                    </a>
+                @endif
+            </div>
         </div>
     </div>
 

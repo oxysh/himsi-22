@@ -59,5 +59,11 @@
 @endsection
 
 @section('content')
-
+    <div class="container">
+        <div class="row justify-content-center">
+            <h1 class="my-5">
+                HOMEPAGE
+            </h1>
+        </div>
+    </div>
 @endsection

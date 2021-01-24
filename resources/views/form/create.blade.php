@@ -65,28 +65,38 @@
                 @csrf
                 <div class="form-group">
                     <label for="judul">Judul Form</label>
-                    <input name="judul" type="text" class="form-control" id="judul" aria-describedby="emailHelp">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                        else.</small>
+                    <input name="judul" type="text" class="form-control @error('judul') is-invalid @enderror" id="judul"
+                        aria-describedby="judulFeedback" value="{{ old('judul') }}">
+                    @error('judul')
+                        <div id="judulFeedback" class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <div class="form-group">
                     <label for="pemilik">Pemilik Form</label>
                     <select name="pemilik" class="form-control" id="pemilik">
-                        <option value="himsi">himsi</option>
-                        <option value="psdm">psdm</option>
-                        <option value="ristek">ristek</option>
-                        <option value="akademik">akademik</option>
-                        <option value="media">media</option>
-                        <option value="hublu">hublu</option>
-                        <option value="kestari">kestari</option>
-                        <option value="sera">sera</option>
+                        <option {{ old('pemilik') == "HIMSI" ? 'selected' : '' }} value="HIMSI">HIMSI</option>
+                        <option {{ old('pemilik') == "PSDM" ? 'selected' : '' }} value="PSDM">PSDM</option>
+                        <option {{ old('pemilik') == "RISTEK" ? 'selected' : '' }} value="RISTEK">RISTEK</option>
+                        <option {{ old('pemilik') == "AKADEMIK" ? 'selected' : '' }} value="AKADEMIK">AKADEMIK</option>
+                        <option {{ old('pemilik') == "MEDIA" ? 'selected' : '' }} value="MEDIA">MEDIA</option>
+                        <option {{ old('pemilik') == "HUBLU" ? 'selected' : '' }} value="HUBLU">HUBLU</option>
+                        <option {{ old('pemilik') == "KESTARI" ? 'selected' : '' }} value="KESTARI">KESTARI</option>
+                        <option {{ old('pemilik') == "SERA" ? 'selected' : '' }} value="SERA">SERA</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="deadline">Deadline Form</label>
-                    <input type="datetime-local" class="form-control" name="deadline" id="deadline">
+                    <input type="datetime-local" class="form-control @error('deadline') is-invalid @enderror"
+                        name="deadline" id="deadline" aria-describedby="deadlineFeedback" value="{{ old('deadline') }}">
+                    @error('deadline')
+                        <div id="deadlineFeedback" class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Form;
 use App\FormPertanyaan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class FormController extends Controller
 {
@@ -15,7 +16,7 @@ class FormController extends Controller
      */
     public function index()
     {
-        $form = Form::with('pertanyaan')->get();
+        $form = Form::with('pertanyaan')->paginate(10);
 
         return view('form.index',[
             'form' => $form,
@@ -40,6 +41,17 @@ class FormController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'judul'    => 'required|string',
+            'pemilik' => 'required',
+            'deadline' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            // flash('error')->error();
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         Form::create([
             'judul'     => $request->judul,
             'pemilik'   => $request->pemilik,
@@ -57,13 +69,15 @@ class FormController extends Controller
      */
     public function show($id)
     {
-        $form = Form::find($id);
+        // $form = Form::find($id);
+        $form = Form::with(['pertanyaan','penjawab','penjawab.jawaban', 'penjawab.jawaban.pertanyaan'])->find($id);
 
-        $pertanyaan = FormPertanyaan::where('form_id',$id)->get();
+        dd($form);
+        // $pertanyaan = FormPertanyaan::where('form_id',$id)->get();
 
         return view('form.detail',[
             'form'          => $form,
-            'pertanyaan'    => $pertanyaan,
+            // 'pertanyaan'    => $pertanyaan,
         ]);
     }
 

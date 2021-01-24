@@ -12,8 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('cakrawala');
+    return view('oldcakrawala');
 })->name('home');
+
+Route::prefix('admin')->group(function() {
+    Route::get('/','AuthController@index')->middleware('guest')->name('auth.form');
+    Route::post('/login','AuthController@login')->name('auth.login');
+    Route::get('/logout','AuthController@logout')->middleware('auth')->name('auth.logout');
+});
 
 Route::prefix('form')->group(function() {
 
