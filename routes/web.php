@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('cakrawala');
-});
+})->name('home');
 
 Route::prefix('form')->group(function() {
 
