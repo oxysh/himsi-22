@@ -18,6 +18,8 @@ class CreateFormsTable extends Migration
             $table->text('judul');
             $table->text('pemilik');
             $table->dateTime('deadline');
+            $table->boolean('terkunci')->default(false);
+            $table->boolean('token')->default(false);
             $table->timestamps();
         });
     }

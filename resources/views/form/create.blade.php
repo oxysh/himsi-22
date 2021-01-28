@@ -89,6 +89,15 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="token">Menggunakan Token untuk identifier Responden ?</label>
+                    <select name="token" class="form-control" id="token">
+                        <option {{ old('token') == "YA" ? 'selected' : '' }} value="YA">YA</option>
+                        <option {{ old('token') == "TIDAK" ? 'selected' : '' }} value="TIDAK">TIDAK</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
                     <label for="deadline">Deadline Form</label>
                     <input type="datetime-local" class="form-control @error('deadline') is-invalid @enderror"
                         name="deadline" id="deadline" aria-describedby="deadlineFeedback" value="{{ old('deadline') }}">

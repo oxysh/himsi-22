@@ -54,6 +54,7 @@
                         <th scope="col">Judul</th>
                         <th scope="col">Pemilik</th>
                         <th scope="col">Deadline</th>
+                        <th scope="col">Jumlah Pertanyaan</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -64,8 +65,9 @@
                             <td>{{ $f->judul }}</td>
                             <td>{{ $f->pemilik }}</td>
                             <td>{{ $f->deadline }}</td>
+                            <td>{{ sizeof($f->pertanyaan) }}</td>
                             <td>
-                                @if (Auth::user()->role == $f->pemilik)
+                                @if (Auth::user()->role == $f->pemilik || $f->pemilik == "HIMSI")
                                     <a href="{{ route('form.show', $f->id) }}">
                                         <button class="btn btn-success">Detail</button>
                                     </a>

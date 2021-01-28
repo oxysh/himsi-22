@@ -66,7 +66,7 @@
                 </div>
             </div>
 
-            <div class="footer poppin">
+            <div class="footer poppin" >
                 <img src="{{ url('/assets/image/arrow.png') }}" alt="" id="show">
                 <span>DAFTAR SEKARANG</span>
                 <img src="{{ url('/assets/image/arrow.png') }}" alt="" id="hidden">
@@ -80,10 +80,10 @@
     <script>
         const daftar = document.querySelector('.footer.poppin');
 
-        daftar.addEventListener("click", function () {
-            // window.open("http://www.google.com/")
-            alert("belum tersedia")
-        })
+        // daftar.addEventListener("click", function () {
+        //     window.open("http://www.google.com/")
+        //     alert("belum tersedia")
+        // })
     </script>
 
 </body>

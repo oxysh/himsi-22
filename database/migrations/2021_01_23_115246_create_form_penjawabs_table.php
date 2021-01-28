@@ -16,7 +16,7 @@ class CreateFormPenjawabsTable extends Migration
         Schema::create('form_penjawabs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('form_id');
-            $table->text('token');
+            $table->text('token')->nullable();
             $table->timestamps();
 
             $table->foreign('form_id')->references('id')->on('forms')->onUpdate('cascade')->onDelete('cascade');

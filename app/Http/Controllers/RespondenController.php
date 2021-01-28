@@ -7,6 +7,7 @@ use App\FormJawaban;
 use App\FormPenjawab;
 use App\FormPertanyaan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class RespondenController extends Controller
 {
@@ -63,12 +64,18 @@ class RespondenController extends Controller
             
         }
 
-        /**
-         * foreach tiap request
-         *      deteksi apakah ada pertanyaan spt itu (array_key)
-         *      jika ada maka buat record
-         */
-
+        $form = Form::find($request->formid);
+        if ($form->token) {
+            Session::flash('success','Form berhasil di isi');
+            return view('responden.feedback',[
+                'token' => $penjawab->token,
+            ]);
+        }else{
+            Session::flash('success','Form berhasil di isi');
+            return view('responden.feedback',[
+                'token' => null,
+            ]);
+        }
     }
 
     /**
@@ -90,6 +97,12 @@ class RespondenController extends Controller
         return view('responden.form', [
             'form'  => $form,
         ]);
+    }
+
+
+    public function cari()
+    {
+        return view('responden.cari');
     }
 
     /**
@@ -137,5 +150,64 @@ class RespondenController extends Controller
         }
 
         return $randomString;
+    }
+
+
+
+
+    public function regist()
+    {
+        $form = Form::with('pertanyaan')->find(1);
+
+        foreach($form->pertanyaan as $f) {
+            if($f->tipe == 'select') {
+                $explode = explode(',',$f->opsi);
+                $f->opsi = $explode;
+            }
+        }
+        return view('client.regist', [
+            'form'  => $form,
+        ]);
+    }
+
+    public function registcari()
+    {
+        return view('client.cari');
+    }
+
+    public function registstore(Request $request)
+    {
+        $penjawab = FormPenjawab::create([
+            'form_id'   => $request->formid,
+            'token'     => $this->getName(10),
+        ]);
+
+        $arr = [];
+        foreach ($request->except('_token') as $key => $part) {
+            // $key gives you the key
+            // $part gives you the value
+            if (FormPertanyaan::find($key)) {
+                $ans = FormJawaban::create([
+                    'pertanyaan_id' => $key,
+                    'penjawab_id'   => $penjawab->id,
+                    'jawaban'       => $part,
+                ]);
+                array_push($arr,$ans);
+            }
+            
+        }
+
+        $form = Form::find($request->formid);
+        if ($form->token) {
+            Session::flash('success','Form berhasil di isi');
+            return view('client.feedback',[
+                'token' => $penjawab->token,
+            ]);
+        }else{
+            Session::flash('success','Form berhasil di isi');
+            return view('client.feedback',[
+                'token' => null,
+            ]);
+        }
     }
 }

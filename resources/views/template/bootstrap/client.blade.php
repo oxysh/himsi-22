@@ -17,9 +17,7 @@
   </head>
   <body>
 
-    {{-- @extends('template.bootstrap.nav') --}}
-
-    @include('template.bootstrap.nav')
+    @include('template.bootstrap.nav-client')
 
     @yield('content')
 

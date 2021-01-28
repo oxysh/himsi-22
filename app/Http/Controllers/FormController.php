@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\FormExport;
 use App\Form;
 use App\FormPertanyaan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
 class FormController extends Controller
 {
@@ -45,6 +48,7 @@ class FormController extends Controller
             'judul'    => 'required|string',
             'pemilik' => 'required',
             'deadline' => 'required',
+            'token'     => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -56,6 +60,7 @@ class FormController extends Controller
             'judul'     => $request->judul,
             'pemilik'   => $request->pemilik,
             'deadline'  => $request->deadline,
+            'token'  => $request->token == "YA" ? true : false,
         ]);
 
         return redirect()->route('form.index');
@@ -72,13 +77,35 @@ class FormController extends Controller
         // $form = Form::find($id);
         $form = Form::with(['pertanyaan','penjawab','penjawab.jawaban', 'penjawab.jawaban.pertanyaan'])->find($id);
 
-        dd($form);
+        // dd($form);
         // $pertanyaan = FormPertanyaan::where('form_id',$id)->get();
 
         return view('form.detail',[
             'form'          => $form,
             // 'pertanyaan'    => $pertanyaan,
         ]);
+    }
+
+
+    public function lock($id)
+    {
+        $form = Form::find($id);
+        $form->terkunci = true;
+        $form->save();
+
+        Session::flash('success','Sukses mengunci pertanyaan');
+        return redirect()->back();
+    }
+
+    public function excel($id)
+    {
+
+        // $form = Form::with(['pertanyaan','penjawab','penjawab.jawaban', 'penjawab.jawaban.pertanyaan'])->find($id);
+
+        // return view('form.excel',[
+        //     'form' => $form,
+        // ]);
+        return Excel::download(new FormExport($id), 'Response.xlsx');
     }
 
     /**

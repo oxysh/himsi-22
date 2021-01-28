@@ -16,21 +16,22 @@ class FormSeeder extends Seeder
     public function run()
     {
         $form = new Form();
-        $form->judul = 'Biodata';
+        $form->judul = 'Pendaftaran Kepengurusan HIMSI';
         $form->pemilik = 'HIMSI';
         $form->deadline = '2021-02-18 00:00:00';
+        $form->token = true;
         $form->save();
 
         $pertanyaan = new FormPertanyaan();
         $pertanyaan->form_id = $form->id;
         $pertanyaan->tipe = 'text';
-        $pertanyaan->pertanyaan = 'Siapa Namamu';
+        $pertanyaan->pertanyaan = 'NAMA';
         $pertanyaan->save();
 
         $pertanyaann = new FormPertanyaan();
         $pertanyaann->form_id = $form->id;
-        $pertanyaann->tipe = 'number';
-        $pertanyaann->pertanyaan = 'Berapa Umurmu';
+        $pertanyaann->tipe = 'text';
+        $pertanyaann->pertanyaan = 'NIM';
         $pertanyaann->save();
 
         $penjawab = new FormPenjawab();
@@ -41,13 +42,13 @@ class FormSeeder extends Seeder
         $jawaban = new FormJawaban();
         $jawaban->pertanyaan_id = $pertanyaan->id;
         $jawaban->penjawab_id = $penjawab->id;
-        $jawaban->jawaban = 'admin';
+        $jawaban->jawaban = 'ADMIN HIMSI';
         $jawaban->save();
 
         $jawabann = new FormJawaban();
         $jawabann->pertanyaan_id = $pertanyaann->id;
         $jawabann->penjawab_id = $penjawab->id;
-        $jawabann->jawaban = 'admin';
+        $jawabann->jawaban = '081911633046';
         $jawabann->save();
     }
 }
