@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Exports\FormExport;
 use App\Form;
 use App\FormPertanyaan;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
@@ -80,9 +82,18 @@ class FormController extends Controller
         // dd($form);
         // $pertanyaan = FormPertanyaan::where('form_id',$id)->get();
 
+        $origin = new DateTime();
+        $deadline = new DateTime($form->deadline);
+        // $deadline = new DateTime('2021-02-06 00:00:00');
+        $diff = $origin->diff($deadline);
+        if ($diff->invert) {
+            $form->kadaluarsa = true;
+        }
+
+        $form->dedlen = join("T",explode(" ",$form->deadline));
+
         return view('form.detail',[
             'form'          => $form,
-            // 'pertanyaan'    => $pertanyaan,
         ]);
     }
 
@@ -128,7 +139,15 @@ class FormController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $form = Form::find($id)->update([
+            'judul'     => $request->judul,
+            'pemilik'   => $request->pemilik,
+            'deadline'  => $request->deadline,
+            'token'  => $request->token == "YA" ? true : false,
+        ]);
+
+        Session::flash('success','Sukses mengUPDATE informasi FORM');
+        return redirect()->back();
     }
 
     /**

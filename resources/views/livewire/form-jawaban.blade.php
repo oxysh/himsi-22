@@ -58,6 +58,7 @@
                     @foreach ($jawaban as $j)
                         <div class="card card-body my-3">
                             <p>
+                                <strong>TOKEN</strong> : {{ $j->penjawab->token }} <br>
                                 @foreach ($j->penjawab->jawaban as $jaw)
                                     <strong>{{ $jaw->pertanyaan->pertanyaan }}</strong> : {{ $jaw->jawaban }}
                                     <br>
@@ -74,10 +75,12 @@
                 @foreach ($penjawab as $p)
                     <div class="card card-body my-3">
                         <p>
+                            <strong>TOKEN</strong> : {{ $p->token }} <br>
                             @foreach ($p->jawaban as $jawaban)
                                 <strong>{{ $jawaban->pertanyaan->pertanyaan }}</strong> : {{ $jawaban->jawaban }}
                                 <br>
                             @endforeach
+                            <a href="{{route('form.penjawab.edit', [$formid,$p->id])}}">Ubah Jawaban</a>
                         </p>
                     </div>
                 @endforeach

@@ -1,80 +1,3 @@
-{{--
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Detail</title>
-    </head>
-
-    <body style="padding-left: 50px">
-        <header>
-            <h1>Detail Form</h1>
-        </header>
-
-        <section>
-            <h3>Identitas Form</h3>
-            <div style="margin-bottom: 10px">
-                judul : {{ $form->judul }} <br>
-                pemilik : {{ $form->pemilik }} <br>
-                deadline : {{ $form->deadline }} <br>
-            </div>
-        </section>
-
-        <section>
-            <h3>Pertanyaan</h3>
-            @if (sizeof($pertanyaan) == 0)
-                Anda masih belum memiliki pertanyaan
-            @endif
-            @foreach ($pertanyaan as $p)
-                <div style="margin-bottom: 10px">
-
-                    Tipe : {{ $p->tipe }} <br>
-                    Pertanyaan : {{ $p->pertanyaan }} <br>
-                    Opsi : {{ $p->opsi }} <br>
-                    <a href="{{ route('pertanyaan.destroy', $p->id) }}">Hapus Pertanyaan</a>
-                </div>
-            @endforeach
-        </section>
-
-        <section>
-            <h3>Tambahkan Pertanyaan</h3>
-            <form action="{{ route('pertanyaan.store') }}" method="post">
-                @csrf
-                <input type="hidden" name="formid" value="{{ $form->id }}">
-                <label for="tipe">Tipe Pertanyaan</label>
-                <select name="tipe" id="tipe">
-                    <option value="text">text</option>
-                    <option value="select">opsi</option>
-                    <option value="date">tanggal</option>
-                    <option value="datetime-local">tanggal dan waktu</option>
-                    <option value="time">waktu</option>
-                    <option value="number">angka</option>
-                </select>
-
-                <br>
-                <label for="pertanyaan">Pertanyaan</label>
-                <input required type="text" name="pertanyaan" id="pertanyaan">
-
-                <br>
-                <p>
-                    jika memilih tipe pertanyaan <strong>opsi</strong>
-                    <br> maka tulis opsi dari pertanyaan pada kolom ini
-                    <br> opsi pisahkan dengan tanda koma (,)
-                    <br> tidak perlu menggunakan spasi setelah tanda koma
-                    <br>
-                    <textarea name="opsi" id="opsi" cols="30" rows="10"></textarea>
-                </p>
-                <button type="submit">Submit</button>
-            </form>
-        </section>
-    </body>
-
-    </html>
---}}
-
 @extends('template.bootstrap.temp')
 
 @section('title')
@@ -111,6 +34,20 @@
                         <a href="{{ route('form.excel', $form->id) }}">
                             <button type="button" class="btn btn-dark mt-4">Unduh Data Responden dalam Excel</button>
                         </a>
+
+                        <button type="button" class="btn btn-success ml-3 mt-4" data-toggle="modal"
+                            data-target="#formUpdate">
+                            Ubah Informasi Form
+                        </button>
+
+                        @isset($form->kadaluarsa)
+                            @if ($form->kadaluarsa)
+                            <div class="alert alert-danger" role="alert">
+                                Form Sudah Berakhir
+                            </div>
+                            @endif
+                        @endisset
+                        
                     </p>
                 </div>
             </div>
@@ -148,7 +85,8 @@
                                 @if ($p->opsi != null)
                                     <strong>Opsi</strong> : {{ $p->opsi }} <br>
                                 @endif
-                                @if (!$form->lock)
+                                @if (!$form->terkunci)
+                                    {{-- <a href="{{ route('pertanyaan.destroy', $p->id) }}">Edit Pertanyaan</a> <br> --}}
                                     <a href="{{ route('pertanyaan.destroy', $p->id) }}">Hapus Pertanyaan</a>
                                 @endif
                             </p>
@@ -213,33 +151,44 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="infoModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
-            aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal fade" id="formUpdate" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="formUpdateLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="infoModalLabel">Pertanyaan Baru</h5>
+                        <h5 class="modal-title" id="formUpdateLabel">Updaet Form</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('pertanyaan.store') }}" method="post">
+                        <form action="{{ route('form.update', $form->id) }}" method="post">
                             @csrf
-                            <input type="hidden" name="formid" value="{{ $form->id }}">
-
 
                             <div class="form-group">
-                                <label for="formJudul">Pertanyaan-nya</label>
+                                <label for="formJudul">Judul Form</label>
                                 <input name="judul" type="text" class="form-control" id="formJudul"
                                     value="{{ $form->judul }}">
                             </div>
+                            <div class="form-group">
+                                <label for="pemilik">Pemilik Form</label>
+                                <select name="pemilik" class="form-control" id="pemilik">
+                                    <option {{ old('pemilik') == "HIMSI" ? 'selected' : '' }} value="HIMSI">HIMSI</option>
+                                    <option {{ old('pemilik') == Auth::user()->role ? 'selected' : '' }} value="{{Auth::user()->role}}">{{Auth::user()->role}}</option>
+                                </select>
+                            </div>
+            
                             <div class="form-group">
                                 <label for="formTipe">Penggunaan Token untuk Responden</label>
                                 <select name="token" class="form-control" id="formTipe">
                                     <option {{ $form->token ? 'selected' : '' }} value="true">ya</option>
                                     <option {{ $form->token ? '' : 'selected' }} value="false">tidak</option>
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="deadline">Deadline Form</label>
+                                <input type="datetime-local" class="form-control @error('deadline') is-invalid @enderror"
+                                    name="deadline" id="deadline" aria-describedby="deadlineFeedback" value="{{ $form->dedlen }}">
                             </div>
                             {{-- <div class="form-group">
                                 <label for="deadline">Deadline Form</label>
@@ -251,7 +200,7 @@
                                     {{ $message }}
                                 </div>
                                 @enderror
-                            </div> --}}
+                            </div > --}}
 
 
                     </div>

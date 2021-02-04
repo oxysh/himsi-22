@@ -20,7 +20,7 @@ class RespondenController extends Controller
     {
         $form = Form::get();
 
-        return view('responden.index',[
+        return view('responden.index', [
             'form'  => $form,
         ]);
     }
@@ -59,20 +59,19 @@ class RespondenController extends Controller
                     'penjawab_id'   => $penjawab->id,
                     'jawaban'       => $part,
                 ]);
-                array_push($arr,$ans);
+                array_push($arr, $ans);
             }
-            
         }
 
         $form = Form::find($request->formid);
         if ($form->token) {
-            Session::flash('success','Form berhasil di isi');
-            return view('responden.feedback',[
+            Session::flash('success', 'Form berhasil di isi');
+            return view('responden.feedback', [
                 'token' => $penjawab->token,
             ]);
-        }else{
-            Session::flash('success','Form berhasil di isi');
-            return view('responden.feedback',[
+        } else {
+            Session::flash('success', 'Form berhasil di isi');
+            return view('responden.feedback', [
                 'token' => null,
             ]);
         }
@@ -88,9 +87,9 @@ class RespondenController extends Controller
     {
         $form = Form::with('pertanyaan')->find($id);
 
-        foreach($form->pertanyaan as $f) {
-            if($f->tipe == 'select') {
-                $explode = explode(',',$f->opsi);
+        foreach ($form->pertanyaan as $f) {
+            if ($f->tipe == 'select') {
+                $explode = explode(',', $f->opsi);
                 $f->opsi = $explode;
             }
         }
@@ -111,9 +110,31 @@ class RespondenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $pid)
     {
-        //
+        $result = FormPenjawab::with(['form'])->find($pid);
+
+        $form = Form::with(['pertanyaan'])->find($result->form->id);
+
+        foreach ($form->pertanyaan as $p) {
+            $jawaban = FormJawaban::where('pertanyaan_id', $p->id)
+                ->where('penjawab_id', $pid)->first();
+            if (!$jawaban) {
+                $p->jawaban = "";
+            }else {
+                $p->jawaban = $jawaban->jawaban;
+            }
+
+            if ($p->tipe == 'select') {
+                $explode = explode(',', $p->opsi);
+                $p->opsi = $explode;
+            }
+        }
+
+        return view('form.editpenjawab', [
+            'result' => $result,
+            'form'  => $form,
+        ]);
     }
 
     /**
@@ -123,9 +144,37 @@ class RespondenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $pid)
     {
-        //
+        $arr = [];
+        foreach ($request->except('_token') as $key => $part) {
+            // $key gives you the key
+            // $part gives you the value
+
+            if (FormPertanyaan::find($key)) {
+                // $ans = FormJawaban::create([
+                //     'pertanyaan_id' => $key,
+                //     'penjawab_id'   => $penjawab->id,
+                //     'jawaban'       => $part,
+                // ]);
+                $ans = FormJawaban::where('pertanyaan_id', $key)
+                    ->where('penjawab_id', $pid)->first();
+                if ($ans) {
+                    $ans->update([
+                        'jawaban' => $part,
+                    ]);
+                }else{
+                    FormJawaban::create([
+                        'pertanyaan_id' => $key,
+                        'penjawab_id' => $pid,
+                        'jawaban' => $part,
+                    ]);
+                }
+                array_push($arr,$ans);
+            }
+        }
+
+        return redirect()->route('form.show', $id);
     }
 
     /**
@@ -134,7 +183,7 @@ class RespondenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($pid)
     {
         //
     }
@@ -157,11 +206,14 @@ class RespondenController extends Controller
 
     public function regist()
     {
+
+        return redirect()->route('regist.thanks');
+        
         $form = Form::with('pertanyaan')->find(1);
 
-        foreach($form->pertanyaan as $f) {
-            if($f->tipe == 'select') {
-                $explode = explode(',',$f->opsi);
+        foreach ($form->pertanyaan as $f) {
+            if ($f->tipe == 'select') {
+                $explode = explode(',', $f->opsi);
                 $f->opsi = $explode;
             }
         }
@@ -192,20 +244,19 @@ class RespondenController extends Controller
                     'penjawab_id'   => $penjawab->id,
                     'jawaban'       => $part,
                 ]);
-                array_push($arr,$ans);
+                array_push($arr, $ans);
             }
-            
         }
 
         $form = Form::find($request->formid);
         if ($form->token) {
-            Session::flash('success','Form berhasil di isi');
-            return view('client.feedback',[
+            Session::flash('success', 'Form berhasil di isi');
+            return view('client.feedback', [
                 'token' => $penjawab->token,
             ]);
-        }else{
-            Session::flash('success','Form berhasil di isi');
-            return view('client.feedback',[
+        } else {
+            Session::flash('success', 'Form berhasil di isi');
+            return view('client.feedback', [
                 'token' => null,
             ]);
         }

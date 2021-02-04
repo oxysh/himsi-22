@@ -19,6 +19,7 @@ class FormJawaban extends Component
     public $filtertype = "";
     public $filterval = "";
     public $filteropt;
+    
 
     public function mount($formid)
     {

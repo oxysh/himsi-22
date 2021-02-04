@@ -78,13 +78,7 @@
                     <label for="pemilik">Pemilik Form</label>
                     <select name="pemilik" class="form-control" id="pemilik">
                         <option {{ old('pemilik') == "HIMSI" ? 'selected' : '' }} value="HIMSI">HIMSI</option>
-                        <option {{ old('pemilik') == "PSDM" ? 'selected' : '' }} value="PSDM">PSDM</option>
-                        <option {{ old('pemilik') == "RISTEK" ? 'selected' : '' }} value="RISTEK">RISTEK</option>
-                        <option {{ old('pemilik') == "AKADEMIK" ? 'selected' : '' }} value="AKADEMIK">AKADEMIK</option>
-                        <option {{ old('pemilik') == "MEDIA" ? 'selected' : '' }} value="MEDIA">MEDIA</option>
-                        <option {{ old('pemilik') == "HUBLU" ? 'selected' : '' }} value="HUBLU">HUBLU</option>
-                        <option {{ old('pemilik') == "KESTARI" ? 'selected' : '' }} value="KESTARI">KESTARI</option>
-                        <option {{ old('pemilik') == "SERA" ? 'selected' : '' }} value="SERA">SERA</option>
+                        <option {{ old('pemilik') == Auth::user()->role ? 'selected' : '' }} value="{{Auth::user()->role}}">{{Auth::user()->role}}</option>
                     </select>
                 </div>
 

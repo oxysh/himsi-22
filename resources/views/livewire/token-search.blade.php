@@ -21,11 +21,34 @@
                 <div class="my-4">
                     <h3>Hasil Form {{ $result->form->judul }} </h3>
                 </div>
-                @foreach ($result->jawaban as $jaw)
-                    <div class="form-group">
-                        <label for="">{{ $jaw->pertanyaan->pertanyaan }}</label>
-                        <input disabled type="text" class="form-control" id="" value="{{ $jaw->jawaban }}">
+
+                @if ($p_lolos == "ya")
+                    <div class="my-2">
+                        <div class="alert alert-success" role="alert">
+                            Selamat Anda menjadi bagian dari kepengurusan HIMSI 2021 <br>
+                            Anda diterima pada bidang : {{$p_bidang}} <br>
+                            segera hubungi kabid melalui LINE : {{$p_line}}
+                        </div>
+
                     </div>
+                @else
+                    <div class="my-2">
+                        <div class="alert alert-danger" role="alert">
+                            Mohon Maaf anda belum menjadi bagian dari kepengurusan HIMSI 2021 <br>
+                            Tetap Semangat dan ikuti Program dan Agenda HIMSI 2021 <br>
+                            Anda masih punya kesempatan menjadi bagian dari Kepanitiaan Program HIMSI 2021
+                        </div>
+                    </div>
+                @endif
+                
+                @foreach ($result->jawaban as $jaw)
+                    @if (!in_array($jaw->pertanyaan->id, [5, 6, 7]))
+                        <div class="form-group">
+                            <label for="">{{ $jaw->pertanyaan->pertanyaan }}</label>
+                            <input disabled type="text" class="form-control" id="" value="{{ $jaw->jawaban }}">
+                        </div>
+
+                    @endif
                 @endforeach
             @endif
         </div>
