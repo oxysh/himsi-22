@@ -80,10 +80,10 @@
     <script>
         const daftar = document.querySelector('.footer.poppin');
 
-        // daftar.addEventListener("click", function () {
-        //     window.open("http://www.google.com/")
-        //     alert("belum tersedia")
-        // })
+        daftar.addEventListener("click", function () {
+            window.open("/regist");
+            // alert("belum tersedia")
+        })
     </script>
 
 </body>

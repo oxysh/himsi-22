@@ -22,7 +22,7 @@
                     <h3>Hasil Form {{ $result->form->judul }} </h3>
                 </div>
 
-                @if ($p_lolos == "ya")
+                {{-- @if ($p_lolos == "ya")
                     <div class="my-2">
                         <div class="alert alert-success" role="alert">
                             Selamat Anda menjadi bagian dari kepengurusan HIMSI 2021 <br>
@@ -39,7 +39,7 @@
                             Anda masih punya kesempatan menjadi bagian dari Kepanitiaan Program HIMSI 2021
                         </div>
                     </div>
-                @endif
+                @endif --}}
                 
                 @foreach ($result->jawaban as $jaw)
                     @if (!in_array($jaw->pertanyaan->id, [5, 6, 7]))
