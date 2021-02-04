@@ -181,8 +181,8 @@
                             <div class="form-group">
                                 <label for="formTipe">Penggunaan Token untuk Responden</label>
                                 <select name="token" class="form-control" id="formTipe">
-                                    <option {{ $form->token ? 'selected' : '' }} value="true">ya</option>
-                                    <option {{ $form->token ? '' : 'selected' }} value="false">tidak</option>
+                                    <option {{ $form->token ? 'selected' : '' }} value="YA">YA</option>
+                                    <option {{ $form->token ? '' : 'selected' }} value="TIDAK">TIDAK</option>
                                 </select>
                             </div>
                             <div class="form-group">
