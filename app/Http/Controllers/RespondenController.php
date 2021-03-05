@@ -261,4 +261,11 @@ class RespondenController extends Controller
             ]);
         }
     }
+
+    public function bitly($bitly)
+    {
+        $form = Form::where('bitly',$bitly)->first();
+
+        return $this->show($form->id);
+    }
 }

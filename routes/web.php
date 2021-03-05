@@ -24,6 +24,8 @@ Route::prefix('regist')->group(function (){
     })->name('regist.thanks');
 });
 
+Route::get('/f/{token}','RespondenController@bitly')->name('form.bitly');
+
 Route::prefix('admin')->group(function() {
     Route::get('/','AuthController@index')->middleware('guest')->name('login');
     Route::post('/login','AuthController@login')->name('auth.login');
@@ -47,9 +49,10 @@ Route::prefix('form')->middleware('auth')->group(function() {
     });
     Route::post('/store','FormController@store')->name('form.store');
     Route::post('/update/{id}','FormController@update')->name('form.update');
-    
+    Route::post('/bitly/{id}','FormController@updateBitly')->name('form.update.bitly');
     Route::prefix('pertanyaan')->group(function() {
         Route::post('/store','FormPertanyaanController@store')->name('pertanyaan.store');
+        Route::post('/update', 'FormPertanyaanController@update')->name('pertanyaan.update');
         Route::get('/destroy/{id}','FormPertanyaanController@destroy')->name('pertanyaan.destroy');
     });
 

@@ -77,9 +77,28 @@ class FormPertanyaanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $f = FormPertanyaan::find($request->questid);
+
+        if($f->tipe != $request->tipe)
+        {
+            $f->tipe = $request->tipe;
+        }
+
+        if($f->pertanyaan != $request->pertanyaan)
+        {
+            $f->pertanyaan = $request->pertanyaan;
+        }
+
+        if($f->opsi != $request->opsi)
+        {
+            $f->opsi = $request->opsi;
+        }
+
+        $f->save();
+
+        return redirect()->back()->with('success','Anda berhasil mengubah pertanyaan');
     }
 
     /**

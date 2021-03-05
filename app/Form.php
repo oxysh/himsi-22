@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Form extends Model
 {
-    protected $fillable = ['judul','pemilik','deadline','terkunci','token'];
+    protected $fillable = ['judul','pemilik','deadline','terkunci','token', 'bitly'];
     
     public function pertanyaan()
     {

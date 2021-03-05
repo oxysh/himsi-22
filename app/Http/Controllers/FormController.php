@@ -8,6 +8,7 @@ use App\FormPertanyaan;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
@@ -58,11 +59,12 @@ class FormController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        Form::create([
+        $form = Form::create([
             'judul'     => $request->judul,
             'pemilik'   => $request->pemilik,
             'deadline'  => $request->deadline,
             'token'  => $request->token == "YA" ? true : false,
+            'bitly' => Str::random(10),
         ]);
 
         return redirect()->route('form.index');
@@ -159,5 +161,27 @@ class FormController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updateBitly(Request $request, $id)
+    {
+        $myf = Form::find($id);
+
+        $bitly = join('',explode(' ',$request->bitly));
+
+        if($myf->bitly == $bitly)
+        {
+            return redirect()->back()->with('errorBitly','sadar diri saudara, anda tidak mengubah apa apa :))');
+        }
+
+        if($form = Form::where('bitly', $bitly)->first())
+        {
+            return redirect()->back()->with('errorBitly','Token yang anda ajukan ('.$bitly.') sudah ada yang pakai');
+        }
+
+        $myf->bitly = $bitly;
+        $myf->save();
+
+        return redirect()->back()->with('success','Token yang anda ajukan berhasil dirubah');
     }
 }

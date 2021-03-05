@@ -18,6 +18,14 @@
             </div>
         @endif
 
+        @if (Session::has('errorBitly'))
+            <div class="row">
+                <div class="alert alert-danger" role="alert">
+                    {{ Session::get('errorBitly') }}
+                </div>
+            </div>
+        @endif
+
         <div class="row my-4">
             <div class="col">
                 <div class="card card-body">
@@ -26,6 +34,7 @@
                         <strong>Pemilik</strong> : {{ $form->pemilik }} <br>
                         <strong>Penggunaan Token</strong> : {{ $form->token ? 'ya' : 'tidak' }} <br>
                         <strong>Deadline</strong> : {{ $form->deadline }} <br>
+                        <strong>Simple Link</strong> : himsiunair.com/f/{{ $form->bitly }} <br>
                         {{-- <button type="button" class="btn btn-outline-info mt-2"
                             data-toggle="modal" data-target="#infoModal">
                             Ubah Info Form
@@ -40,14 +49,19 @@
                             Ubah Informasi Form
                         </button>
 
+                        <button type="button" class="btn btn-success ml-3 mt-4" data-toggle="modal"
+                            data-target="#formBitly">
+                            Ubah Short Link Token
+                        </button>
+
                         @isset($form->kadaluarsa)
                             @if ($form->kadaluarsa)
-                            <div class="alert alert-danger" role="alert">
-                                Form Sudah Berakhir
-                            </div>
+                                <div class="alert alert-danger" role="alert">
+                                    Form Sudah Berakhir
+                                </div>
                             @endif
                         @endisset
-                        
+
                     </p>
                 </div>
             </div>
@@ -85,6 +99,11 @@
                                 @if ($p->opsi != null)
                                     <strong>Opsi</strong> : {{ $p->opsi }} <br>
                                 @endif
+                                <button type="button" class="btn btn-edit-question btn-success" data-toggle="modal"
+                                    data-target="#formEdit" data-tipe="{{$p->tipe}}" data-quest="{{$p->pertanyaan}}"
+                                    data-opsi="{{$p->opsi}}" data-unique="{{$p->id}}">
+                                    Edit Pertanyaan
+                                </button> <br>
                                 @if (!$form->terkunci)
                                     {{-- <a href="{{ route('pertanyaan.destroy', $p->id) }}">Edit Pertanyaan</a> <br> --}}
                                     <a href="{{ route('pertanyaan.destroy', $p->id) }}">Hapus Pertanyaan</a>
@@ -97,7 +116,7 @@
             </div>
         </div>
 
-        <!-- Modal -->
+        <!-- Modal Tambah Pertanyaan-->
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
             aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -114,8 +133,8 @@
                             <input type="hidden" name="formid" value="{{ $form->id }}">
 
                             <div class="form-group">
-                                <label for="formTipe">Tipe Data Pertanyaan</label>
-                                <select name="tipe" class="form-control" id="formTipe">
+                                <label for="formTipes">Tipe Data Pertanyaan</label>
+                                <select name="tipe" class="form-control" id="formTipes">
                                     <option value="text">text</option>
                                     <option value="select">opsi</option>
                                     <option value="date">tanggal</option>
@@ -150,7 +169,59 @@
             </div>
         </div>
 
-        <!-- Modal -->
+        <!-- Modal Edit Pertanyaan-->
+        <div class="modal fade" id="formEdit" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Pertanyaan Baru</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('pertanyaan.update') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="questid" id="questid" value="">
+                            <div class="form-group">
+                                <label for="editTipe">Tipe Data Pertanyaan</label>
+                                <select name="tipe" class="form-control" id="editTipe">
+                                    <option value="text">text</option>
+                                    <option value="select">Select / opsi</option>
+                                    <option value="date">tanggal</option>
+                                    <option value="datetime-local">tanggal dan waktu</option>
+                                    <option value="time">waktu</option>
+                                    <option value="number">angka</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="editPertanyaan">Pertanyaan-nya</label>
+                                <input name="pertanyaan" type="text" class="form-control" id="editPertanyaan">
+                            </div>
+                            <div class="form-group">
+                                <label for="opsiEdit">Opsi</label>
+
+                                <textarea name="opsi" class="form-control" id="opsiEdit" rows="3"
+                                    aria-describedby="opsiHelp"></textarea>
+                                <small id="opsiHelp" class="form-text text-muted">jika memilih tipe pertanyaan
+                                    <strong>opsi</strong>
+                                    <br> maka tulis opsi dari pertanyaan pada kolom ini
+                                    <br> opsi pisahkan dengan tanda koma (,)
+                                    <br> tidak perlu menggunakan spasi setelah tanda koma</small>
+                            </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Edit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Form Update-->
         <div class="modal fade" id="formUpdate" data-backdrop="static" data-keyboard="false" tabindex="-1"
             aria-labelledby="formUpdateLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -173,11 +244,13 @@
                             <div class="form-group">
                                 <label for="pemilik">Pemilik Form</label>
                                 <select name="pemilik" class="form-control" id="pemilik">
-                                    <option {{ old('pemilik') == "HIMSI" ? 'selected' : '' }} value="HIMSI">HIMSI</option>
-                                    <option {{ old('pemilik') == Auth::user()->role ? 'selected' : '' }} value="{{Auth::user()->role}}">{{Auth::user()->role}}</option>
+                                    <option {{ old('pemilik') == 'HIMSI' ? 'selected' : '' }} value="HIMSI">HIMSI
+                                    </option>
+                                    <option {{ old('pemilik') == Auth::user()->role ? 'selected' : '' }}
+                                        value="{{ Auth::user()->role }}">{{ Auth::user()->role }}</option>
                                 </select>
                             </div>
-            
+
                             <div class="form-group">
                                 <label for="formTipe">Penggunaan Token untuk Responden</label>
                                 <select name="token" class="form-control" id="formTipe">
@@ -188,7 +261,8 @@
                             <div class="form-group">
                                 <label for="deadline">Deadline Form</label>
                                 <input type="datetime-local" class="form-control @error('deadline') is-invalid @enderror"
-                                    name="deadline" id="deadline" aria-describedby="deadlineFeedback" value="{{ $form->dedlen }}">
+                                    name="deadline" id="deadline" aria-describedby="deadlineFeedback"
+                                    value="{{ $form->dedlen }}">
                             </div>
                             {{-- <div class="form-group">
                                 <label for="deadline">Deadline Form</label>
@@ -213,8 +287,88 @@
             </div>
         </div>
 
+        <!-- Modal Bitly Update-->
+        <div class="modal fade" id="formBitly" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="formUpdateLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="formUpdateLabel">Ajukan Perubahan Token Simple Link</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('form.update.bitly', $form->id) }}" method="post">
+                            @csrf
+
+                            <div class="form-group">
+                                <label for="formToken">Simpel Link Token</label>
+                                <input name="bitly" type="text" class="form-control" id="formToken"
+                                    value="{{ $form->bitly }}">
+                            </div>
+                            {{-- <div class="form-group">
+                                <label for="deadline">Deadline Form</label>
+                                <input type="datetime-local" class="form-control @error('deadline') is-invalid @enderror"
+                                    name="deadline" id="deadline" aria-describedby="deadlineFeedback"
+                                    value="{{ $form->deadline }}">
+                                @error('deadline')
+                                <div id="deadlineFeedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
+                            </div > --}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Ajukan Perubahan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         @livewire('form-jawaban', ['formid' => $form->id])
 
 
     </div>
+@endsection
+
+@section('js')
+    <script>
+        const formID = document.querySelector('#questid');
+        const formPertanyaan = document.querySelector('#editPertanyaan');
+        const formOpsi = document.querySelector('#opsiEdit');
+        const formTipe = document.querySelector('#editTipe');
+        const btnEdit = document.querySelectorAll('.btn-edit-question');
+
+        // console.log(formTipe.childNodes)
+        const editTipe = (index) => {
+            formTipe.childNodes.forEach(element => {
+                // console.log(element.nodeName)
+                if(element.nodeName == "OPTION") {
+                    // console.log(element.value)
+                    if(index == element.value) {
+                        
+                    }
+                }
+            });
+        }
+        btnEdit.forEach(btnE => {
+            btnE.addEventListener('click',(e)=>{
+                // console.log(e);
+                // console.group()
+                // console.log(e.target.dataset.unique)
+                // console.log(e.target.dataset.tipe)
+                // console.log(e.target.dataset.quest)
+                // console.log(e.target.dataset.opsi)
+                // console.groupEnd()
+                // editTipe(e.target.dataset.tipe)
+                formTipe.value = e.target.dataset.tipe
+                formID.value = e.target.dataset.unique
+                formOpsi.value = e.target.dataset.opsi
+                formPertanyaan.value = e.target.dataset.quest
+            })
+        });
+    </script>
 @endsection
