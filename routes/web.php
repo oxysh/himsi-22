@@ -24,6 +24,10 @@ Route::prefix('regist')->group(function (){
     })->name('regist.thanks');
 });
 
+Route::get('akademik',function(){
+    return view('akademik');
+})->name('akademik');
+
 // Route::prefix('admin')->group(function() {
 //     Route::get('/','AuthController@index')->middleware('guest')->name('login');
 //     Route::post('/login','AuthController@login')->name('auth.login');
