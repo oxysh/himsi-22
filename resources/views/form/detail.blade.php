@@ -96,12 +96,15 @@
                             <p>
                                 <strong>Tipe</strong> : {{ $p->tipe }} <br>
                                 <strong>Pertanyaan</strong> : {{ $p->pertanyaan }} <br>
+                                <strong>Wajib</strong> : {{$p->mandatory ? 'wajib' : 'tidak wajib' }} <br>
                                 @if ($p->opsi != null)
                                     <strong>Opsi</strong> : {{ $p->opsi }} <br>
                                 @endif
                                 <button type="button" class="btn btn-edit-question btn-success" data-toggle="modal"
-                                    data-target="#formEdit" data-tipe="{{$p->tipe}}" data-quest="{{$p->pertanyaan}}"
-                                    data-opsi="{{$p->opsi}}" data-unique="{{$p->id}}">
+                                    data-target="#formEdit" data-tipe="{{ $p->tipe }}"
+                                    data-quest="{{ $p->pertanyaan }}" data-opsi="{{ $p->opsi }}"
+                                    data-unique="{{ $p->id }}"
+                                    data-wajib="{{$p->mandatory}}">
                                     Edit Pertanyaan
                                 </button> <br>
                                 @if (!$form->terkunci)
@@ -146,6 +149,15 @@
                             <div class="form-group">
                                 <label for="formPertanyaan">Pertanyaan-nya</label>
                                 <input name="pertanyaan" type="text" class="form-control" id="formPertanyaan">
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="true" name="mandatory"
+                                        id="mandatoryCheck">
+                                    <label class="form-check-label" for="mandatoryCheck">
+                                        Wajib Diisi ?
+                                    </label>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="opsiTextArea">Opsi</label>
@@ -198,6 +210,15 @@
                             <div class="form-group">
                                 <label for="editPertanyaan">Pertanyaan-nya</label>
                                 <input name="pertanyaan" type="text" class="form-control" id="editPertanyaan">
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="true" name="mandatory"
+                                        id="mandatoryCheckEdit">
+                                    <label class="form-check-label" for="mandatoryCheckEdit">
+                                        Wajib Diisi ?
+                                    </label>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="opsiEdit">Opsi</label>
@@ -340,35 +361,34 @@
         const formPertanyaan = document.querySelector('#editPertanyaan');
         const formOpsi = document.querySelector('#opsiEdit');
         const formTipe = document.querySelector('#editTipe');
+        const formMandatory = document.querySelector('#mandatoryCheckEdit');
         const btnEdit = document.querySelectorAll('.btn-edit-question');
-
+        
         // console.log(formTipe.childNodes)
         const editTipe = (index) => {
             formTipe.childNodes.forEach(element => {
                 // console.log(element.nodeName)
-                if(element.nodeName == "OPTION") {
+                if (element.nodeName == "OPTION") {
                     // console.log(element.value)
-                    if(index == element.value) {
-                        
+                    if (index == element.value) {
+
                     }
                 }
             });
         }
         btnEdit.forEach(btnE => {
-            btnE.addEventListener('click',(e)=>{
-                // console.log(e);
-                // console.group()
-                // console.log(e.target.dataset.unique)
-                // console.log(e.target.dataset.tipe)
-                // console.log(e.target.dataset.quest)
-                // console.log(e.target.dataset.opsi)
-                // console.groupEnd()
-                // editTipe(e.target.dataset.tipe)
+            btnE.addEventListener('click', (e) => {
                 formTipe.value = e.target.dataset.tipe
                 formID.value = e.target.dataset.unique
                 formOpsi.value = e.target.dataset.opsi
                 formPertanyaan.value = e.target.dataset.quest
+                if(e.target.dataset.wajib == "1"){
+                    formMandatory.checked = true;
+                }else{
+                    formMandatory.checked = false;
+                }
             })
         });
+
     </script>
 @endsection

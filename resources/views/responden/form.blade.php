@@ -72,7 +72,7 @@
 
                 @foreach ($form->pertanyaan as $p)
                     <div class="form-group">
-                        <label for="{{ $p->id }}"> {{ $p->pertanyaan }} </label>
+                        <label for="{{ $p->id }}"> {{ $p->pertanyaan }} <strong class="text-danger">{{$p->mandatory ? '(wajib)' : ''}}</strong> </label>
                         @if ($p->tipe == 'select')
                             <select class="form-control" name="{{ $p->id }}" id="{{ $p->id }}">
                                 @foreach ($p->opsi as $o)
@@ -80,7 +80,7 @@
                                 @endforeach
                             </select>
                         @else
-                            <input class="form-control" required type="{{ $p->tipe }}" name="{{ $p->id }}"
+                            <input {{$p->mandatory ? 'checked' : ''}} class="form-control" required type="{{ $p->tipe }}" name="{{ $p->id }}"
                                 id="{{ $p->id }}">
                         @endif
                         <br>

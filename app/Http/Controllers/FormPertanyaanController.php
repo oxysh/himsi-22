@@ -41,6 +41,7 @@ class FormPertanyaanController extends Controller
             'tipe'          => $request->tipe,
             'pertanyaan'    => $request->pertanyaan,
             'opsi'          => $request->opsi,
+            'mandatory'     => $request->mandatory == "true" ? true : false,
         ]);
 
         Session::flash('success','Sukses menambah pertanyaan');
@@ -94,6 +95,11 @@ class FormPertanyaanController extends Controller
         if($f->opsi != $request->opsi)
         {
             $f->opsi = $request->opsi;
+        }
+
+        if($f->mandatory != ($request->mandatory == 'true'))
+        {
+            $f->mandatory = $request->mandatory == 'true' ? true : false;
         }
 
         $f->save();
