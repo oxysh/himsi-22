@@ -53,6 +53,7 @@ Route::prefix('form')->middleware('auth')->group(function() {
     Route::prefix('pertanyaan')->group(function() {
         Route::post('/store','FormPertanyaanController@store')->name('pertanyaan.store');
         Route::post('/update', 'FormPertanyaanController@update')->name('pertanyaan.update');
+        Route::post('/sort', 'FormPertanyaanController@sort')->name('pertanyaan.sort');
         Route::get('/destroy/{id}','FormPertanyaanController@destroy')->name('pertanyaan.destroy');
     });
 

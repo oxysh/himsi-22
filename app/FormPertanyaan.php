@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class FormPertanyaan extends Model
 {
-    protected $fillable = ['form_id','tipe','pertanyaan','opsi','mandatory'];
+    protected $fillable = ['form_id','tipe','pertanyaan','opsi','mandatory','sorting'];
 
     public function form()
     {

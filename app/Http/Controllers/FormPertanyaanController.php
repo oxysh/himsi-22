@@ -44,7 +44,7 @@ class FormPertanyaanController extends Controller
             'mandatory'     => $request->mandatory == "true" ? true : false,
         ]);
 
-        Session::flash('success','Sukses menambah pertanyaan');
+        Session::flash('success', 'Sukses menambah pertanyaan');
 
         return redirect()->back();
     }
@@ -82,29 +82,25 @@ class FormPertanyaanController extends Controller
     {
         $f = FormPertanyaan::find($request->questid);
 
-        if($f->tipe != $request->tipe)
-        {
+        if ($f->tipe != $request->tipe) {
             $f->tipe = $request->tipe;
         }
 
-        if($f->pertanyaan != $request->pertanyaan)
-        {
+        if ($f->pertanyaan != $request->pertanyaan) {
             $f->pertanyaan = $request->pertanyaan;
         }
 
-        if($f->opsi != $request->opsi)
-        {
+        if ($f->opsi != $request->opsi) {
             $f->opsi = $request->opsi;
         }
 
-        if($f->mandatory != ($request->mandatory == 'true'))
-        {
+        if ($f->mandatory != ($request->mandatory == 'true')) {
             $f->mandatory = $request->mandatory == 'true' ? true : false;
         }
 
         $f->save();
 
-        return redirect()->back()->with('success','Anda berhasil mengubah pertanyaan');
+        return redirect()->back()->with('success', 'Anda berhasil mengubah pertanyaan');
     }
 
     /**
@@ -116,7 +112,46 @@ class FormPertanyaanController extends Controller
     public function destroy($id)
     {
         FormPertanyaan::find($id)->delete();
-        Session::flash('success','Sukses menghapus pertanyaan');
+        Session::flash('success', 'Sukses menghapus pertanyaan');
         return redirect()->back();
+    }
+
+    public function sort(Request $request)
+    {
+        if($request->questid == null || $request->number == null) {
+            return redirect()->back()->with('errorBitly','Kalo mau ganti urutan, pilih dulu bos opsinya');
+        }
+        $p = FormPertanyaan::with(['form', 'form.pertanyaan'])->find($request->questid);
+
+        if($p->sorting == (int)$request->number){
+            return redirect()->back()->with('errorBitly','Anda memasukkan urutan yang sama bambang -_-');
+        }
+        foreach ($p->form->pertanyaan as $key => $value) {
+            if ($value->sorting == null) {
+                echo ("GENERATE\n");
+                $value->update([
+                    'sorting' => $key+1,
+                ]);
+            }
+        }
+
+        $p->sorting = (int)$request->number;
+        $p->save();
+
+        $b = FormPertanyaan::where('form_id',$p->form_id)->whereNotIn('id',[$p->id])->get();
+        $index = 1;
+        foreach ($b as $key => $value) {
+            if($index >= (int)$request->number){
+                $value->update([
+                    'sorting' => $index+1,
+                ]);
+            }else{
+                $value->update([
+                    'sorting' => $index,
+                ]);
+            }
+            $index++;
+        }
+        return redirect()->back()->with('success','Sukses mengganti urutan');
     }
 }

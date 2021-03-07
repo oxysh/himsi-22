@@ -81,6 +81,7 @@ class FormController extends Controller
         // $form = Form::find($id);
         $form = Form::with(['pertanyaan','penjawab','penjawab.jawaban', 'penjawab.jawaban.pertanyaan'])->find($id);
 
+        $form->pertanyaan = $form->pertanyaan->sortBy('sorting')->all();
         // dd($form);
         // $pertanyaan = FormPertanyaan::where('form_id',$id)->get();
 

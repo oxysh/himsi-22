@@ -86,7 +86,9 @@
                         </button>
                         <a href="{{ route('form.lock', $form->id) }}"><button class="btn btn-warning ml-3">Kunci Seluruh
                                 Pertanyaan</button></a>
-
+                        <button type="button" class="btn btn-info ml-3" data-toggle="modal" data-target="#sortQuestion">
+                            Urutkan Pertanyaan
+                        </button>
                     @endif
                 </div>
 
@@ -96,15 +98,15 @@
                             <p>
                                 <strong>Tipe</strong> : {{ $p->tipe }} <br>
                                 <strong>Pertanyaan</strong> : {{ $p->pertanyaan }} <br>
-                                <strong>Wajib</strong> : {{$p->mandatory ? 'wajib' : 'tidak wajib' }} <br>
+                                <strong>Wajib</strong> : {{ $p->mandatory ? 'wajib' : 'tidak wajib' }} <br>
+                                <strong>Urutan</strong> : {{$p->sorting }} <br>
                                 @if ($p->opsi != null)
                                     <strong>Opsi</strong> : {{ $p->opsi }} <br>
                                 @endif
                                 <button type="button" class="btn btn-edit-question btn-success" data-toggle="modal"
                                     data-target="#formEdit" data-tipe="{{ $p->tipe }}"
                                     data-quest="{{ $p->pertanyaan }}" data-opsi="{{ $p->opsi }}"
-                                    data-unique="{{ $p->id }}"
-                                    data-wajib="{{$p->mandatory}}">
+                                    data-unique="{{ $p->id }}" data-wajib="{{ $p->mandatory }}">
                                     Edit Pertanyaan
                                 </button> <br>
                                 @if (!$form->terkunci)
@@ -349,6 +351,63 @@
             </div>
         </div>
 
+        <!-- Modal Sort Question-->
+        <div class="modal fade" id="sortQuestion" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="formUpdateLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="formUpdateLabel">Ajukan Perubahan Token Simple Link</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('pertanyaan.sort', $form->id) }}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label for="pertanyaan">Pertanyaan yang akan dipindah</label>
+                                <select class="form-control" id="pertanyaan" name="questid">\
+                                    <option value="" selected disabled>--pilih--</option>
+                                    @foreach ($form->pertanyaan as $p)
+                                    <option value="{{ $p->id }}">{{ $p->pertanyaan }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="numbercontrol">Dipindah ke posisi berapa ?</label>
+                                <select class="form-control" id="numbercontrol" name="number">
+                                    <option value="" selected disabled>--pilih--</option>
+                                    @foreach ($form->pertanyaan as $p)
+                                    <option value="{{ $loop->iteration }}">{{ $loop->iteration }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Ajukan Perubahan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="formUpdateLabel">Urutan Saat ini</h5>
+                    </div>
+                    <div class="modal-body">
+                            @foreach ($form->pertanyaan as $p)
+                            <div class="form-group">
+                                <label for="pertanyaan">{{$loop->iteration}}</label>
+                                <input type="text" disabled value="{{ $p->pertanyaan }}">
+                            </div>
+                            @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+
         @livewire('form-jawaban', ['formid' => $form->id])
 
 
@@ -363,28 +422,16 @@
         const formTipe = document.querySelector('#editTipe');
         const formMandatory = document.querySelector('#mandatoryCheckEdit');
         const btnEdit = document.querySelectorAll('.btn-edit-question');
-        
-        // console.log(formTipe.childNodes)
-        const editTipe = (index) => {
-            formTipe.childNodes.forEach(element => {
-                // console.log(element.nodeName)
-                if (element.nodeName == "OPTION") {
-                    // console.log(element.value)
-                    if (index == element.value) {
 
-                    }
-                }
-            });
-        }
         btnEdit.forEach(btnE => {
             btnE.addEventListener('click', (e) => {
                 formTipe.value = e.target.dataset.tipe
                 formID.value = e.target.dataset.unique
                 formOpsi.value = e.target.dataset.opsi
                 formPertanyaan.value = e.target.dataset.quest
-                if(e.target.dataset.wajib == "1"){
+                if (e.target.dataset.wajib == "1") {
                     formMandatory.checked = true;
-                }else{
+                } else {
                     formMandatory.checked = false;
                 }
             })
