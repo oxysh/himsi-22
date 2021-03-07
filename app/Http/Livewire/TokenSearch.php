@@ -30,5 +30,8 @@ class TokenSearch extends Component
         $this->p_bidang = FormJawaban::where('pertanyaan_id',6)->where('penjawab_id',$this->result->id)->first()->jawaban;
         $this->p_line = FormJawaban::where('pertanyaan_id',7)->where('penjawab_id',$this->result->id)->first()->jawaban;
     
+        // $this->p_lolos = FormJawaban::where('pertanyaan_id',28)->where('penjawab_id',$this->result->id)->first()->jawaban;
+        // $this->p_bidang = FormJawaban::where('pertanyaan_id',29)->where('penjawab_id',$this->result->id)->first()->jawaban;
+        // $this->p_line = FormJawaban::where('pertanyaan_id',30)->where('penjawab_id',$this->result->id)->first()->jawaban;
     }
 }

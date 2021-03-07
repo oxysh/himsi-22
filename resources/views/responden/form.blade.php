@@ -1,52 +1,3 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Isi Form</title>
-</head>
-
-<body>
-    <header>
-        <h1> {{ $form->judul }} </h1>
-    </header>
-
-    <section>
-
-        <form action="{{ route('responden.store') }}" method="post">
-
-            @csrf
-            <input type="hidden" name="formid" value="{{ $form->id }}">
-            @foreach ($form->pertanyaan as $p)
-                <label for="{{ $p->id }}"> {{ $p->pertanyaan }} </label>
-                @if ($p->tipe == 'select')
-                    <select name="{{ $p->id }}" id="{{ $p->id }}">
-                        @foreach ($p->opsi as $o)
-                            <option value="{{ $o }}">{{ $o }}</option>
-                        @endforeach
-                    </select>
-                @else
-                    <input required type="{{ $p->tipe }}" name="{{ $p->id }}" id="{{ $p->id }}">
-                @endif
-                <br>
-            @endforeach
-
-            @if ($form->token)
-                <small>Setelah anda submit, anda akan mendapatkan sebuah token yang digunakan untuk berbagai hal</small>
-                <br>
-                <small>contohnya adalah mengecek hasil form yang sudah anda submit</small> <br>
-                <small><strong>pastikan anda mencatat token tersebut</strong></small> <br> <br>
-            @endif
-
-            <button type="submit">Submit</button>
-        </form>
-    </section>
-</body>
-
-</html> --}}
-
 @extends('template.bootstrap.temp')
 
 @section('title')
@@ -72,7 +23,7 @@
 
                 @foreach ($form->pertanyaan as $p)
                     <div class="form-group">
-                        <label for="{{ $p->id }}"> {{ $p->pertanyaan }} </label>
+                        <label for="{{ $p->id }}"> {{ $p->pertanyaan }} <strong class="text-danger">{{$p->mandatory ? '(wajib)' : ''}}</strong> </label>
                         @if ($p->tipe == 'select')
                             <select class="form-control" name="{{ $p->id }}" id="{{ $p->id }}">
                                 @foreach ($p->opsi as $o)
@@ -80,7 +31,7 @@
                                 @endforeach
                             </select>
                         @else
-                            <input class="form-control" required type="{{ $p->tipe }}" name="{{ $p->id }}"
+                            <input {{$p->mandatory ? 'checked' : ''}} class="form-control" required type="{{ $p->tipe }}" name="{{ $p->id }}"
                                 id="{{ $p->id }}">
                         @endif
                         <br>

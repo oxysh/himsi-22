@@ -28,6 +28,8 @@ Route::get('akademik',function(){
     return view('akademik');
 })->name('akademik');
 
+Route::get('/f/{token}','RespondenController@bitly')->name('form.bitly');
+
 // Route::prefix('admin')->group(function() {
 //     Route::get('/','AuthController@index')->middleware('guest')->name('login');
 //     Route::post('/login','AuthController@login')->name('auth.login');
