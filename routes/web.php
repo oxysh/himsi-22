@@ -11,8 +11,12 @@
 |
 */
 
+// Route::get('/', function () {
+//     return view('oldcakrawala');
+// })->name('home');
+
 Route::get('/', function () {
-    return view('oldcakrawala');
+    return view('cakrawala');
 })->name('home');
 
 Route::prefix('regist')->group(function (){
@@ -26,6 +30,12 @@ Route::prefix('regist')->group(function (){
 
 Route::get('/f/{token}','RespondenController@bitly')->name('form.bitly');
 
+
+Route::get('akademik',function(){
+    return view('akademik');
+})->name('akademik');
+
+/*
 Route::prefix('admin')->group(function() {
     Route::get('/','AuthController@index')->middleware('guest')->name('login');
     Route::post('/login','AuthController@login')->name('auth.login');
@@ -56,9 +66,8 @@ Route::prefix('form')->middleware('auth')->group(function() {
         Route::post('/sort', 'FormPertanyaanController@sort')->name('pertanyaan.sort');
         Route::get('/destroy/{id}','FormPertanyaanController@destroy')->name('pertanyaan.destroy');
     });
-
-    
 });
+*/
 
 Route::prefix('responden')->middleware('auth')->group(function() {
     Route::get('/','RespondenController@index')->name('responden.index');

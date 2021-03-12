@@ -66,11 +66,11 @@
                 </div>
             </div>
 
-            <div class="footer poppin" >
+            <a href="{{route('akademik')}}" class="footer poppin" style="text-decoration: none" >
                 <img src="{{ url('/assets/image/arrow.png') }}" alt="" id="show">
-                <span>DAFTAR SEKARANG</span>
+                <span>BERKAS AKADEMIK</span>
                 <img src="{{ url('/assets/image/arrow.png') }}" alt="" id="hidden">
-            </div>
+            </a>
         </div>
     </div>
 

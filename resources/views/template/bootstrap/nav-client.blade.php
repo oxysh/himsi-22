@@ -15,12 +15,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">Home</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('regist.index') }}">Registrasi</a>
                 </li>
                 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('regist.cari') }}">Hasil</a>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('akademik') }}">Akademik</a>
                 </li>
             </ul>
 

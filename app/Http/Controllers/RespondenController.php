@@ -266,6 +266,14 @@ class RespondenController extends Controller
     {
         $form = Form::where('bitly',$bitly)->first();
 
-        return $this->show($form->id);
+        foreach ($form->pertanyaan as $f) {
+            if ($f->tipe == 'select') {
+                $explode = explode(',', $f->opsi);
+                $f->opsi = $explode;
+            }
+        }
+        return view('client.regist', [
+            'form'  => $form,
+        ]);
     }
 }
