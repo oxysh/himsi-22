@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('cakrawala');
 })->name('home');
 
+// Route::get('/', function () {
+//     return view('cakrawala');
+// })->name('home');
+
 Route::prefix('regist')->group(function (){
     Route::get('/','RespondenController@regist')->name('regist.index');
     Route::get('/cari', 'RespondenController@registcari')->name('regist.cari');
@@ -29,6 +33,13 @@ Route::get('akademik',function(){
 })->name('akademik');
 
 Route::get('/f/{token}','RespondenController@bitly')->name('form.bitly');
+
+/*
+Route::prefix('admin')->group(function() {
+    Route::get('/','AuthController@index')->middleware('guest')->name('login');
+    Route::post('/login','AuthController@login')->name('auth.login');
+    Route::get('/logout','AuthController@logout')->middleware('auth')->name('auth.logout');
+});
 
 // Route::prefix('admin')->group(function() {
 //     Route::get('/','AuthController@index')->middleware('guest')->name('login');
@@ -58,14 +69,13 @@ Route::prefix('form')->middleware('auth')->group(function() {
         Route::post('/store','FormPertanyaanController@store')->name('pertanyaan.store');
         Route::get('/destroy/{id}','FormPertanyaanController@destroy')->name('pertanyaan.destroy');
     });
-    
 });
- */
+*/
 
-// Route::prefix('responden')->middleware('auth')->group(function() {
-//     Route::get('/','RespondenController@index')->name('responden.index');
-//     Route::get('/cari','RespondenController@cari')->name('responden.cari');
-//     Route::get('/show/{id}','RespondenController@show')->name('responden.show');
-//     Route::post('/store','RespondenController@store')->name('responden.store');
-// });
+Route::prefix('responden')->middleware('auth')->group(function() {
+    Route::get('/','RespondenController@index')->name('responden.index');
+    Route::get('/cari','RespondenController@cari')->name('responden.cari');
+    Route::get('/show/{id}','RespondenController@show')->name('responden.show');
+    Route::post('/store','RespondenController@store')->name('responden.store');
+});
 
