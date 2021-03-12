@@ -11,13 +11,13 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('oldcakrawala');
-// })->name('home');
-
 Route::get('/', function () {
-    return view('cakrawala');
+    return view('oldcakrawala');
 })->name('home');
+
+// Route::get('/', function () {
+//     return view('cakrawala');
+// })->name('home');
 
 Route::prefix('regist')->group(function (){
     Route::get('/','RespondenController@regist')->name('regist.index');
