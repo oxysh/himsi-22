@@ -54,6 +54,9 @@
                             Ubah Short Link Token
                         </button>
 
+                        <button type="button" class="btn btn-danger ml-3 mt-4" data-toggle="modal"
+                            data-target="#formDelete">Delete Form</button>
+
                         @isset($form->kadaluarsa)
                             @if ($form->kadaluarsa)
                                 <div class="alert alert-danger" role="alert">
@@ -99,7 +102,7 @@
                                 <strong>Tipe</strong> : {{ $p->tipe }} <br>
                                 <strong>Pertanyaan</strong> : {{ $p->pertanyaan }} <br>
                                 <strong>Wajib</strong> : {{ $p->mandatory ? 'wajib' : 'tidak wajib' }} <br>
-                                <strong>Urutan</strong> : {{$p->sorting }} <br>
+                                <strong>Urutan</strong> : {{ $p->sorting }} <br>
                                 @if ($p->opsi != null)
                                     <strong>Opsi</strong> : {{ $p->opsi }} <br>
                                 @endif
@@ -177,6 +180,29 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Tambahkan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Hapus Form-->
+        <div class="modal fade" id="formDelete" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Yakin Menghapus ?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                        <form action="{{ route('form.destroy', $form->id) }}" method="post">
+                            @csrf
+                            @method('put')
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger">Hapus</button>
                         </form>
                     </div>
                 </div>
@@ -370,7 +396,7 @@
                                 <select class="form-control" id="pertanyaan" name="questid">\
                                     <option value="" selected disabled>--pilih--</option>
                                     @foreach ($form->pertanyaan as $p)
-                                    <option value="{{ $p->id }}">{{ $p->pertanyaan }}</option>
+                                        <option value="{{ $p->id }}">{{ $p->pertanyaan }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -379,7 +405,7 @@
                                 <select class="form-control" id="numbercontrol" name="number">
                                     <option value="" selected disabled>--pilih--</option>
                                     @foreach ($form->pertanyaan as $p)
-                                    <option value="{{ $loop->iteration }}">{{ $loop->iteration }}</option>
+                                        <option value="{{ $loop->iteration }}">{{ $loop->iteration }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -397,12 +423,12 @@
                         <h5 class="modal-title" id="formUpdateLabel">Urutan Saat ini</h5>
                     </div>
                     <div class="modal-body">
-                            @foreach ($form->pertanyaan as $p)
+                        @foreach ($form->pertanyaan as $p)
                             <div class="form-group">
-                                <label for="pertanyaan">{{$loop->iteration}}</label>
+                                <label for="pertanyaan">{{ $loop->iteration }}</label>
                                 <input type="text" disabled value="{{ $p->pertanyaan }}">
                             </div>
-                            @endforeach
+                        @endforeach
                     </div>
                 </div>
             </div>

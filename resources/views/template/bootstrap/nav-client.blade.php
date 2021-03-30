@@ -25,6 +25,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('akademik') }}">Akademik</a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('chsi.index') }}">CHSI</a>
+                </li>
             </ul>
 
             

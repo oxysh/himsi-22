@@ -161,7 +161,10 @@ class FormController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $form = Form::find($id);
+        $form->delete();
+
+        return redirect()->route('form.index');
     }
 
     public function updateBitly(Request $request, $id)

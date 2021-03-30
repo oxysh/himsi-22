@@ -11,10 +11,14 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
+// ADMIN
 Route::get('/', function () {
     return view('oldcakrawala');
 })->name('home');
 
+// CUSTOMER CLIENT
 // Route::get('/', function () {
 //     return view('cakrawala');
 // })->name('home');
@@ -35,7 +39,7 @@ Route::get('akademik',function(){
     return view('akademik');
 })->name('akademik');
 
-/*
+
 Route::prefix('admin')->group(function() {
     Route::get('/','AuthController@index')->middleware('guest')->name('login');
     Route::post('/login','AuthController@login')->name('auth.login');
@@ -66,8 +70,8 @@ Route::prefix('form')->middleware('auth')->group(function() {
         Route::post('/sort', 'FormPertanyaanController@sort')->name('pertanyaan.sort');
         Route::get('/destroy/{id}','FormPertanyaanController@destroy')->name('pertanyaan.destroy');
     });
+    Route::put('destroy/{id}','FormController@destroy')->name('form.destroy');
 });
-*/
 
 Route::prefix('responden')->middleware('auth')->group(function() {
     Route::get('/','RespondenController@index')->name('responden.index');
@@ -76,3 +80,25 @@ Route::prefix('responden')->middleware('auth')->group(function() {
     Route::post('/store','RespondenController@store')->name('responden.store');
 });
 
+Route::prefix('chsi')->group(function(){
+    Route::get('/','ChsiController@index')->name('chsi.index');
+    Route::prefix('curhat')->group(function(){
+        Route::get('/','ChsiController@curhatindex')->name('curhat.index');
+        Route::get('/form','ChsiController@curhatform')->name('curhat.form');
+        Route::post('/submit','ChsiController@curhatsubmit')->name('curhat.submit');
+        // Route::get('/chat','ChsiController@curhatchat')->name('curhat.chat');
+        Route::post('/chat','ChsiController@curhatchat')->name('curhat.chat');
+        Route::get('/finish','ChsiController@curhatfinish')->name('curhat.finish');
+    });
+
+    Route::prefix('kritik')->group(function(){
+        Route::get('/','ChsiController@kritikindex')->name('kritik.index');
+        Route::get('/form/{bidang}','ChsiController@kritikform')->name('kritik.form');
+        Route::post('/submit','ChsiController@kritiksubmit')->name('kritik.submit');
+    });
+
+    Route::prefix('meditasi')->group(function(){
+        Route::get('/','ChsiController@meditasiindex')->name('meditasi.index');
+        Route::get('/{kategori}','ChsiController@meditasikategori')->name('meditasi.kategori');
+    });
+});
