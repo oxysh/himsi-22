@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ChsiController extends Controller
 {
@@ -77,6 +78,44 @@ class ChsiController extends Controller
             'kategori' => $kategori,
         ]);
 
+    }
+
+    // ADMIN
+
+    public function cekpsdm()
+    {
+        if(Auth::User()->email == 'psdm'){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function psdmindex()
+    {
+        if(!$this->cekpsdm()){
+            return redirect()->route('home');
+        }
+
+        return view('chsi.index');
+    }
+
+    public function psdmcurhatindex()
+    {
+        return view('chsi.curhatindex');
+    }
+
+    public function psdmcurhatchat($kode)
+    {
+
+        return view('chsi.curhatchat',[
+            'kode' => $kode,
+        ]);
+    }
+
+    public function psdmkritikindex()
+    {
+        return view('chsi.kritikindex');
     }
 
     public function create()

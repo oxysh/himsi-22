@@ -30,6 +30,12 @@
                             {{-- <a class="dropdown-item" href="#">Something else here</a> --}}
                         </div>
                     </li>
+                    @if (Auth::User()->email == 'psdm')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('chsi.admin.index') }}">CHSI</a>
+                    </li>
+                    @endif
+
                 @endif
                 {{-- <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -41,6 +47,7 @@
             </form> --}}
             <div class="form-inline my-2 my-lg-0">
                 @if (Auth::User())
+                    <span class="nav-link text-light">Hello, {{Auth::User()->email}}</span>
                     <a href="{{ route('auth.logout') }}">
                         <button class="btn btn-danger my-2 my-sm-0" type="submit">Logout</button>
                     </a>
