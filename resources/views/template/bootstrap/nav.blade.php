@@ -31,9 +31,13 @@
                         </div>
                     </li>
                     @if (Auth::User()->email == 'psdm')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('chsi.admin.index') }}">CHSI</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('chsi.admin.index') }}">CHSI</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a href="{{ route('chsi.admin.kritik.index') }}" class="nav-link">Kritik&Saran</a>
+                        </li>
                     @endif
 
                 @endif
@@ -47,7 +51,7 @@
             </form> --}}
             <div class="form-inline my-2 my-lg-0">
                 @if (Auth::User())
-                    <span class="nav-link text-light">Hello, {{Auth::User()->email}}</span>
+                    <span class="nav-link text-light">Hello, {{ Auth::User()->email }}</span>
                     <a href="{{ route('auth.logout') }}">
                         <button class="btn btn-danger my-2 my-sm-0" type="submit">Logout</button>
                     </a>

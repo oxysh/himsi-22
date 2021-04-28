@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Form extends Model
 {
-    protected $fillable = ['judul','pemilik','deadline','terkunci','token', 'bitly'];
-    
+    protected $fillable = [
+        'judul', 'pemilik', 'deadline',
+        'terkunci', 'token', 'bitly',
+        'deskripsi', 'afterform', 'afterformlink'
+    ];
+
     public function pertanyaan()
     {
         return $this->hasMany('App\FormPertanyaan', 'form_id', 'id');
@@ -15,6 +19,6 @@ class Form extends Model
 
     public function penjawab()
     {
-        return $this->hasMany('App\FormPenjawab','form_id','id');
+        return $this->hasMany('App\FormPenjawab', 'form_id', 'id');
     }
 }

@@ -7,6 +7,7 @@ use App\Form;
 use App\FormPertanyaan;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
@@ -16,13 +17,13 @@ use Maatwebsite\Excel\Facades\Excel;
 class FormController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * ADMIN
+     * GET Access
+     * menampilkan list Form
      */
     public function index()
     {
-        $form = Form::with('pertanyaan')->paginate(10);
+        $form = Form::where('pemilik','HIMSI')->orWhere('pemilik',Auth::user()->role)->with('pertanyaan')->paginate(10);
 
         return view('form.index',[
             'form' => $form,
@@ -30,9 +31,9 @@ class FormController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * ADMIN
+     * GET Access
+     * menampilkan form-field untuk membuat suatu Form
      */
     public function create()
     {
@@ -40,10 +41,10 @@ class FormController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * ADMIN
+     * POST Access
+     * submit dari form-field
+     * membuat form baru
      */
     public function store(Request $request)
     {
@@ -59,22 +60,23 @@ class FormController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
+        $code = Str::random(10);
+
         $form = Form::create([
             'judul'     => $request->judul,
             'pemilik'   => $request->pemilik,
             'deadline'  => $request->deadline,
-            'token'  => $request->token == "YA" ? true : false,
-            'bitly' => Str::random(10),
+            'token'  => $code,
+            'bitly' => $code,
         ]);
 
-        return redirect()->route('form.index');
+        return redirect()->route('form.show',$form->id);
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * ADMIN
+     * GET Access (livewire ON)
+     * Menampilkan detil suatu form
      */
     public function show($id)
     {
@@ -100,7 +102,11 @@ class FormController extends Controller
         ]);
     }
 
-
+    /**
+     * ADMIN
+     * GET Access
+     * digunakan untuk mengunci 'akes edit' suatu form
+     */
     public function lock($id)
     {
         $form = Form::find($id);
@@ -111,22 +117,18 @@ class FormController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * ADMIN
+     * GET Access
+     * digunakan untuk download data dalam bentuk excel
+     */
     public function excel($id)
     {
-
-        // $form = Form::with(['pertanyaan','penjawab','penjawab.jawaban', 'penjawab.jawaban.pertanyaan'])->find($id);
-
-        // return view('form.excel',[
-        //     'form' => $form,
-        // ]);
         return Excel::download(new FormExport($id), 'Response.xlsx');
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 
      */
     public function edit($id)
     {
@@ -134,11 +136,9 @@ class FormController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * ADMIN
+     * POST Access
+     * digunakan untuk memperbarui informasi dasar suatu Form
      */
     public function update(Request $request, $id)
     {
@@ -154,10 +154,10 @@ class FormController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * ADMIN
+     * PUT Access
+     * menghapus form ini
+     * (beserta pertanyaan, dan data jawaban)
      */
     public function destroy($id)
     {
@@ -167,6 +167,11 @@ class FormController extends Controller
         return redirect()->route('form.index');
     }
 
+    /**
+     * ADMIN
+     * POST Access
+     * digunakan untuk mengupdate short-link atau bitly nya Form
+     */
     public function updateBitly(Request $request, $id)
     {
         $myf = Form::find($id);

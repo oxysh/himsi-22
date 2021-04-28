@@ -7,18 +7,21 @@ use App\FormJawaban;
 use App\FormPenjawab;
 use App\FormPertanyaan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class RespondenController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * ADMIN
+     * GET Access
+     * digunakan untuk menampilkan list form yang tersedia
      */
     public function index()
     {
-        $form = Form::get();
+
+        $form = Form::where('pemilik', 'HIMSI')->orWhere('pemilik', Auth::user()->role)->get();
+        // dd($form);
 
         return view('responden.index', [
             'form'  => $form,
@@ -36,10 +39,9 @@ class RespondenController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * ADMIN
+     * POST Access
+     * digunakan submit data testing form
      */
     public function store(Request $request)
     {
@@ -78,10 +80,10 @@ class RespondenController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * ADMIN
+     * GET Access
+     * Digunakan pada route responden.show
+     * digunakan untuk ADMIN melakukan testing form
      */
     public function show($id)
     {
@@ -98,17 +100,21 @@ class RespondenController extends Controller
         ]);
     }
 
-
+    /**
+     * ADMIN
+     * GET Access (livewire ON)
+     * digunakan untuk cek tracing jawaban (responden)
+     */
     public function cari()
     {
         return view('responden.cari');
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * ADMIN
+     * GET Access
+     * Digunakan pada route form.penjawab.edit
+     * untuk menampilkan jawaban dalam bentuk field untuk diganti
      */
     public function edit($id, $pid)
     {
@@ -121,7 +127,7 @@ class RespondenController extends Controller
                 ->where('penjawab_id', $pid)->first();
             if (!$jawaban) {
                 $p->jawaban = "";
-            }else {
+            } else {
                 $p->jawaban = $jawaban->jawaban;
             }
 
@@ -138,11 +144,10 @@ class RespondenController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * ADMIN
+     * POST access
+     * Digunakan pada route form.penjawab.update
+     * untuk mengganti jawaban yang sudah disubmit
      */
     public function update(Request $request, $id, $pid)
     {
@@ -163,14 +168,14 @@ class RespondenController extends Controller
                     $ans->update([
                         'jawaban' => $part,
                     ]);
-                }else{
+                } else {
                     FormJawaban::create([
                         'pertanyaan_id' => $key,
                         'penjawab_id' => $pid,
                         'jawaban' => $part,
                     ]);
                 }
-                array_push($arr,$ans);
+                array_push($arr, $ans);
             }
         }
 
@@ -188,6 +193,9 @@ class RespondenController extends Controller
         //
     }
 
+    /**
+     * generate random string
+     */
     public function getName($n)
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -201,33 +209,12 @@ class RespondenController extends Controller
         return $randomString;
     }
 
-
-
-
-    public function regist()
-    {
-
-        return redirect()->route('regist.thanks');
-        
-        $form = Form::with('pertanyaan')->find(1);
-
-        foreach ($form->pertanyaan as $f) {
-            if ($f->tipe == 'select') {
-                $explode = explode(',', $f->opsi);
-                $f->opsi = $explode;
-            }
-        }
-        return view('client.regist', [
-            'form'  => $form,
-        ]);
-    }
-
-    public function registcari()
-    {
-        return view('client.cari');
-    }
-
-    public function registstore(Request $request)
+    /**
+     * CLIENT
+     * POST Access
+     * digunakan untuk submit form oleh CLIENT
+     */
+    public function submit(Request $request)
     {
         $penjawab = FormPenjawab::create([
             'form_id'   => $request->formid,
@@ -249,22 +236,28 @@ class RespondenController extends Controller
         }
 
         $form = Form::find($request->formid);
-        if ($form->token) {
-            Session::flash('success', 'Form berhasil di isi');
-            return view('client.feedback', [
-                'token' => $penjawab->token,
-            ]);
-        } else {
-            Session::flash('success', 'Form berhasil di isi');
-            return view('client.feedback', [
-                'token' => null,
-            ]);
-        }
+        session()->flash('success', 'Form berhasil di isi');
+        return view('client.form.responden-thanks',[
+            'form' => $form,
+        ]);
     }
 
+    /** 
+     * CLIENT
+     * GET Accesss
+     * digunakan untuk menampilkan form siap di isi
+     */
     public function bitly($bitly)
     {
-        $form = Form::where('bitly',$bitly)->first();
+        $form = Form::where('bitly', $bitly)->first();
+
+        
+        if (!$form) {
+            session()->flash('error', 'Form tidak ditemukan');
+            return redirect()->route('f.form.index');
+        }
+
+        $form->pertanyaan = $form->pertanyaan->sortBy('sorting')->all();
 
         foreach ($form->pertanyaan as $f) {
             if ($f->tipe == 'select') {
@@ -272,8 +265,10 @@ class RespondenController extends Controller
                 $f->opsi = $explode;
             }
         }
-        return view('client.regist', [
+
+        return view('client.form.responden', [
             'form'  => $form,
+            'bitly' => $bitly,
         ]);
     }
 }

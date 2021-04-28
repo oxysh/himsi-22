@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HIMSI 2021</title>
 
-    <link rel="stylesheet" href="{{ url('/assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ url('/assets/css/style_comingsoon_black.css') }}">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;800&family=Poppins&display=swap"

@@ -15,8 +15,8 @@
                 @csrf
                 <input type="hidden" name="bidang" value="{{ $bidang }}">
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Example textarea</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <label for="textarea-kritik">Kritik dan Saran Anda</label>
+                    <textarea name="krisar" class="form-control" id="textarea-kritik" rows="3"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Kirim</button>
             </form>

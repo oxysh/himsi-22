@@ -13,7 +13,7 @@
                     @csrf
                     <div class="form-group">
                         <label for="curhat">Curhatan Anda</label>
-                        <textarea name="curhatan" class="form-control" id="curhat" rows="3"></textarea>
+                        <textarea name="chat" name="curhatan" class="form-control" id="curhat" rows="3"></textarea>
                         <small id="curhatHelp" class="form-text text-muted">We'll never share your curhat with anyone
                             else.</small>
                     </div>

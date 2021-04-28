@@ -17,12 +17,15 @@
                 </div>
             </div>
             <div class="row">
-                <form class="col-12" method="POST" action="{{route('curhat.chat')}}">
+                <form class="col-12" method="POST" action="{{route('curhat.find')}}">
                     @csrf
                     <div class="form-group">
                         <label for="tokencurhat">Token Curhat Anda</label>
-                        <input type="text" class="form-control" id="tokencurhat" aria-describedby="textHelp">
+                        <input name="token" type="text" class="form-control" id="tokencurhat" aria-describedby="textHelp">
                         <small id="textHelp" class="form-text text-muted">untuk melihat respon dari curhatan anda.</small>
+                        @if (Session::has('error'))
+                        <small id="textHelp" class="form-text text-danger">{{Session::get('error')}}</small>
+                        @endif
                     </div>
                     <button type="submit" class="btn btn-primary">Cek</button>
                 </form>

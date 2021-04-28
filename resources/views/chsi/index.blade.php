@@ -17,7 +17,7 @@
         </div>
 
         <div class="row d-flex justify-content-around">
-            <div class="card col-5 col-md-4"
+            <div class="card col-4"
             onMouseOver="this.style.border='2px solid black'" onMouseOut="this.style.border='1px solid rgba(0,0,0,0.3)'">
                 <img src="{{url('assets/image/logo.png')}}" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -25,12 +25,20 @@
                     <a href="{{route('chsi.admin.curhat.index')}}" class="btn btn-primary">Lihat List</a>
                 </div>
             </div>
-            <div class="card col-5 col-md-4"
+            <div class="card col-4"
             onMouseOver="this.style.border='2px solid black'" onMouseOut="this.style.border='1px solid rgba(0,0,0,0.3)'">
                 <img src="{{url('assets/image/logo.png')}}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Kritik Saran</h5>
                     <a href="{{route('chsi.admin.kritik.index')}}" class="btn btn-primary">Lihat List</a>
+                </div>
+            </div>
+            <div class="card col-4"
+            onMouseOver="this.style.border='2px solid black'" onMouseOut="this.style.border='1px solid rgba(0,0,0,0.3)'">
+                <img src="{{url('assets/image/logo.png')}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Meditasi</h5>
+                    <a href="{{route('chsi.admin.meditasi.index')}}" class="btn btn-primary">Lihat List</a>
                 </div>
             </div>
         </div>
