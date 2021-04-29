@@ -55,6 +55,8 @@ modalgobtn.forEach(btn => {
 	btn.addEventListener('click',()=>{
 		var form = btn.parentElement.parentElement.querySelector('form');
 		if (validation(form)) {
+			console.log("SUBMIT DISINI");
+			console.log(form);
 			form.submit();
 		}
 	})

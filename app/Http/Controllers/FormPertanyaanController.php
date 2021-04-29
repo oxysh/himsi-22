@@ -2,46 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Form;
 use App\FormPertanyaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class FormPertanyaanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
+        // dd($request);
+        /*
         FormPertanyaan::create([
             'form_id'       => $request->formid,
             'tipe'          => $request->tipe,
             'pertanyaan'    => $request->pertanyaan,
             'opsi'          => $request->opsi,
             'mandatory'     => $request->mandatory == "true" ? true : false,
+        ]);  */
+
+        $form = Form::with('pertanyaan')->find($id);
+
+        FormPertanyaan::create([
+            'form_id'       => $form->id,
+            'tipe'          => $request->tipe,
+            'pertanyaan'    => $request->pertanyaan,
+            'opsi'          => $request->opsi,
+            'sorting'       => count($form->pertanyaan) + 1,
+            'mandatory'     => $request->required == "ya" ? true : false,
         ]);
 
         Session::flash('success', 'Sukses menambah pertanyaan');
@@ -49,38 +47,29 @@ class FormPertanyaanController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request)
+    public function update(Request $request, $id, $qid)
     {
-        $f = FormPertanyaan::find($request->questid);
+        if (!Form::find($id)) {
+            session()->flash('error','Form tidak ditemukan');
+            return redirect()->route('form.index');
+        }
+
+        $f = FormPertanyaan::find($qid);
+
+        if (!$f) {
+            session()->flash('error','ID untuk Pertanyaan salah');
+            return redirect()->route('form.index');
+        }
 
         if ($f->tipe != $request->tipe) {
             $f->tipe = $request->tipe;
@@ -100,28 +89,36 @@ class FormPertanyaanController extends Controller
 
         $f->save();
 
-        return redirect()->back()->with('success', 'Anda berhasil mengubah pertanyaan');
-    }
+        session()->flash('success', 'Sukses mengubah pertanyaan');
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        FormPertanyaan::find($id)->delete();
-        Session::flash('success', 'Sukses menghapus pertanyaan');
         return redirect()->back();
     }
 
-    public function sort(Request $request)
+    public function destroy($id, $qid, Request $request)
     {
-        if($request->questid == null || $request->number == null) {
-            return redirect()->back()->with('errorBitly','Kalo mau ganti urutan, pilih dulu bos opsinya');
+        if (!Form::find($id)) {
+            session()->flash('error','Form tidak ditemukan');
+            return redirect()->route('form.index');
         }
-        $p = FormPertanyaan::with(['form', 'form.pertanyaan'])->find($request->questid);
+
+        $f = FormPertanyaan::find($qid);
+
+
+        if (!$f) {
+            session()->flash('error','ID untuk Pertanyaan salah');
+            return redirect()->route('form.index');
+        }
+
+        $f->delete();
+
+        session()->flash('success', 'Sukses menghapus pertanyaan');
+
+        return redirect()->back();
+    }
+
+    public function sort(Request $request, $id)
+    {
+        $p = FormPertanyaan::with(['form', 'form.pertanyaan'])->find($request->pertanyaan);
 
         if($p->sorting == (int)$request->number){
             return redirect()->back()->with('errorBitly','Anda memasukkan urutan yang sama bambang -_-');

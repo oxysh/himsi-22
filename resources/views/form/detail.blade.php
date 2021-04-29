@@ -1,467 +1,452 @@
-@extends('template.bootstrap.temp')
+@extends('template.cakrawala.admin.template')
 
 @section('title')
-    Detail Form
+    Form
+@endsection
+
+@section('extracss')
+    <link rel="stylesheet" href="{{ url('assets/css/form-edit.css') }}">
 @endsection
 
 @section('content')
-    <div class="container my-5">
-        <div class="row">
-            <h1>Detail Form</h1>
+    <h3>Form Details - Edit Form</h3>
+
+    <div class="detail-form">
+        <div class="info">
+            <span class="p"><strong>Judul : </strong>{{ $data->judul }}</span>
+            <span class="p"><strong>Pemilik : </strong>{{ $data->pemilik }} ({{ $data->token }})</span>
+            <span class="p"><strong>Deadline : </strong>{{ $data->deadline }}</span>
+            <span class="p"><strong>Deskripsi : </strong>{{ $data->deskripsi }}</span>
+            <span class="p"><strong>Afterform : </strong>{{ $data->afterform }}</span>
+            <span class="p"><strong>Afterform-link : </strong>{{ $data->afterformlink }}</span>
+        </div>
+        <a href="#" class="btn-edit btn-modal-trigger" data-modal="#modal-identity"> <img
+                src="{{ url('/assets/img/setting.svg') }}" alt="">
+            Ubah</a>
+    </div>
+
+    <div class="detail-form" id="short-link">
+        <div class="info">
+            <span class="p"><strong>Short-Link :</strong> himsiunair.com/f/{{ $data->bitly }}</span>
+        </div>
+        <a href="#" class="btn-edit btn-modal-trigger" data-modal="#modal-shortlink"> <img
+                src="{{ url('/assets/img/setting.svg') }}" alt="">
+            Ubah</a>
+    </div>
+
+    <div class="detail-form" id="excel" onclick="location.href = '{{route('form.excel',$data->id)}}'">
+        <img src="{{ url('assets/img/excel-ico.svg') }}" alt="" id="ico-excel">
+        <span> Unduh data dalam bentuk Excel </span>
+        <img src="{{ url('assets/img/download-ico.svg') }}" alt="" id="ico-download">
+    </div>
+
+    <div class="detail-form btn-modal-trigger" data-modal="#modal-delete-form" id="delete">
+        Hapus Form
+    </div>
+
+    <div class="divider-cover">
+        <hr class="divider">
+    </div>
+
+    <div class="opsi">
+        <span class="p active" data-target=".list-pertanyaan" data-sembunyi=".table-jawaban">List Pertanyaan</span>
+        <span class="p" data-target=".table-jawaban" data-sembunyi=".list-pertanyaan">Tabel jawaban</span>
+    </div>
+
+    <div class="list-pertanyaan">
+        <div class="button-group">
+            <button class="p btn-blue btn-modal-trigger" id="btn-tambah-pertanyaan" data-modal="#modal-tambah-pertanyaan"
+                data-link="{{ route('pertanyaan.store', $data->id) }}">Tambah
+                Pertayaan</button>
+            <button class="p btn-red" onclick="alert('fitur masih dalam proses')">Kunci Seluruh Pertanyaan</button>
+            <button class="p btn-green btn-modal-trigger" data-modal="#modal-urutkan-pertanyaan">Urutkan
+                Pertanyaan</button>
         </div>
 
-        @if (Session::has('success'))
-            <div class="row">
-                <div class="alert alert-success" role="alert">
-                    {{ Session::get('success') }}
-                </div>
-            </div>
-        @endif
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Tipe</th>
+                    <th>Pertanyaan</th>
+                    <th>Wajib</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($data->pertanyaan as $p)
+                    <tr>
+                        <th>{{ $loop->iteration }}</th>
+                        <td>
+                            @switch($p->tipe)
+                                @case('text')
+                                    Text Pendek
+                                @break
+                                @case('textarea')
+                                    Text Panjang
+                                @break
+                                @case('select')
+                                    Opsi / Pilihan Ganda
+                                @break
+                                @case('date')
+                                    Tanggal
+                                @break
+                                @case('datetime')
+                                    Tanggal dan Jam
+                                @break
+                                @case('number')
+                                    Angka
+                                @break
+                                @default
+                                    {{ $p->tipe }}
+                            @endswitch
+                        </td>
+                        <td>{{ $p->pertanyaan }}</td>
+                        <td>{{ $p->mandatory ? 'ya' : 'tidak' }}</td>
+                        <td class="aksi">
+                            <a href="#" class="edit btn-modal-trigger" data-modal="#modal-tambah-pertanyaan"
+                                data-tipe="{{ $p->tipe }}" data-quest="{{ $p->pertanyaan }}"
+                                data-opsi="{{ $p->opsi }}" data-unique="{{ $p->id }}"
+                                data-wajib="{{ $p->mandatory ? '1' : '0' }}"
+                                data-link="{{ route('pertanyaan.update', [$data->id, $p->id]) }}">Edit</a>
+                            <a href="#" class="delete btn-delete-pertanyaan">Delete</a>
+                            <form action="{{ route('pertanyaan.destroy', [$data->id, $p->id]) }}" class="hide"
+                                method="POST">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
-        @if (Session::has('errorBitly'))
-            <div class="row">
-                <div class="alert alert-danger" role="alert">
-                    {{ Session::get('errorBitly') }}
-                </div>
-            </div>
-        @endif
+    @livewire('form-jawaban-new', ['formid' => $data->id])
 
-        <div class="row my-4">
-            <div class="col">
-                <div class="card card-body">
-                    <p>
-                        <strong>Judul</strong> : {{ $form->judul }} <br>
-                        <strong>Pemilik</strong> : {{ $form->pemilik }} <br>
-                        <strong>Penggunaan Token</strong> : {{ $form->token ? 'ya' : 'tidak' }} <br>
-                        <strong>Deadline</strong> : {{ $form->deadline }} <br>
-                        <strong>Simple Link</strong> : himsiunair.com/f/{{ $form->bitly }} <br>
-                        {{-- <button type="button" class="btn btn-outline-info mt-2"
-                            data-toggle="modal" data-target="#infoModal">
-                            Ubah Info Form
-                        </button> --}}
-
-                        <a href="{{ route('form.excel', $form->id) }}">
-                            <button type="button" class="btn btn-dark mt-4">Unduh Data Responden dalam Excel</button>
-                        </a>
-
-                        <button type="button" class="btn btn-success ml-3 mt-4" data-toggle="modal"
-                            data-target="#formUpdate">
-                            Ubah Informasi Form
-                        </button>
-
-                        <button type="button" class="btn btn-success ml-3 mt-4" data-toggle="modal"
-                            data-target="#formBitly">
-                            Ubah Short Link Token
-                        </button>
-
-                        <button type="button" class="btn btn-danger ml-3 mt-4" data-toggle="modal"
-                            data-target="#formDelete">Delete Form</button>
-
-                        @isset($form->kadaluarsa)
-                            @if ($form->kadaluarsa)
-                                <div class="alert alert-danger" role="alert">
-                                    Form Sudah Berakhir
-                                </div>
-                            @endif
-                        @endisset
-
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row my-4">
-            <div class="col">
-                @if ($form->terkunci)
-                    <span class="mb-2 badge badge-warning">
-                        Seluruh pertanyaan telah dikunci,
-                        Anda tidak bisa mengubah-ubah lagi,
-                        Hubungi staff ristek untuk melakukan perubahan
-                    </span>
-                @endif
-                <div class="row">
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#infoPertanyaan"
-                        aria-expanded="false" aria-controls="infoPertanyaan">Lihat List Pertanyaan</button>
-                    @if (!$form->terkunci)
-                        <button type="button" class="btn btn-success ml-3" data-toggle="modal"
-                            data-target="#staticBackdrop">
-                            Buat Pertanyaan Baru
-                        </button>
-                        <a href="{{ route('form.lock', $form->id) }}"><button class="btn btn-warning ml-3">Kunci Seluruh
-                                Pertanyaan</button></a>
-                        <button type="button" class="btn btn-info ml-3" data-toggle="modal" data-target="#sortQuestion">
-                            Urutkan Pertanyaan
-                        </button>
-                    @endif
-                </div>
-
-                <div class="collapse multi-collapse" id="infoPertanyaan">
-                    @foreach ($form->pertanyaan as $p)
-                        <div class="card card-body my-3">
-                            <p>
-                                <strong>Tipe</strong> : {{ $p->tipe }} <br>
-                                <strong>Pertanyaan</strong> : {{ $p->pertanyaan }} <br>
-                                <strong>Wajib</strong> : {{ $p->mandatory ? 'wajib' : 'tidak wajib' }} <br>
-                                <strong>Urutan</strong> : {{ $p->sorting }} <br>
-                                @if ($p->opsi != null)
-                                    <strong>Opsi</strong> : {{ $p->opsi }} <br>
-                                @endif
-                                <button type="button" class="btn btn-edit-question btn-success" data-toggle="modal"
-                                    data-target="#formEdit" data-tipe="{{ $p->tipe }}"
-                                    data-quest="{{ $p->pertanyaan }}" data-opsi="{{ $p->opsi }}"
-                                    data-unique="{{ $p->id }}" data-wajib="{{ $p->mandatory }}">
-                                    Edit Pertanyaan
-                                </button> <br>
-                                @if (!$form->terkunci)
-                                    {{-- <a href="{{ route('pertanyaan.destroy', $p->id) }}">Edit Pertanyaan</a> <br> --}}
-                                    <a href="{{ route('pertanyaan.destroy', $p->id) }}">Hapus Pertanyaan</a>
-                                @endif
-                            </p>
-                        </div>
-                    @endforeach
-
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Tambah Pertanyaan-->
-        <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Pertanyaan Baru</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('pertanyaan.store') }}" method="post">
-                            @csrf
-                            <input type="hidden" name="formid" value="{{ $form->id }}">
-
-                            <div class="form-group">
-                                <label for="formTipes">Tipe Data Pertanyaan</label>
-                                <select name="tipe" class="form-control" id="formTipes">
-                                    <option value="text">text</option>
-                                    <option value="select">opsi</option>
-                                    <option value="date">tanggal</option>
-                                    <option value="datetime-local">tanggal dan waktu</option>
-                                    <option value="time">waktu</option>
-                                    <option value="number">angka</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="formPertanyaan">Pertanyaan-nya</label>
-                                <input name="pertanyaan" type="text" class="form-control" id="formPertanyaan">
-                            </div>
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="true" name="mandatory"
-                                        id="mandatoryCheck">
-                                    <label class="form-check-label" for="mandatoryCheck">
-                                        Wajib Diisi ?
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="opsiTextArea">Opsi</label>
-
-                                <textarea name="opsi" class="form-control" id="opsiTextArea" rows="3"
-                                    aria-describedby="opsiHelp"></textarea>
-                                <small id="opsiHelp" class="form-text text-muted">jika memilih tipe pertanyaan
-                                    <strong>opsi</strong>
-                                    <br> maka tulis opsi dari pertanyaan pada kolom ini
-                                    <br> opsi pisahkan dengan tanda koma (,)
-                                    <br> tidak perlu menggunakan spasi setelah tanda koma</small>
-                            </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Tambahkan</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Hapus Form-->
-        <div class="modal fade" id="formDelete" data-backdrop="static" data-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Yakin Menghapus ?</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-footer">
-                        <form action="{{ route('form.destroy', $form->id) }}" method="post">
-                            @csrf
-                            @method('put')
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-danger">Hapus</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Edit Pertanyaan-->
-        <div class="modal fade" id="formEdit" data-backdrop="static" data-keyboard="false" tabindex="-1"
-            aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Pertanyaan Baru</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('pertanyaan.update') }}" method="post">
-                            @csrf
-                            <input type="hidden" name="questid" id="questid" value="">
-                            <div class="form-group">
-                                <label for="editTipe">Tipe Data Pertanyaan</label>
-                                <select name="tipe" class="form-control" id="editTipe">
-                                    <option value="text">text</option>
-                                    <option value="select">Select / opsi</option>
-                                    <option value="date">tanggal</option>
-                                    <option value="datetime-local">tanggal dan waktu</option>
-                                    <option value="time">waktu</option>
-                                    <option value="number">angka</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="editPertanyaan">Pertanyaan-nya</label>
-                                <input name="pertanyaan" type="text" class="form-control" id="editPertanyaan">
-                            </div>
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="true" name="mandatory"
-                                        id="mandatoryCheckEdit">
-                                    <label class="form-check-label" for="mandatoryCheckEdit">
-                                        Wajib Diisi ?
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="opsiEdit">Opsi</label>
-
-                                <textarea name="opsi" class="form-control" id="opsiEdit" rows="3"
-                                    aria-describedby="opsiHelp"></textarea>
-                                <small id="opsiHelp" class="form-text text-muted">jika memilih tipe pertanyaan
-                                    <strong>opsi</strong>
-                                    <br> maka tulis opsi dari pertanyaan pada kolom ini
-                                    <br> opsi pisahkan dengan tanda koma (,)
-                                    <br> tidak perlu menggunakan spasi setelah tanda koma</small>
-                            </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-success">Edit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Form Update-->
-        <div class="modal fade" id="formUpdate" data-backdrop="static" data-keyboard="false" tabindex="-1"
-            aria-labelledby="formUpdateLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="formUpdateLabel">Updaet Form</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('form.update', $form->id) }}" method="post">
-                            @csrf
-
-                            <div class="form-group">
-                                <label for="formJudul">Judul Form</label>
-                                <input name="judul" type="text" class="form-control" id="formJudul"
-                                    value="{{ $form->judul }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="pemilik">Pemilik Form</label>
-                                <select name="pemilik" class="form-control" id="pemilik">
-                                    <option {{ old('pemilik') == 'HIMSI' ? 'selected' : '' }} value="HIMSI">HIMSI
-                                    </option>
-                                    <option {{ old('pemilik') == Auth::user()->role ? 'selected' : '' }}
-                                        value="{{ Auth::user()->role }}">{{ Auth::user()->role }}</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="formTipe">Penggunaan Token untuk Responden</label>
-                                <select name="token" class="form-control" id="formTipe">
-                                    <option {{ $form->token ? 'selected' : '' }} value="YA">YA</option>
-                                    <option {{ $form->token ? '' : 'selected' }} value="TIDAK">TIDAK</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="deadline">Deadline Form</label>
-                                <input type="datetime-local" class="form-control @error('deadline') is-invalid @enderror"
-                                    name="deadline" id="deadline" aria-describedby="deadlineFeedback"
-                                    value="{{ $form->dedlen }}">
-                            </div>
-                            {{-- <div class="form-group">
-                                <label for="deadline">Deadline Form</label>
-                                <input type="datetime-local" class="form-control @error('deadline') is-invalid @enderror"
-                                    name="deadline" id="deadline" aria-describedby="deadlineFeedback"
-                                    value="{{ $form->deadline }}">
-                                @error('deadline')
-                                <div id="deadlineFeedback" class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div > --}}
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Ubah</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Bitly Update-->
-        <div class="modal fade" id="formBitly" data-backdrop="static" data-keyboard="false" tabindex="-1"
-            aria-labelledby="formUpdateLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="formUpdateLabel">Ajukan Perubahan Token Simple Link</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('form.update.bitly', $form->id) }}" method="post">
-                            @csrf
-
-                            <div class="form-group">
-                                <label for="formToken">Simpel Link Token</label>
-                                <input name="bitly" type="text" class="form-control" id="formToken"
-                                    value="{{ $form->bitly }}">
-                            </div>
-                            {{-- <div class="form-group">
-                                <label for="deadline">Deadline Form</label>
-                                <input type="datetime-local" class="form-control @error('deadline') is-invalid @enderror"
-                                    name="deadline" id="deadline" aria-describedby="deadlineFeedback"
-                                    value="{{ $form->deadline }}">
-                                @error('deadline')
-                                <div id="deadlineFeedback" class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
-                            </div > --}}
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Ajukan Perubahan</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal Sort Question-->
-        <div class="modal fade" id="sortQuestion" data-backdrop="static" data-keyboard="false" tabindex="-1"
-            aria-labelledby="formUpdateLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="formUpdateLabel">Ajukan Perubahan Token Simple Link</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{{ route('pertanyaan.sort', $form->id) }}" method="post">
-                            @csrf
-                            <div class="form-group">
-                                <label for="pertanyaan">Pertanyaan yang akan dipindah</label>
-                                <select class="form-control" id="pertanyaan" name="questid">\
-                                    <option value="" selected disabled>--pilih--</option>
-                                    @foreach ($form->pertanyaan as $p)
-                                        <option value="{{ $p->id }}">{{ $p->pertanyaan }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="numbercontrol">Dipindah ke posisi berapa ?</label>
-                                <select class="form-control" id="numbercontrol" name="number">
-                                    <option value="" selected disabled>--pilih--</option>
-                                    @foreach ($form->pertanyaan as $p)
-                                        <option value="{{ $loop->iteration }}">{{ $loop->iteration }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Ajukan Perubahan</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="formUpdateLabel">Urutan Saat ini</h5>
-                    </div>
-                    <div class="modal-body">
-                        @foreach ($form->pertanyaan as $p)
-                            <div class="form-group">
-                                <label for="pertanyaan">{{ $loop->iteration }}</label>
-                                <input type="text" disabled value="{{ $p->pertanyaan }}">
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        @livewire('form-jawaban', ['formid' => $form->id])
-
-
+    <div class="mobile-message p">
+        Fitur daftar pertanyaan dan daftar jawaban
+        <br>
+        Tidak tersedia dalam tampilan mobile
     </div>
 @endsection
 
-@section('js')
-    <script>
-        const formID = document.querySelector('#questid');
-        const formPertanyaan = document.querySelector('#editPertanyaan');
-        const formOpsi = document.querySelector('#opsiEdit');
-        const formTipe = document.querySelector('#editTipe');
-        const formMandatory = document.querySelector('#mandatoryCheckEdit');
-        const btnEdit = document.querySelectorAll('.btn-edit-question');
+@section('modal')
+<div class="modal hide" id="modal-identity">
+    <div class="modal-box">
+        <div class="modal-head">
+            <span class="modal-title h4">
+                Title
+            </span>
+            <span class="close-button modal-close-button">
+                Close
+            </span>
+        </div>
+        <hr>
+        <div class="modal-body p">
+            <form action="{{ route('form.update', $data->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="form-group">
+                    <label for="judul">Judul</label>
+                    <input name="judul" type="text" class="form-control form-previewed" id="judul"
+                        data-error="#error-judul" data-preview="#form-preview-title" value="{{ $data->judul }}">
+                    <small class="form-error caption hide" id="error-judul">Harus di isi</small>
+                </div>
 
-        btnEdit.forEach(btnE => {
-            btnE.addEventListener('click', (e) => {
-                formTipe.value = e.target.dataset.tipe
-                formID.value = e.target.dataset.unique
-                formOpsi.value = e.target.dataset.opsi
-                formPertanyaan.value = e.target.dataset.quest
-                if (e.target.dataset.wajib == "1") {
-                    formMandatory.checked = true;
-                } else {
-                    formMandatory.checked = false;
-                }
-            })
-        });
+                <div class="form-group">
+                    <label for="deadline">Deadline</label>
+                    <input name="deadline" type="datetime-local" class="form-control " id="deadline"
+                        data-error="#error-deadline" value="{{ $data->inputdeadline }}">
+                    <small class="form-error caption hide" id="error-deadline">Harus di isi</small>
+                </div>
 
-    </script>
+                <div class="form-group">
+                    <label for="deskripsi">Deskripsi</label>
+                    <textarea name="deskripsi" id="deskripsi" class="form-control form-previewed" cols="" rows="3"
+                        data-error="#error-deskripsi"
+                        data-preview="#form-preview-deskripsi">{{ $data->deskripsi }}</textarea>
+                    <small class="form-error caption hide" id="error-deskripsi">Harus di isi</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="afterform">After-form message</label>
+                    <textarea name="afterform" id="afterform" class="not-required-validate form-control form-previewed"
+                        cols="" rows="3" data-error="#error-afterform"
+                        data-preview="#form-preview-afterform">{{ $data->afterform }}</textarea>
+                    <small class="caption">Boleh Kosong</small>
+                    <small class="form-error caption hide" id="error-afterform">Harus di isi</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="afterform-link">Afterform-link</label>
+                    <input name="afterformlink" type="text" class="not-required-validate form-control form-previewed"
+                        id="afterform-link" data-error="#error-afterform-link"
+                        data-preview="#form-preview-afterform-link" value="{{ $data->afterformlink }}">
+                    <small class="caption">awali dengan http://</small>
+                    <small class="caption">Boleh Kosong</small>
+                    <small class="form-error caption hide" id="error-afterform-link">Harus di isi</small>
+                </div>
+
+            </form>
+        </div>
+        <hr>
+        <div class="modal-foot">
+            <button class="btn-close p modal-close-button">cancel</button>
+            <button class="btn-submit p modal-go-btn">submit</button>
+        </div>
+    </div>
+
+    <div class="modal-box-group">
+
+        <div class="modal-box">
+            <div class="modal-head">
+                <span class="modal-title h4">
+                    Live-Preview
+                </span>
+            </div>
+            <hr>
+            <div class="modal-body p">
+                <form action="#">
+                    <span id="form-preview-title" class="h4 form-header">Title</span>
+                    <div class="form-group">
+                        <p id="form-preview-deskripsi">(Deskripsi) HIMSI adalah lorem ipsum Lorem ipsum dolor, sit
+                            amet
+                            consectetur adipisicing
+                            elit. Fugiat
+                            magnam illum, doloribus esse placeat fuga laboriosam deleniti id nemo molestias.
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label for="contoh">Contoh</label>
+                        <input type="text" class="form-control" disabled placeholder="cuma contoh">
+                        <small class="form-error caption">Contoh error</small>
+                    </div>
+                    <div class="form-group submit">
+                        <button disabled type="" class="btn btn-primary">contoh submit<img
+                                src="{{ url('assets/img/send.svg') }}" alt=""></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="modal-box">
+            <div class="modal-head">
+                <span class="modal-title h4">After-form Message Preview</span>
+            </div>
+            <hr>
+            <div class="modal-body">
+                <div class='alert alert-success-form'>Sukses</div>
+
+                <div class="form-group">
+                    <h4>Terima kasih telah mengisi Form ini, semoga lekas waras</h4>
+                    <h4 id="form-preview-afterform">here</h4>
+                    <a href="#" class="underline-link" id="form-preview-afterform-link">form-preview-afterform-link</a>
+                    <a href="#">Isi Form lagi</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal hide" id="modal-shortlink">
+    <div class="modal-box">
+        <div class="modal-head">
+            <span class="modal-title h4">
+                Edit Short-Link
+            </span>
+            <span class="close-button modal-close-button">
+                Close
+            </span>
+        </div>
+        <hr>
+        <div class="modal-body p">
+            <form action="{{ route('form.bitly', $data->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="form-group">
+                    <small class="caption">himsiunair.com/f/<strong>XXXX</strong> (isi dibawah)</small>
+                    <input name="shortlink" type="text" class="form-control" id="shortlink"
+                        data-error="#error-shortlink" value="{{ $data->bitly }}">
+                    <input type="hidden" name="valid-shortlink" id="valid-shortlink" value="{{ $data->bitly }}">
+                    <small class="caption form-error" id="preview-shortlink">hanya boleh mengandung [A-Z] [a-z]
+                        [0-9]
+                    </small>
+                    <small class="form-error caption hide" id="error-shortlink">Harus di isi</small>
+                </div>
+
+            </form>
+        </div>
+        <hr>
+        <div class="modal-foot">
+            <button class="btn-close p modal-close-button">cancel</button>
+            <button class="btn-submit p modal-go-btn">submit</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal hide" id="modal-tambah-pertanyaan">
+    <div class="modal-box">
+        <div class="modal-head">
+            <span class="modal-title h4">
+                Tambah Pertanyaan
+            </span>
+            <span class="close-button modal-close-button">
+                Close
+            </span>
+        </div>
+        <hr>
+        <div class="modal-body p">
+            <form action="{{ route('pertanyaan.store', $data->id) }}" method="POST">
+                @csrf
+                <input type="hidden" name="uniq_id" value="" id="tambah-pertanyaan-unique">
+                <div class="form-group">
+                    <label for="tambah-pertanyaan-title">Judul Pertanyaan-nya</label>
+                    <input name="pertanyaan" type="text" class="form-control" id="tambah-pertanyaan-title"
+                        data-error="#error-tambah-pertanyaan-title">
+                    <small class="form-error caption hide" id="error-tambah-pertanyaan-title">Harus di isi</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="tambah-pertanyaan-jenis">Tipe Pertanyaan</label>
+                    <select name="tipe" class="form-control" id="tambah-pertanyaan-jenis"
+                        data-error="#error-tambah-pertanyaan-jenis">
+                        <option class="default" value="" disabled selected>pilih</option>
+                        <option value="text">text pendek</option>
+                        <option value="textarea">text panjang</option>
+                        <option value="select">opsi / pilihan ganda</option>
+                        <option value="date">tanggal</option>
+                        <option value="datetime-local">tanggal dan jam</option>
+                        <option value="number">angka</option>
+                    </select>
+                    <small class="form-error caption hide" id="error-tambah-pertanyaan-jenis">Harus di isi</small>
+                </div>
+                <div class="form-group hide" id="tambah-pertanyaan-opsi-group">
+                    <label for="tambah-pertanyaan-opsi">Opsi</label>
+                    <small class="caption">pisahkan opsi menggunakan tanda koma (,)</small>
+                    <textarea name="opsi" id="tambah-pertanyaan-opsi" class="form-control not-required-validate" cols=""
+                        rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tambah-pertanyaan-wajib">Wajib dijawab</label>
+                    <select name="required" class="form-control" id="tambah-pertanyaan-wajib"
+                        data-error="#error-tambah-pertanyaan-wajib">
+                        <option class="default" value="" disabled selected>pilih</option>
+                        <option value="ya">ya</option>
+                        <option value="tidak">tidak</option>
+                    </select>
+                    <small class="form-error caption hide" id="error-tambah-pertanyaan-wajib">Harus di isi</small>
+                </div>
+
+            </form>
+        </div>
+        <hr>
+        <div class="modal-foot">
+            <button class="btn-close p modal-close-button">cancel</button>
+            <button class="btn-submit p modal-go-btn">submit</button>
+        </div>
+    </div>
+
+    <div class="modal-box">
+        <div class="modal-head">
+            <span class="modal-title h4">Preview Form Field</span>
+        </div>
+        <hr>
+        <div class="modal-body">
+            <div class="form-group" id="tambah-pertanyaan-preview">
+                <label id="tambah-pertanyaan-preview-title">Judul Pertanyaan</label>
+                <input type="text" disabled class="form-control" placeholder="sama dengan judul">
+                <textarea name="" id="" class="form-control hide" cols="" rows="3"></textarea>
+                <select class="form-control hide">
+                    <option value="" disabled selected>pilih</option>
+                </select>
+                <small class="form-error caption">Contoh error</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal hide" id="modal-urutkan-pertanyaan">
+    <div class="modal-box">
+        <div class="modal-head">
+            <span class="modal-title h4">Urutkan Pertanyaan</span>
+            <span class="close-button modal-close-button">Close</span>
+        </div>
+        <hr>
+        <div class="modal-body">
+            <form action="{{ route('pertanyaan.sort', $data->id) }}" method="post">
+                @csrf
+                <div class="form-group">
+                    <label for="sort-pertanyaan">Pertanyaan yang ingin dipindah</label>
+                    <select name="pertanyaan" id="sort-pertanyaan" class="form-control"
+                        data-error="#sort-pertanyaan-error">
+                        <option value="" disabled selected>pilih</option>
+                        @foreach ($data->pertanyaan as $p)
+                            <option value="{{ $p->id }}">{{ $p->pertanyaan }}</option>
+                        @endforeach
+                    </select>
+                    <small class="form-error caption hide" id="sort-pertanyaan-error">Harus dipilih</small>
+                </div>
+                <div class="form-group">
+                    <label for="sort-urutan">Pertanyaan dipindah ke posisi berapa</label>
+                    <select name="number" id="sort-urutan" class="form-control" data-error="#sort-urutan-error">
+                        <option value="" disabled selected>pilih</option>
+                        @foreach ($data->pertanyaan as $p)
+                            <option value="{{ $loop->iteration }}">{{ $loop->iteration }}</option>
+                        @endforeach
+                    </select>
+                    <small class="form-error caption hide" id="sort-urutan-error">Harus dipilih</small>
+                </div>
+            </form>
+        </div>
+        <hr>
+        <div class="modal-foot">
+            <button class="btn-close p modal-close-button">cancel</button>
+            <button class="btn-submit p modal-go-btn">submit</button>
+        </div>
+    </div>
+
+    <div class="modal-box">
+        <div class="modal-head">
+            <span class="modal-title">Urutan Sekarang</span>
+        </div>
+        <hr>
+        <div class="modal-body">
+            @foreach ($data->pertanyaan as $p)
+                <span class="p"><strong>{{ $loop->iteration }} </strong>{{ $p->pertanyaan }}</span>
+            @endforeach
+        </div>
+    </div>
+</div>
+
+<div class="modal hide" id="modal-delete-form">
+    <div class="modal-box">
+        <div class="modal-head">
+            <span class="modal-title">Anda yakin ?</span>
+            <span class="close-button modal-close-button">Close</span>
+        </div>
+        <hr>
+        <div class="modal-body">
+            <span class="p">Apakah Anda yakin untuk menghapus form ini?</span>
+            <span class="caption">form yang sudah dihapus tidak dapat dikembalikan datanya</span>
+        </div>
+        <form action="{{ route('form.destroy', $data->id) }}" class="hide" method="POST">
+            @csrf
+            @method('DELETE')
+        </form>
+        <hr>
+        <div class="modal-foot">
+            <button class="btn-close p modal-close-button">cancel</button>
+            <button class="btn-danger p modal-go-btn">Hapus</button>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('extrajs')
+<script src="{{ url('assets/js/form-edit.js') }}"></script>
+<script>
+    document.querySelector('#nav-form').classList.add('active');
+
+</script>
 @endsection

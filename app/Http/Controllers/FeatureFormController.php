@@ -91,10 +91,9 @@ class FeatureFormController extends Controller
         ])->where('token', $token)->first();
         // dd($data);
 
-        $data->pertanyaan = $data->pertanyaan->sortBy('sorting')->all();
-
+        
         if ($data) {
-            # code...
+            $data->pertanyaan = $data->pertanyaan->sortBy('sorting')->all();
             $data['inputdeadline'] = join("T", explode(" ", $data->deadline));
 
             return view('client.form.show', [
@@ -339,9 +338,5 @@ class FeatureFormController extends Controller
         }
 
         return redirect()->back()->with('success','Sukses mengganti urutan');
-   
-        dump('sort pertanyaan');
-        dump($token);
-        dd($request);
     }
 }

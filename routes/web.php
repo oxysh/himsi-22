@@ -13,16 +13,17 @@
 
 use Illuminate\Support\Facades\Route;
 
-/* ADMIN */
+/* ADMIN 
 Route::get('/', function () {
-    return view('oldcakrawala');
-})->name('home');
+    return view('landing-page-admin');
+})->name('home'); */
 
-/* CUSTOMER CLIENT 
+/* CUSTOMER CLIENT  */
  Route::get('/', function () {
-     return view('cakrawala');
+     return view('landing-page-client');
  })->name('home');
-*/
+
+
 
 Route::get('/f/{token}', 'RespondenController@bitly')->name('form.bitly');
 Route::post('/f/{token}','RespondenController@submit')->name('form.bitly.submit');
@@ -33,12 +34,12 @@ Route::get('akademik', function () {
     ]);
 })->name('akademik');
 
-/* untuk admin */
+/* untuk admin 
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AuthController@index')->middleware('guest')->name('login');
     Route::post('/login', 'AuthController@login')->name('auth.login');
     Route::get('/logout', 'AuthController@logout')->middleware('auth')->name('auth.logout');
-});
+}); */
 
 /* untuk client */
 Route::prefix('feature')->group(function(){
@@ -66,39 +67,34 @@ Route::prefix('feature')->group(function(){
 });
 
 
-/* untuk admin */
+/* untuk admin 
 Route::prefix('form')->middleware('auth')->group(function () {
     Route::get('/', 'FormController@index')->name('form.index');
-    Route::get('/create', 'FormController@create')->name('form.create');
-    Route::get('/excel/{id}', 'FormController@excel')->name('form.excel');
-    Route::get('/lock/{id}', 'FormController@lock')->name('form.lock');
-    Route::prefix('/show/{id}')->group(function () {
+    Route::get('/create', 'FormController@index')->name('form.create');
+    Route::post('/store', 'FormController@store')->name('form.store');
+    Route::prefix('{id}')->group(function(){
         Route::get('/', 'FormController@show')->name('form.show');
-        Route::prefix('penjawab')->group(function () {
-            Route::get('/{pid}', 'RespondenController@edit')->name('form.penjawab.edit');
-            Route::post('/update/{pid}', 'RespondenController@update')->name('form.penjawab.update');
-            // Route::get('/destroy/{pid}', 'RespondenController@destroy')->name('form.penjawab.destroy');
+        Route::post('/lock', 'FormController@lock')->name('form.lock');
+        Route::get('/excel', 'FormController@excel')->name('form.excel');
+        Route::put('/update', 'FormController@update')->name('form.update');
+        Route::put('/bitly', 'FormController@updateBitly')->name('form.bitly');
+        Route::delete('/destroy', 'FormController@destroy')->name('form.destroy');
+        Route::prefix('pertanyaan')->group(function () {
+            Route::post('/store', 'FormPertanyaanController@store')->name('pertanyaan.store');
+            Route::post('/update/{qid}', 'FormPertanyaanController@update')->name('pertanyaan.update');
+            Route::delete('/delete/{qid}', 'FormPertanyaanController@destroy')->name('pertanyaan.destroy');
+            Route::post('/sort', 'FormPertanyaanController@sort')->name('pertanyaan.sort');
         });
     });
-    Route::post('/store', 'FormController@store')->name('form.store');
-    Route::post('/update/{id}', 'FormController@update')->name('form.update');
-    Route::post('/bitly/{id}', 'FormController@updateBitly')->name('form.update.bitly');
-    Route::prefix('pertanyaan')->group(function () {
-        Route::post('/store', 'FormPertanyaanController@store')->name('pertanyaan.store');
-        Route::post('/update', 'FormPertanyaanController@update')->name('pertanyaan.update');
-        Route::post('/sort', 'FormPertanyaanController@sort')->name('pertanyaan.sort');
-        Route::get('/destroy/{id}', 'FormPertanyaanController@destroy')->name('pertanyaan.destroy');
-    });
-    Route::put('destroy/{id}', 'FormController@destroy')->name('form.destroy');
-});
+}); */
 
-/* untuk admin */
+/* untuk admin 
 Route::prefix('responden')->middleware('auth')->group(function () {
     Route::get('/', 'RespondenController@index')->name('responden.index');
     Route::get('/cari', 'RespondenController@cari')->name('responden.cari');
     Route::get('/show/{id}', 'RespondenController@show')->name('responden.show');
     Route::post('/store', 'RespondenController@store')->name('responden.store');
-});
+}); */
 
 Route::prefix('chsi')->group(function () {
     /* untuk client */
@@ -124,7 +120,7 @@ Route::prefix('chsi')->group(function () {
         Route::get('/{kategori}', 'ChsiController@meditasikategori')->name('meditasi.kategori');
     });
 
-    /* untuk admin */
+    /* untuk admin
     Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/', 'ChsiController@psdmindex')->name('chsi.admin.index');
         Route::prefix('curhat')->group(function () {
@@ -138,5 +134,5 @@ Route::prefix('chsi')->group(function () {
         Route::prefix('meditasi')->group(function () {
             Route::get('/', 'ChsiController@psdmmeditasiindex')->name('chsi.admin.meditasi.index');
         });
-    });
+    });  */
 });

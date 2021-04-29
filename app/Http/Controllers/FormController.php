@@ -23,7 +23,7 @@ class FormController extends Controller
      */
     public function index()
     {
-        $form = Form::where('pemilik','HIMSI')->orWhere('pemilik',Auth::user()->role)->with('pertanyaan')->paginate(10);
+        $form = Form::where('pemilik','HIMSI')->orWhere('pemilik',Auth::user()->role)->with('penjawab')->paginate(10);
 
         return view('form.index',[
             'form' => $form,
@@ -48,11 +48,12 @@ class FormController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $validator = Validator::make($request->all(), [
             'judul'    => 'required|string',
             'pemilik' => 'required',
             'deadline' => 'required',
-            'token'     => 'required',
+            'deskripsi' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -66,8 +67,11 @@ class FormController extends Controller
             'judul'     => $request->judul,
             'pemilik'   => $request->pemilik,
             'deadline'  => $request->deadline,
-            'token'  => $code,
-            'bitly' => $code,
+            'deskripsi' => $request->deskripsi,
+            'token'     => $code,
+            'bitly'     => $code,
+            'afterform' => null,
+            'afterformlink' => null,
         ]);
 
         return redirect()->route('form.show',$form->id);
@@ -80,13 +84,24 @@ class FormController extends Controller
      */
     public function show($id)
     {
-        // $form = Form::find($id);
-        $form = Form::with(['pertanyaan','penjawab','penjawab.jawaban', 'penjawab.jawaban.pertanyaan'])->find($id);
+        $form = Form::with([
+            'pertanyaan','penjawab','penjawab.jawaban', 
+            'penjawab.jawaban.pertanyaan'
+            ])->find($id);
+
+        if (!$form) {
+            session()->flash('error','Form tidak ditemukan');
+            return redirect()->route('form.index');
+        }
+
+        if ($form->pemilik != "HIMSI" && $form->pemilik != Auth::user()->role) {
+            session()->flash('error','Form bukan milik anda');
+            return redirect()->route('form.index');
+        }
 
         $form->pertanyaan = $form->pertanyaan->sortBy('sorting')->all();
-        // dd($form);
-        // $pertanyaan = FormPertanyaan::where('form_id',$id)->get();
 
+        /* IDK this, this must be 'form is over' for user experience
         $origin = new DateTime();
         $deadline = new DateTime($form->deadline);
         // $deadline = new DateTime('2021-02-06 00:00:00');
@@ -94,11 +109,11 @@ class FormController extends Controller
         if ($diff->invert) {
             $form->kadaluarsa = true;
         }
-
-        $form->dedlen = join("T",explode(" ",$form->deadline));
+        */
+        $form['inputdeadline'] = join("T", explode(" ", $form->deadline));
 
         return view('form.detail',[
-            'form'          => $form,
+            'data' => $form,
         ]);
     }
 
@@ -124,6 +139,17 @@ class FormController extends Controller
      */
     public function excel($id)
     {
+        $f = Form::with('penjawab')->find($id);
+
+        if (!$f) {
+            session()->flash('error','ID FORM SALAH');
+            return redirect()->route('form.index');
+        }
+
+        if (sizeof($f->penjawab)  < 1) {
+            session()->flash('error','Anda belum memiliki responden');
+            return redirect()->back();
+        }
         return Excel::download(new FormExport($id), 'Response.xlsx');
     }
 
@@ -142,14 +168,59 @@ class FormController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $date = join(' ',explode("T", $request->deadline));
+
+        /* 
         $form = Form::find($id)->update([
             'judul'     => $request->judul,
             'pemilik'   => $request->pemilik,
             'deadline'  => $request->deadline,
             'token'  => $request->token == "YA" ? true : false,
         ]);
+        */
 
-        Session::flash('success','Sukses mengUPDATE informasi FORM');
+        $form = Form::find($id);
+        if (!$form) {
+            session()->flash('error','Form tidak ditemukan');
+            return redirect()->route('form.index');
+        }
+
+        $form->update([
+            'judul'     => $request->judul,
+            'deadline'  => $date,
+            'deskripsi' => $request->deskripsi,
+            'afterform' => $request->afterform,
+            'afterformlink' => $request->afterformlink,
+        ]);
+
+        Session::flash('success','Sukses mengupdate Form');
+        return redirect()->back();
+    }
+
+     /**
+     * ADMIN
+     * POST Access
+     * digunakan untuk mengupdate short-link atau bitly nya Form
+     */
+    public function updateBitly(Request $request, $id)
+    {
+        $form = Form::find($id);
+
+        if ($form->bitly == $request['valid-shortlink']) {
+            session()->flash('warning','Sadar diri kawan, anda tidak mengubah apapun');
+            return redirect()->back();
+        }
+
+        if(Form::where('bitly', $request['valid-shortlink'])->first())
+        {
+            session()->flash('error','Shortlink yang anda pilih : (' . $request['valid-shortlink'] . ') Sudah digunakan oleh oranglain' );
+            return redirect()->back();
+        }
+
+        $form->bitly = $request['valid-shortlink'];
+        $form->save();
+
+        session()->flash('success','Berhasil mengubah shortlink');
         return redirect()->back();
     }
 
@@ -164,33 +235,9 @@ class FormController extends Controller
         $form = Form::find($id);
         $form->delete();
 
+        session()->flash('success','Berhasil menghapus form');
         return redirect()->route('form.index');
     }
 
-    /**
-     * ADMIN
-     * POST Access
-     * digunakan untuk mengupdate short-link atau bitly nya Form
-     */
-    public function updateBitly(Request $request, $id)
-    {
-        $myf = Form::find($id);
-
-        $bitly = join('',explode(' ',$request->bitly));
-
-        if($myf->bitly == $bitly)
-        {
-            return redirect()->back()->with('errorBitly','sadar diri saudara, anda tidak mengubah apa apa :))');
-        }
-
-        if($form = Form::where('bitly', $bitly)->first())
-        {
-            return redirect()->back()->with('errorBitly','Token yang anda ajukan ('.$bitly.') sudah ada yang pakai');
-        }
-
-        $myf->bitly = $bitly;
-        $myf->save();
-
-        return redirect()->back()->with('success','Token yang anda ajukan berhasil dirubah');
-    }
+   
 }
