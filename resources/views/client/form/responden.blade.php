@@ -5,7 +5,14 @@
 @endsection
 
 @section('extracss')
-
+<style>
+    .h2 {
+        padding: 10px 0 !important;
+    }
+    .content {
+        padding-top: 0px !important;
+    }
+</style>
 @endsection
 
 @section('content')
@@ -14,7 +21,7 @@
         <input type="hidden" name="formid" value="{{ $form->id }}">
 
         <!-- Judul Form -->
-        <h4 class="form-header">{{ $form->judul }}</h4>
+        <span class="h2">{{ $form->judul }}</span>
         <!-- pilihan alert = info; primary; success; danger -->
         <div class='alert alert-warning-form'>Mohon isi Kolom Wajib</div>
 

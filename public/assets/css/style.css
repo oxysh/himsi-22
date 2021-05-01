@@ -208,24 +208,18 @@ p {
 }
 
 .btn-primary {
-    width: 115px;
-    height: 40px;
+    min-width: 115px;
+    min-height: 40px;
     border: none;
     border-radius: 5px;
-    display: inline-flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
     -webkit-transform: perspective(1px) translateZ(0);
     transform: perspective(1px) translateZ(0);
-    position: relative;
     -webkit-transition-property: color;
     transition-property: color;
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
 
     background-color: var(--green-vougue);
-    gap: 7px;
     padding: 0px 11.5px;
 
     font-family: Montserrat;
@@ -234,6 +228,11 @@ p {
     font-size: 14px;
     line-height: 17px;
     color: var(--polar);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .btn-primary:before,

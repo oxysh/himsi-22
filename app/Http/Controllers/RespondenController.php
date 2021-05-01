@@ -6,6 +6,7 @@ use App\Form;
 use App\FormJawaban;
 use App\FormPenjawab;
 use App\FormPertanyaan;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -237,7 +238,7 @@ class RespondenController extends Controller
 
         $form = Form::find($request->formid);
         session()->flash('success', 'Form berhasil di isi');
-        return view('client.form.responden-thanks',[
+        return view('client.form.responden-thanks', [
             'form' => $form,
         ]);
     }
@@ -249,9 +250,23 @@ class RespondenController extends Controller
      */
     public function bitly($bitly)
     {
+
         $form = Form::where('bitly', $bitly)->first();
 
-        
+        $origin = new DateTime();
+        $deadline = new DateTime($form->deadline);
+        $diff = $origin->diff($deadline);
+        if ($diff->invert) {
+            session()->flash('expired', true);
+            return view('client.form.responden-thanks', [
+                'form' => $form,
+            ]);
+        }
+        // dump($origin);
+        // dump($deadline);
+        // dump($diff);
+        // dd($diff->invert);
+
         if (!$form) {
             session()->flash('error', 'Form tidak ditemukan');
             return redirect()->route('f.form.index');
