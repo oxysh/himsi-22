@@ -24,19 +24,19 @@
                 <span class="line"></span>
             </a>
             @if (Auth::User()->email == 'psdm')
-                <a href="#" onclick="alert('fitur masih dalam proses')" class="nav-item" id="nav-chsi">
+                {{-- <a href="{{route('chsi.admin.index')}}" class="nav-item" id="nav-chsi">
                     <span class="nav-text">CHSI</span>
                     <span class="line"></span>
-                </a>
-                {{-- <div class="dropdown active nav-item" id="nav-chsi">
+                </a> --}}
+                <div class="dropdown active nav-item" id="nav-chsi">
                     <button class="dropbtn">CHSI<img src="{{ url('assets/img/drop-down.png') }}" /></button>
                     <div class="dropdown-content">
-                        <a href="{{ route('chsi.admin.index') }}">Index</a>
-                        <a href="#">Curhat</a>
+                        {{-- <a href="{{ route('chsi.admin.index') }}">Index</a> --}}
+                        <a href="{{route('chsi.admin.curhat.index')}}">Curhat</a>
                         <a href="#">Kritik Saran</a>
                         <a href="#">Meditasi</a>
                     </div>
-                </div> --}}
+                </div>
             @else
                 {{-- <a href="{{ route('chsi.admin.kritik.index') }}" class="nav-item" id="nav-krisar"> --}}
                 <a href="#" onclick="alert('fitur masih dalam proses')" class="nav-item" id="nav-krisar">

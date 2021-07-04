@@ -53,7 +53,7 @@
                             Bye-Bye Google-Form, Bangga Produk Sendiri kuy. HIMSI JAYAMAHE !!!</p>
                         <div class="line-breaker"></div>
                     </div>
-                    <div class="card" onclick="alert('COMING SOON')">
+                    <div class="card" onclick="location.href = '{{ route('curhat.index') }}'">
                         <div class="">
                             <span class="caption">NEW FEATURE</span>
                             <span class="caption coming-soon">COMING SOON</span>

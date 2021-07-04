@@ -26,30 +26,12 @@ class ChsiController extends Controller
     }
 
     /**
-     * TODO
-     * => merge curhatindex and curhatform
-     *      => form untuk curhat langsung di
-     *          bagian awal
-     *      => tidak memerlukan method
-     *          curhatform lagi
-     */
-
-    /**
      * method curhatindex
      * menampilkan form curhat 
      */
     public function curhatindex()
     {
         return view('client.chsi.curhatindex');
-    }
-
-    /**
-     * method curhatform
-     * menampilkan form curhat
-     */
-    public function curhatform()
-    {
-        return view('client.chsi.curhatform');
     }
 
     /**
@@ -91,27 +73,38 @@ class ChsiController extends Controller
     public function curhatchat($token)
     {
         // cek di database
-        $data = Curhat::with('chat')->where('token',$token)->where('dibalas',true)->first();
+        $data = Curhat::with('chat')->where('token', $token)->where('dibalas', true)->first();
 
-        if(!$data){
-            return redirect()->route('curhat.index')->with('error','curhatan anda tidak ditembukan atau token anda salah');
+        if (!$data) {
+            return redirect()->route('curhat.index')->with('error', 'curhatan anda tidak ditembukan atau token anda salah');
         }
 
         // dd($data);
 
-        return view('client.chsi.curhatchat',[
+        return view('client.chsi.curhatchat', [
             'data' => $data,
         ]);
     }
 
     public function curhatfind(Request $request)
     {
-        return redirect()->route('curhat.chat',$request->token);
+        return redirect()->route('curhat.chat', $request->token);
     }
 
     public function curhatfinish()
     {
         return view('client.chsi.curhatfinish');
+    }
+
+    public function curhatfinishtoken($token)
+    {
+        $curhat = Curhat::where('token', $token)->first();
+
+        $curhat->update([
+            'selesai' => true,
+        ]);
+
+        return redirect()->route('curhat.finish')->with('quote', $curhat->quote);
     }
 
     public function curhatchatsubmit(Request $request, $token)
@@ -124,7 +117,7 @@ class ChsiController extends Controller
             'psdm' => false,
         ]);
 
-        return redirect()->route('curhat.chat',$token);
+        return redirect()->route('curhat.chat', $token);
     }
 
     public function kritikindex()
@@ -134,7 +127,7 @@ class ChsiController extends Controller
 
     public function kritikform($bidang)
     {
-        return view('client.chsi.kritikform',[
+        return view('client.chsi.kritikform', [
             'bidang' => $bidang,
         ]);
     }
@@ -158,11 +151,10 @@ class ChsiController extends Controller
     {
         // load data dari database untuk ditampilkan
 
-        return view('client.chsi.meditasikategori',[
+        return view('client.chsi.meditasikategori', [
             'data' => null,
             'kategori' => $kategori,
         ]);
-
     }
 
     /**
@@ -171,16 +163,16 @@ class ChsiController extends Controller
 
     public function cekpsdm()
     {
-        if(Auth::User()->email == 'psdm'){
+        if (Auth::User()->email == 'psdm') {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
     public function psdmindex()
     {
-        if(!$this->cekpsdm()){
+        if (!$this->cekpsdm()) {
             return redirect()->route('home');
         }
 
@@ -189,8 +181,18 @@ class ChsiController extends Controller
 
     public function psdmcurhatindex()
     {
-        $data = Curhat::all();
-        return view('chsi.curhat.index',[
+        $data = Curhat::with('chat')->get()->sortByDesc('created_at');
+        foreach ($data as $curhat) {
+            $curhat->nunggu = false;
+            if ($curhat->dibalas) {
+                if (sizeof($curhat->chat) > 0) {
+                    if (!$curhat->chat[sizeof($curhat->chat) - 1]->psdm) {
+                        $curhat->nunggu = true;
+                    }
+                }
+            }
+        }
+        return view('chsi.curhat.index', [
             'data' => $data,
         ]);
     }
@@ -199,7 +201,7 @@ class ChsiController extends Controller
     {
         $data = Curhat::with('chat')->where('token', $token)->first();
 
-        return view('chsi.curhat.chat',[
+        return view('chsi.curhat.chat', [
             'data' => $data,
         ]);
     }
@@ -217,15 +219,24 @@ class ChsiController extends Controller
         return redirect()->route('chsi.admin.curhat.chat', $curhat->token);
     }
 
+    public function psdmcurhatmotivasisubmit(Request $request, $token)
+    {
+        $curhat = Curhat::where('token', $token)->first();
+        $curhat->quote = $request->motivasi;
+        $curhat->save();
+
+        return redirect()->route('chsi.admin.curhat.chat', $curhat->token);
+    }
+
     public function psdmkritikindex()
     {
-        if(Auth::User()->email == 'psdm'){
+        if (Auth::User()->email == 'psdm') {
             $krisar = Krisar::get();
-        }else{
-            $krisar = Krisar::where('bidang',Auth::User()->email)->get();
+        } else {
+            $krisar = Krisar::where('bidang', Auth::User()->email)->get();
         }
 
-        return view('chsi.kritik.index',[
+        return view('chsi.kritik.index', [
             'krisar' => $krisar,
         ]);
     }
