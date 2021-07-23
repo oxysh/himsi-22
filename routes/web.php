@@ -13,15 +13,15 @@
 
 use Illuminate\Support\Facades\Route;
 
-/* ADMIN 
+/* ADMIN */
 Route::get('/', function () {
     return view('landing-page-admin');
-})->name('home'); */
+})->name('home'); 
 
-/* CUSTOMER CLIENT   */
+/* CUSTOMER CLIENT   
  Route::get('/', function () {
      return view('landing-page-client');
- })->name('home');
+ })->name('home');*/
 
 
 

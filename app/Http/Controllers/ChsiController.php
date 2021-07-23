@@ -139,7 +139,8 @@ class ChsiController extends Controller
             'krisar' => $request->krisar,
         ]);
 
-        return view('client.chsi.kritiksubmit');
+        return redirect()->route('kritik.index')->with('success', 'Terimakasih atas kritik dan sarannya');
+        // return view('client.chsi.kritiksubmit');
     }
 
     public function meditasiindex()
@@ -230,15 +231,32 @@ class ChsiController extends Controller
 
     public function psdmkritikindex()
     {
-        if (Auth::User()->email == 'psdm') {
-            $krisar = Krisar::get();
+        if (Auth::User()->role == 'PSDM') {
+            $PSDM = Krisar::where('bidang', 'PSDM')->get();
+            $RISTEK = Krisar::where('bidang', 'RISTEK')->get();
+            $SERA = Krisar::where('bidang', 'SERA')->get();
+            $HUBLU = Krisar::where('bidang', 'HUBLU')->get();
+            $AKADEMIK = Krisar::where('bidang', 'AKADEMIK')->get();
+            $KESTARI = Krisar::where('bidang', 'KESTARI')->get();
+            $BPH = Krisar::where('bidang', 'BPH')->get();
+            $MEDIA = Krisar::where('bidang', 'MEDIA')->get();
+            // dd($krisar);
+            return view('chsi.kritik.psdm', [
+                'PSDM' => $PSDM,
+                'RISTEK' => $RISTEK,
+                'SERA' => $SERA,
+                'HUBLU' => $HUBLU,
+                'AKADEMIK' => $AKADEMIK,
+                'KESTARI' => $KESTARI,
+                'BPH' => $BPH,
+                'MEDIA' => $MEDIA,
+            ]);
         } else {
-            $krisar = Krisar::where('bidang', Auth::User()->email)->get();
+            $krisar = Krisar::where('bidang', Auth::User()->role)->get();
+            return view('chsi.kritik.index', [
+                'krisar' => $krisar,
+            ]);
         }
-
-        return view('chsi.kritik.index', [
-            'krisar' => $krisar,
-        ]);
     }
 
     public function psdmmeditasiindex()

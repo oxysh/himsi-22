@@ -33,13 +33,13 @@
                     <div class="dropdown-content">
                         {{-- <a href="{{ route('chsi.admin.index') }}">Index</a> --}}
                         <a href="{{route('chsi.admin.curhat.index')}}">Curhat</a>
-                        <a href="#">Kritik Saran</a>
+                        <a href="{{route('chsi.admin.kritik.index')}}">Kritik Saran</a>
                         <a href="#">Meditasi</a>
                     </div>
                 </div>
             @else
                 {{-- <a href="{{ route('chsi.admin.kritik.index') }}" class="nav-item" id="nav-krisar"> --}}
-                <a href="#" onclick="alert('fitur masih dalam proses')" class="nav-item" id="nav-krisar">
+                <a href="{{route('chsi.admin.kritik.index')}}"  class="nav-item" id="nav-krisar">
                     <span class="nav-text">Kritik Saran</span>
                     <span class="line"></span>
                 </a>
