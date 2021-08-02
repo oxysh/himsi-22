@@ -17,7 +17,7 @@
                 nihil quam ad minus nam quis neque, reprehenderit saepe repellendus
                 impedit.</span>
         </div>
-        <img src="img/krisar-msg.png" alt="" srcset="" />
+        <img src="{{url('assets/img/krisar-msg.png')}}" id="krisar-msg-img" alt="" srcset="" />
     </div>
     <div class="list">
         <h1>List Bidang (12)</h1>
@@ -85,7 +85,7 @@
                 veritatis unde commodi quod, quo eos distinctio quam architecto sequi molestiae debitis veniam aspernatur.
                 Dignissimos ipsum architecto odio, laboriosam ullam quae culpa.</span>
             <button id="button-kritik" class="btn btn-primary" type="button">Kritik dan Saran <img
-                    src="img/send.svg"></button>
+                    src="{{url('/assets/img/send.svg')}}"></button>
             <h1 style="margin-top: 20px;">List Staf</h1>
             <div class="staf">
                 <img src="#" alt="">
@@ -107,7 +107,7 @@
                 @csrf
                 <input type="hidden" name="bidang" id="kritik-nama-bidang" value="">
                 <textarea name="krisar" id="" rows="10"></textarea>
-                <button type="submit" class="btn btn-primary">Kirim <img src="img/send.svg" alt=""></button>
+                <button type="submit" class="btn btn-primary">Kirim <img src="{{url('assets/img/send.svg')}}" alt=""></button>
             </form>
         </div>
     </div>

@@ -16,8 +16,8 @@
             <div class="dropdown-content">
                 <a href="{{route('f.form.index')}}">Form</a>
                 <a href="{{route('curhat.index')}}">Curhat - CHSI</a>
-                <a href="#">Kritik Saran</a>
-                <a href="#">Meditasi</a>
+                <a href="{{route('kritik.index')}}">Kritik Saran</a>
+                <a href="{{route('meditasi.index')}}">Meditasi</a>
             </div>
         </div>
     </div>

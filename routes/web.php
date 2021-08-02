@@ -13,15 +13,15 @@
 
 use Illuminate\Support\Facades\Route;
 
-/* ADMIN */
+/* ADMIN 
 Route::get('/', function () {
     return view('landing-page-admin');
-})->name('home'); 
+})->name('home'); */
 
-/* CUSTOMER CLIENT   
+/* CUSTOMER CLIENT   */
  Route::get('/', function () {
      return view('landing-page-client');
- })->name('home');*/
+ })->name('home');
 
 
 
@@ -117,7 +117,7 @@ Route::prefix('chsi')->group(function () {
 
     Route::prefix('meditasi')->group(function () {
         Route::get('/', 'ChsiController@meditasiindex')->name('meditasi.index');
-        Route::get('/{kategori}', 'ChsiController@meditasikategori')->name('meditasi.kategori');
+        // Route::get('/{kategori}', 'ChsiController@meditasikategori')->name('meditasi.kategori');
     });
 
     /* untuk admin */
