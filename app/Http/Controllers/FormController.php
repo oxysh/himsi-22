@@ -23,7 +23,7 @@ class FormController extends Controller
      */
     public function index()
     {
-        $form = Form::where('pemilik','HIMSI')->orWhere('pemilik',Auth::user()->role)->with('penjawab')->paginate(10);
+        $form = Form::where('pemilik','HIMSI')->orWhere('pemilik',Auth::user()->role)->with('penjawab')->get();
 
         return view('form.index',[
             'form' => $form,

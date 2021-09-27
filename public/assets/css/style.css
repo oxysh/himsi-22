@@ -314,3 +314,9 @@ p {
         width: 65%;
     }
 }
+
+@media screen and (max-width: 800px) {
+    .content {
+        padding: 20px 10px;
+    }
+}

@@ -1,59 +1,139 @@
-@extends('template.bootstrap.temp')
+@extends('template.cakrawala.admin.template')
 
 @section('title')
-    CHSI - Curhat
+List Curhat
+@endsection
+
+@section('extracss')
+    <link rel="stylesheet" href="{{ url('assets/css/form-list.css') }}">
+    <link rel="stylesheet" href="{{ url('assets/css/chsi-admin-index.css') }}">
 @endsection
 
 @section('content')
-    <div class="container my-4">
-        <div class="row">
-            <a href="{{ route('chsi.admin.index') }}" class="text-dark">
-                <img src="https://img.icons8.com/flat-round/64/000000/back--v1.png" style="width:25px" /> kembali
-            </a>
-        </div>
-
-        <div class="row my-4">
-            <h1 class="display-4">
-                LIST CURHATAN
-            </h1>
-        </div>
-
-        <div class="row">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Token</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Dibalas</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($data as $curhat)
-                        <tr>
-                            <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $curhat->token }}</td>
-                            <td>
-                                @if ($curhat->selesai)
-                                    <span class="badge badge-success">Selesai</span>
-                                @else
-                                    <span class="badge badge-warning">On Progress</span>
-                                @endif
-                            </td>
-                            <td>
-                                @if ($curhat->dibalas)
-                                    <span class="badge badge-success">Ingin Balasan</span>
-                                @else
-                                    <span class="badge badge-warning">Tidak</span>
-                                @endif
-                            </td>
-                            <td> <a href="{{ route('chsi.admin.curhat.chat', $curhat->token) }}" class="btn btn-primary">Lihat</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+    <span class="h2">Form list</span>
+    <div class="button-group">
+        <select type="text" name="" id="event-filter" class="form-control">
+            <option value="a" selected>tampilkan semua</option>
+            <option value="b">tanpa respon</option>
+            <option value="c">dengan respon (semua)</option>
+            <option value="d">dengan respon (belum diakhiri)</option>
+            <option value="e">dengan respon (menunggu balasan)</option>
+            <option value="f">dengan respon (sudah diakhiri)</option>
+        </select>
     </div>
+    <div class="grid-system">
+        @foreach ($data as $curhat)
+
+            <div class="card {{ $curhat->dibalas ? 'balas' : '' }}"
+                data-link="{{ route('chsi.admin.curhat.chat', $curhat->token) }}">
+                <div class="card-body p">
+                    <span class="card-title">{{ $curhat->token }}</span>
+                    <span class="">
+                        @if ($curhat->dibalas)
+                            DENGAN BALASAN
+                            @if ($curhat->selesai)
+                                <span class="status finished">Selesai</span>
+                            @else
+                                @if ($curhat->nunggu)
+                                    <span class="status waiting">Menunggu Balasan</span>
+                                @else
+                                    <span class="status unfinished">On Progress</span>
+                                @endif
+                            @endif
+                        @else
+                            TANPA BALASAN
+                            <span class="finished">Selesai</span>
+                        @endif
+                    </span>
+                </div>
+                <div class="card-line">
+                </div>
+            </div>
+        @endforeach
+
+    </div>
+@endsection
+
+@section('extrajs')
+    <script src="{{ url('assets/js/form-list.js') }}"></script>
+    <script>
+        document.querySelector('#nav-chsi').classList.add('selected');
+
+        const listcard = document.querySelectorAll('.card');
+        const eventfilter = document.querySelector('#event-filter');
+
+        eventfilter.addEventListener('change', () => {
+            switch (eventfilter.value) {
+                case 'a':
+                    console.log('display all');
+                    listcard.forEach(element => {
+                        element.style.display = 'flex';
+                    });
+                    break;
+                case 'b':
+                    console.log('tanpa respon');
+                    listcard.forEach(element => {
+                        element.style.display = 'none';
+                        if (!element.classList.contains('balas')) {
+                            element.style.display = 'flex';
+                        }
+                    });
+                    break;
+                case 'c':
+                    console.log('dengan respon semua');
+                    listcard.forEach(element => {
+                        element.style.display = 'none';
+                        if (element.classList.contains('balas')) {
+                            element.style.display = 'flex';
+                        }
+                    });
+                    break;
+                case 'd':
+                    console.log('dengan respon belum akhir');
+                    listcard.forEach(element => {
+                        element.style.display = 'none';
+                        if (element.classList.contains('balas')) {
+                            const liststatus = element.querySelectorAll('.status');
+                            liststatus.forEach(status => {
+                                if (status.classList.contains('unfinished')) {
+                                    element.style.display = 'flex';
+                                }
+                            });
+                        }
+                    });
+                    break;
+                case 'e':
+                    console.log('dengan respon menunggu balas');
+                    listcard.forEach(element => {
+                        element.style.display = 'none';
+                        if (element.classList.contains('balas')) {
+                            const liststatus = element.querySelectorAll('.status');
+                            liststatus.forEach(status => {
+                                if (status.classList.contains('waiting')) {
+                                    element.style.display = 'flex';
+                                }
+                            });
+                        }
+                    });
+                    break;
+                case 'f':
+                    console.log('dengan respon sudah berakhir');
+                    listcard.forEach(element => {
+                        element.style.display = 'none';
+                        if (element.classList.contains('balas')) {
+                            const liststatus = element.querySelectorAll('.status');
+                            liststatus.forEach(status => {
+                                if (status.classList.contains('finished')) {
+                                    element.style.display = 'flex';
+                                }
+                            });
+                        }
+                    });
+                    break;
+
+                default:
+                    break;
+            }
+        })
+    </script>
 @endsection

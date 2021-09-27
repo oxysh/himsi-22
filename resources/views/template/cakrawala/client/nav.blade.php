@@ -15,9 +15,9 @@
             <button class="dropbtn">New Feature<img src="{{url('assets/img/drop-down.png')}}" /></button>
             <div class="dropdown-content">
                 <a href="{{route('f.form.index')}}">Form</a>
-                <a href="{{route('chsi.index')}}">Curhat - CHSI</a>
-                <a href="#">Kritik Saran</a>
-                <a href="#">Meditasi</a>
+                <a href="#" onclick="alert('COMING SOON')">Curhat - CHSI</a>
+                <a href="#" onclick="alert('COMING SOON')">Kritik Saran</a>
+                <a href="#" onclick="alert('COMING SOON')">Meditasi</a>
             </div>
         </div>
     </div>
