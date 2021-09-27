@@ -53,10 +53,10 @@
                             Bye-Bye Google-Form, Bangga Produk Sendiri kuy. HIMSI JAYAMAHE !!!</p>
                         <div class="line-breaker"></div>
                     </div>
-                    <div class="card" onclick="alert('COMING SOON')">
+                    <div class="card" onclick="location.href = '{{ route('curhat.index') }}'">
                         <div class="">
                             <span class="caption">NEW FEATURE</span>
-                            <span class="caption coming-soon">COMING SOON</span>
+                            <span class="caption now-available">NOW AVAILABLE</span>
                         </div>
                         <span class="h3">
                             CURHAT
@@ -67,10 +67,10 @@
                             pastikan terjaga. Yuk Curhat !</p>
                         <div class="line-breaker"></div>
                     </div>
-                    <div class="card" onclick="alert('COMING SOON')">
+                    <div class="card" onclick="location.href = '{{ route('meditasi.index') }}'">
                         <div class="">
                             <span class="caption">NEW FEATURE</span>
-                            <span class="caption coming-soon">COMING SOON</span>
+                            <span class="caption now-available">NOW AVAILABLE</span>
                         </div>
                         <span class="h3">
                             MEDITASI
@@ -82,10 +82,10 @@
                             Yuk Rebahan Bentar ! </p>
                         <div class="line-breaker"></div>
                     </div>
-                    <div class="card" onclick="alert('COMING SOON')">
+                    <div class="card" onclick="location.href = '{{ route('kritik.index') }}'">
                         <div class="">
                             <span class="caption">NEW FEATURE</span>
-                            <span class="caption coming-soon">COMING SOON</span>
+                            <span class="caption now-available">NOW AVAILABLE</span>
                         </div>
                         <span class="h3">
                             KRITIK SARAN

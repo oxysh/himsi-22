@@ -1,47 +1,59 @@
-@extends('template.bootstrap.client')
+@extends('template.cakrawala.client.template')
 
 @section('title')
-    CURHAT
+    Curhat
+@endsection
+
+@section('extracss')
+    <link rel="stylesheet" href="{{ url('assets/css/chsi-landing.css') }}">
 @endsection
 
 @section('content')
-    <div class="container">
-        <div class="col-12 mb-4">
-            <div class="row mt-4">
-                <div class="jumbotron jumbotron-fluid col-12">
-                    <div class="container">
-                        <h1 class="display-4">Fluid jumbotron</h1>
-                        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its
-                            parent.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <form class="col-12" method="POST" action="{{route('curhat.find')}}">
-                    @csrf
-                    <div class="form-group">
-                        <label for="tokencurhat">Token Curhat Anda</label>
-                        <input name="token" type="text" class="form-control" id="tokencurhat" aria-describedby="textHelp">
-                        <small id="textHelp" class="form-text text-muted">untuk melihat respon dari curhatan anda.</small>
-                        @if (Session::has('error'))
-                        <small id="textHelp" class="form-text text-danger">{{Session::get('error')}}</small>
-                        @endif
-                    </div>
-                    <button type="submit" class="btn btn-primary">Cek</button>
-                </form>
-            </div>
-            <div class="row mt-4">
+<div class="inner-content">
+    <div class="main-content">
+        <h2>Sesi <span class="orange">Curhat</span></h2>
+        <span class="p">CURAHKAN ISI HATI TERDALAM KALIAN, KAMI SELALU ADA UNTUK MENJADI PENDENGAR ATAU BAHKAN MEMBERI JALAN KELUAR JIKA DIBUTUHKAN. JANGAN KHAWATIR DENGAN IDENTITAS KALIAN, KAMI PASTIKAN TERJAGA.
+YUK NGOBROL!?</span>
+        <form action="{{ route('curhat.submit') }}" class="box-content" method="POST">
+            @csrf
+            <span class="box-label">
+                Isi Curhatanmu
+            </span>
 
-                <div class="card col-6 col-md-4 col-lg-3 col-sm-6">
-                    <img src="{{url('assets/image/logo.png')}}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                            card's content.</p>
-                            <a href="{{route('curhat.form')}}" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div >
-                
+            <textarea name="chat" id="" rows="6"></textarea>
+
+            <span class="box-label" style="margin-top: 14px;">Ingin mendapatkan respon ?</span>
+            <div class="form-group">
+                <label for="tanggapan">Ya, Aku mau</label>
+                <input type="checkbox" name="respon" id="tanggapan" placeholder="ya aku mau">
             </div>
+
+            <button type="submit" class="btn-primary"><strong>Kirim Curhatan</strong></button>
+        </form>
+
+        <div class="hr-break">
+            <hr>
+            <span>atau</span>
         </div>
+
+        <form method="POST" action="{{route('curhat.find')}}" class="cek-curhatan">
+            @csrf
+            <span class="h4">
+                Cek curhatan sebelumnya
+            </span>
+            <input name="token" type="text" class="form-control" placeholder="Masukkan Token">
+            <button  type="submit" id="cari-curhat" class="btn-primary"><img
+                    src="https://img.icons8.com/material-outlined/50/000000/search.png" /
+                    style="height: 25px; width: 25px; filter: invert(1);"></button>
+        </form>
     </div>
+    <img src="{{url('assets/image/chsiLanding.png')}}" alt="" id="sini-curhat">
+</div>
+@endsection
+
+@section('extrajs')
+    <script src="{{ url('assets/js/form-list.js') }}"></script>
+    <script>
+        document.querySelector('#nav-chsi').classList.add('selected');
+    </script>
 @endsection
