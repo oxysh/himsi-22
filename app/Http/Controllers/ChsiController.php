@@ -81,7 +81,7 @@ class ChsiController extends Controller
     public function curhatchat($token)
     {
         // cek di database
-        $data = Curhat::with('chat')->where('token', $token)->first();
+        $data = Curhat::with('chat')->where('token', $token)->where('dibalas', true)->first();
 
         if (!$data) {
             return redirect()->route('curhat.index')->with('error', 'curhatan anda tidak ditembukan atau token anda salah');

@@ -1,7 +1,7 @@
 @extends('template.cakrawala.admin.template')
 
 @section('title')
-
+List Curhat
 @endsection
 
 @section('extracss')

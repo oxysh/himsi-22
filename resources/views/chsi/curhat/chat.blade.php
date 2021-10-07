@@ -1,7 +1,7 @@
 @extends('template.cakrawala.admin.template')
 
 @section('title')
-
+Curhat - {{$data->token}}
 @endsection
 
 @section('extracss')
