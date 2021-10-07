@@ -10,7 +10,6 @@
 
 @section('content')
     <div class="inner-content">
-
         <div class="main-content">
             <h2>Token : <span class="orange">{{ $data->token }}</span></h2>
             <span>Catat token diatas untuk meninjau balasan selanjutnya</span>
@@ -30,7 +29,8 @@
                 <form action="{{ route('curhat.chat.submit', $data->token) }}" method="POST" class="form-group">
                     @csrf
                     <textarea name="chat" id="" cols="" rows="3"></textarea>
-                    <button type="submit" class="btn-primary"><img src="{{ url('assets/img/send.svg') }}" alt=""></button>
+                    <button type="submit" class="btn-primary"><img src="{{ url('assets/img/send.svg') }}"
+                            alt=""></button>
                 </form>
 
                 <div class="end-curhat">

@@ -34,7 +34,7 @@
             Ubah</a>
     </div>
 
-    <div class="detail-form" id="excel">
+    <div class="detail-form" id="excel" onclick="location.href = '{{route('f.form.excel',$data->token)}}'">
         <img src="{{ url('assets/img/excel-ico.svg') }}" alt="" id="ico-excel">
         <span> Unduh data dalam bentuk Excel </span>
         <img src="{{ url('assets/img/download-ico.svg') }}" alt="" id="ico-download">

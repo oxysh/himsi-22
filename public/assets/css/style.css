@@ -317,6 +317,6 @@ p {
 
 @media screen and (max-width: 800px) {
     .content {
-        padding: 25px 15px;
+        padding: 20px 10px;
     }
 }

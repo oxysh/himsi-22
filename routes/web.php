@@ -12,19 +12,21 @@
 */
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
-/* ADMIN 
+/* ADMIN
 Route::get('/', function () {
     return view('landing-page-admin');
-})->name('home'); */
+})->name('home');   */
 
-/* CUSTOMER CLIENT   */
- Route::get('/', function () {
+/* CUSTOMER CLIENT    */
+Route::get('/', function () {
      return view('landing-page-client');
  })->name('home');
 
 
 
+/* untuk client  */
 Route::get('/f/{token}', 'RespondenController@bitly')->name('form.bitly');
 Route::post('/f/{token}', 'RespondenController@submit')->name('form.bitly.submit');
 
@@ -32,18 +34,18 @@ Route::get('akademik', function () {
     return view('akademik', [
         'page' => 'akademik',
     ]);
-})->name('akademik');
+})->name('akademik'); 
 
-/* untuk admin */
+/* untuk admin
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AuthController@index')->middleware('guest')->name('login');
     Route::post('/login', 'AuthController@login')->name('auth.login');
     Route::get('/logout', 'AuthController@logout')->middleware('auth')->name('auth.logout');
-});
+});   */
 
-/* untuk client */
-Route::prefix('feature')->group(function () {
-    Route::get('/', function () {
+/* untuk client  */
+Route::prefix('feature')->group(function(){
+    Route::get('/',function(){
         dump('Hello World');
     });
     Route::prefix('form')->group(function () {
@@ -64,7 +66,7 @@ Route::prefix('feature')->group(function () {
             });
         });
     });
-});
+}); 
 
 
 /* untuk admin */
@@ -97,7 +99,7 @@ Route::prefix('responden')->middleware('auth')->group(function () {
 }); */
 
 Route::prefix('chsi')->group(function () {
-    /* untuk client */
+     /* untuk client */
     Route::get('/', 'ChsiController@index')->name('chsi.index');
     Route::prefix('curhat')->group(function () {
         Route::get('/', 'ChsiController@curhatindex')->name('curhat.index');
@@ -120,7 +122,7 @@ Route::prefix('chsi')->group(function () {
         // Route::get('/{kategori}', 'ChsiController@meditasikategori')->name('meditasi.kategori');
     });
 
-    /* untuk admin */
+    /* untuk admin
     Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/', 'ChsiController@psdmindex')->name('chsi.admin.index');
         Route::prefix('curhat')->group(function () {
@@ -135,5 +137,5 @@ Route::prefix('chsi')->group(function () {
         Route::prefix('meditasi')->group(function () {
             Route::get('/', 'ChsiController@psdmmeditasiindex')->name('chsi.admin.meditasi.index');
         });
-    });
+    }); */
 });

@@ -11,7 +11,7 @@
             <span class="nav-text">Akademik</span>
             <span class="line"></span>
         </a>
-        <div class="dropdown active nav-item" id="nav-new-feature">
+        <div class="dropdown nav-item" id="nav-new-feature">
             <button class="dropbtn">New Feature<img src="{{url('assets/img/drop-down.png')}}" /></button>
             <div class="dropdown-content">
                 <a href="{{route('f.form.index')}}">Form</a>

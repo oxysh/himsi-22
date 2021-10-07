@@ -10,13 +10,11 @@
 
 @section('content')
     <div class="inner-content">
-
         <div class="main-content">
             <h2>Sesi <span class="orange">Curhat</span></h2>
-            <span class="p">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam inventore officiis nulla.
-                Delectus et, temporibus ut nulla necessitatibus doloremque voluptate rerum repudiandae itaque doloribus
-                maxime assumenda ab qui illum debitis minima fugiat vero mollitia dolor ratione sint architecto? Dolorum
-                officiis repellendus molestias fuga voluptatibus exercitationem alias itaque quae sint pariatur?</span>
+            <span class="p">CURAHKAN ISI HATI TERDALAM KALIAN, KAMI SELALU ADA UNTUK MENJADI PENDENGAR ATAU
+                BAHKAN MEMBERI JALAN KELUAR JIKA DIBUTUHKAN. JANGAN KHAWATIR DENGAN IDENTITAS KALIAN, KAMI PASTIKAN TERJAGA.
+                YUK NGOBROL!?</span>
             <form action="{{ route('curhat.submit') }}" class="box-content" method="POST">
                 @csrf
                 <span class="box-label">
@@ -42,7 +40,7 @@
             <form method="POST" action="{{ route('curhat.find') }}" class="cek-curhatan">
                 @csrf
                 <span class="h4">
-                    Cek curhatan sebleumnya
+                    Cek curhatan sebelumnya
                 </span>
                 <input name="token" type="text" class="form-control" placeholder="Masukkan Token">
                 <button type="submit" id="cari-curhat" class="btn-primary"><img
@@ -50,8 +48,15 @@
                         style="height: 25px; width: 25px; filter: invert(1);"></button>
             </form>
         </div>
-        <img src="image/chsiLanding.png" alt="" id="sini-curhat">
+        <img src="{{ url('assets/image/chsiLanding.png') }}" alt="" id="sini-curhat">
     </div>
+@endsection
+
+@section('extrajs')
+    <script src="{{ url('assets/js/form-list.js') }}"></script>
+    <script>
+        document.querySelector('#nav-chsi').classList.add('selected');
+    </script>
 @endsection
 
 @section('extrajs')
