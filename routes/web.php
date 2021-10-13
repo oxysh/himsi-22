@@ -20,9 +20,10 @@ Route::get('/', function () {
 })->name('home');   */
 
 /* CUSTOMER CLIENT    */
+
 Route::get('/', function () {
-     return view('landing-page-client');
- })->name('home');
+    return view('landing-page-client');
+})->name('home');
 
 
 /* untuk client */
@@ -35,7 +36,7 @@ Route::get('akademik', function () {
     return view('akademik', [
         'page' => 'akademik',
     ]);
-})->name('akademik'); 
+})->name('akademik');
 
 /* untuk admin
 Route::prefix('admin')->group(function () {
@@ -45,8 +46,8 @@ Route::prefix('admin')->group(function () {
 });   */
 
 /* untuk client  */
-Route::prefix('feature')->group(function(){
-    Route::get('/',function(){
+Route::prefix('feature')->group(function () {
+    Route::get('/', function () {
         dump('Hello World');
     });
     Route::prefix('form')->group(function () {
@@ -67,7 +68,7 @@ Route::prefix('feature')->group(function(){
             });
         });
     });
-}); 
+});
 
 
 /* untuk admin */
@@ -97,10 +98,10 @@ Route::prefix('responden')->middleware('auth')->group(function () {
     Route::get('/cari', 'RespondenController@cari')->name('responden.cari');
     Route::get('/show/{id}', 'RespondenController@show')->name('responden.show');
     Route::post('/store', 'RespondenController@store')->name('responden.store');
-}); 
+});
 
 Route::prefix('chsi')->group(function () {
-     /* untuk client */
+    /* untuk client */
     Route::get('/', 'ChsiController@index')->name('chsi.index');
     Route::prefix('curhat')->group(function () {
         Route::get('/', 'ChsiController@curhatindex')->name('curhat.index');
@@ -124,7 +125,7 @@ Route::prefix('chsi')->group(function () {
     });
 
     /* untuk admin */
-     Route::prefix('admin')->middleware('auth')->group(function () {
+    Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/', 'ChsiController@psdmindex')->name('chsi.admin.index');
         Route::prefix('curhat')->group(function () {
             Route::get('/', 'ChsiController@psdmcurhatindex')->name('chsi.admin.curhat.index');
@@ -138,5 +139,13 @@ Route::prefix('chsi')->group(function () {
         Route::prefix('meditasi')->group(function () {
             Route::get('/', 'ChsiController@psdmmeditasiindex')->name('chsi.admin.meditasi.index');
         });
+    });
+});
+
+Route::prefix('alumni')->group(function () {
+    Route::get('/', 'AlumniController@index')->name('alumni.index');
+
+    Route::prefix('admin')->middleware('auth')->group(function() {
+        Route::get('/','AlumniController@adminindex')->name('admin.alumni.index');
     });
 });
