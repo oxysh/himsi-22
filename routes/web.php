@@ -37,12 +37,12 @@ Route::get('akademik', function () {
     ]);
 })->name('akademik'); 
 
-/* untuk admin
+/* untuk admin */
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AuthController@index')->middleware('guest')->name('login');
     Route::post('/login', 'AuthController@login')->name('auth.login');
     Route::get('/logout', 'AuthController@logout')->middleware('auth')->name('auth.logout');
-});   */
+});   
 
 /* untuk client  */
 Route::prefix('feature')->group(function(){
@@ -139,4 +139,27 @@ Route::prefix('chsi')->group(function () {
             Route::get('/', 'ChsiController@psdmmeditasiindex')->name('chsi.admin.meditasi.index');
         });
     });
+});
+
+/* fitur artikel */ 
+Route::prefix('article')->name('article.')->group(function () {
+    /* untuk admin (Ristek dan BPH) */
+    Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+        Route::get('/', 'ArticleController@adminindex')->name('index');
+        Route::post('/edit/{article}', 'ArticleController@edit')->name('edit');
+        Route::post('/reset/{article}', 'ArticleController@reset')->name('reset');
+        Route::post('/delete/{article}', 'ArticleController@delete')->name('delete');
+        Route::post('/decline/{article}', 'ArticleController@decline')->name('decline');
+        Route::post('/publish/{article}', 'ArticleController@publish')->name('publish');
+        Route::post('/schedule/{article}', 'ArticleController@schedule')->name('schedule');
+    });
+
+    /* untuk client */
+    Route::get('/', 'ArticleController@index')->name('index');
+    Route::get('/submit', 'ArticleController@submit')->name('submit');
+    Route::post('/submit', 'ArticleController@submitted')->name('submitted');
+    Route::get('/check', 'ArticleController@check')->name('check');
+    Route::post('/check', 'ArticleController@checked')->name('checked');
+    Route::get('/check/{NIM}', 'ArticleController@result')->name('result');
+    Route::get('/{id}', 'ArticleController@detail')->name('detail');
 });
