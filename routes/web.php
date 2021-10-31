@@ -38,12 +38,12 @@ Route::get('akademik', function () {
     ]);
 })->name('akademik');
 
-/* untuk admin
+/* untuk admin*/
 Route::prefix('admin')->group(function () {
     Route::get('/', 'AuthController@index')->middleware('guest')->name('login');
     Route::post('/login', 'AuthController@login')->name('auth.login');
     Route::get('/logout', 'AuthController@logout')->middleware('auth')->name('auth.logout');
-});   */
+});   
 
 /* untuk client  */
 Route::prefix('feature')->group(function () {
@@ -145,7 +145,7 @@ Route::prefix('chsi')->group(function () {
 Route::prefix('alumni')->group(function () {
     Route::get('/', 'AlumniController@index')->name('alumni.index');
 
-    Route::prefix('admin')->middleware('auth')->group(function() {
+    Route::prefix('admin')->group(function() {
         Route::get('/','AlumniController@adminindex')->name('admin.alumni.index');
     });
 });
