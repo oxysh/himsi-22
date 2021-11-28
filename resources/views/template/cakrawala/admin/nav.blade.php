@@ -34,7 +34,7 @@
                         {{-- <a href="{{ route('chsi.admin.index') }}">Index</a> --}}
                         <a href="{{route('chsi.admin.curhat.index')}}">Curhat</a>
                         <a href="{{route('chsi.admin.kritik.index')}}">Kritik Saran</a>
-                        <a href="#">Meditasi</a>
+                        {{-- <a href="#">Meditasi</a> --}}
                     </div>
                 </div>
             @else

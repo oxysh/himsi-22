@@ -11,17 +11,18 @@
 |
 */
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 
-/* ADMIN
-Route::get('/', function () {
-    return view('landing-page-admin');
-})->name('home');   */
+
 
 /* CUSTOMER CLIENT    */
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
+    if ($request->getHost() == 'cakrawala.hismiunair.com') {
+        return redirect()->route('admin.home');
+    }
     return view('landing-page-client');
 })->name('home');
 
@@ -40,10 +41,14 @@ Route::get('akademik', function () {
 
 /* untuk admin*/
 Route::prefix('admin')->group(function () {
-    Route::get('/', 'AuthController@index')->middleware('guest')->name('login');
+    /* ADMIN   */
+    Route::get('/', function () {
+        return view('landing-page-admin');
+    })->middleware('auth')->name('admin.home');
+    Route::get('/login', 'AuthController@index')->middleware('guest')->name('login');
     Route::post('/login', 'AuthController@login')->name('auth.login');
     Route::get('/logout', 'AuthController@logout')->middleware('auth')->name('auth.logout');
-});   
+});
 
 /* untuk client  */
 Route::prefix('feature')->group(function () {
@@ -145,7 +150,7 @@ Route::prefix('chsi')->group(function () {
 Route::prefix('alumni')->group(function () {
     Route::get('/', 'AlumniController@index')->name('alumni.index');
 
-    Route::prefix('admin')->group(function() {
-        Route::get('/','AlumniController@adminindex')->name('admin.alumni.index');
+    Route::prefix('admin')->group(function () {
+        Route::get('/', 'AlumniController@adminindex')->name('admin.alumni.index');
     });
 });

@@ -115,64 +115,64 @@
             ristek: [
                 @foreach ($RISTEK as $k)
                     {
-                    kritik: '{{ $k->krisar }}',
-                    tanggal: '{{ $k->created_at }}'
+                    kritik: `{{ $k->krisar }}`,
+                    tanggal: `{{ $k->created_at }}`
                     },
                 @endforeach
             ],
             psdm: [
                 @foreach ($PSDM as $k)
                     {
-                    kritik: '{{ $k->krisar }}',
-                    tanggal: '{{ $k->created_at }}'
+                    kritik: `{{ $k->krisar }}`,
+                    tanggal: `{{ $k->created_at }}`
                     },
                 @endforeach
             ],
             sera: [
                 @foreach ($SERA as $k)
                     {
-                    kritik: '{{ $k->krisar }}',
-                    tanggal: '{{ $k->created_at }}'
+                    kritik: `{{ $k->krisar }}`,
+                    tanggal: `{{ $k->created_at }}`
                     },
                 @endforeach
             ],
             hublu: [
                 @foreach ($HUBLU as $k)
                     {
-                    kritik: '{{ $k->krisar }}',
-                    tanggal: '{{ $k->created_at }}'
+                    kritik: `{{ $k->krisar }}`,
+                    tanggal: `{{ $k->created_at }}`
                     },
                 @endforeach
             ],
             akademik: [
                 @foreach ($AKADEMIK as $k)
                     {
-                    kritik: '{{ $k->krisar }}',
-                    tanggal: '{{ $k->created_at }}'
+                    kritik: `{{ $k->krisar }}`,
+                    tanggal: `{{ $k->created_at }}`
                     },
                 @endforeach
             ],
             kestari: [
                 @foreach ($KESTARI as $k)
                     {
-                    kritik: '{{ $k->krisar }}',
-                    tanggal: '{{ $k->created_at }}'
+                    kritik: `{{ $k->krisar }}`,
+                    tanggal: `{{ $k->created_at }}`
                     },
                 @endforeach
             ],
             bph: [
                 @foreach ($BPH as $k)
                     {
-                    kritik: '{{ $k->krisar }}',
-                    tanggal: '{{ $k->created_at }}'
+                    kritik: `{{ $k->krisar }}`,
+                    tanggal: `{{ $k->created_at }}`
                     },
                 @endforeach
             ],
             media: [
                 @foreach ($MEDIA as $k)
                     {
-                    kritik: '{{ $k->krisar }}',
-                    tanggal: '{{ $k->created_at }}'
+                    kritik: `{{ $k->krisar }}`,
+                    tanggal: `{{ $k->created_at }}`
                     },
                 @endforeach
             ],
