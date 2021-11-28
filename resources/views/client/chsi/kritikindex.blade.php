@@ -12,10 +12,10 @@
     <div class="head">
         <div class="text">
             <h1>Kritik <span id="orange">dan</span> Saran</h1>
-            <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore
-                ipsam quos laboriosam unde vel at dolorem natus dicta adipisci,
-                nihil quam ad minus nam quis neque, reprehenderit saepe repellendus
-                impedit.</span>
+            <span>Anda dapat memberikan kritik dan saran kepada kami melalui 
+            fitur ini. Pilih bidang atau pihak yang ingin Anda kritisi, 
+            kemudian tuliskan kritik dan saran Anda disana. Kami akan berusaha 
+            untuk menindak lanjuti kritik dan saran Anda!</span>
         </div>
         <img src="{{url('assets/img/krisar-msg.png')}}" id="krisar-msg-img" alt="" srcset="" />
     </div>
