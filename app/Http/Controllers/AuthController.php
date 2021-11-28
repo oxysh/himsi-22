@@ -35,7 +35,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             // Authentication passed...
-            return redirect()->route('home');
+            return redirect()->route('admin.home');
         }else{
             Session::flash('error-password','Password Salah');
             return redirect()->back()->withInput();

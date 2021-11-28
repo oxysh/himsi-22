@@ -24,10 +24,6 @@
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('form.index') }}">List</a>
                             <a class="dropdown-item" href="{{ route('form.create') }}">Create</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('responden.index') }}">Responden TEST</a>
-                            <a class="dropdown-item" href="{{ route('responden.cari') }}">Responden SEARCH</a>
-                            {{-- <a class="dropdown-item" href="#">Something else here</a> --}}
                         </div>
                     </li>
                     @if (Auth::User()->email == 'psdm')

@@ -24,7 +24,7 @@
                 <span class="line"></span>
             </a>
             @if (Auth::User()->email == 'psdm')
-                 {{-- <a href="{{route('chsi.admin.index')}}" class="nav-item" id="nav-chsi">
+                {{-- <a href="{{route('chsi.admin.index')}}" class="nav-item" id="nav-chsi">
                     <span class="nav-text">CHSI</span>
                     <span class="line"></span>
                 </a> --}}
@@ -34,12 +34,12 @@
                         {{-- <a href="{{ route('chsi.admin.index') }}">Index</a> --}}
                         <a href="{{route('chsi.admin.curhat.index')}}">Curhat</a>
                         <a href="{{route('chsi.admin.kritik.index')}}">Kritik Saran</a>
-                        <a href="#">Meditasi</a>
+                        {{-- <a href="#">Meditasi</a> --}}
                     </div>
                 </div>
             @else
                 {{-- <a href="{{ route('chsi.admin.kritik.index') }}" class="nav-item" id="nav-krisar"> --}}
-                <a href="{{route('chsi.admin.kritik.index')}}" class="nav-item" id="nav-krisar">
+                <a href="{{route('chsi.admin.kritik.index')}}"  class="nav-item" id="nav-krisar">
                     <span class="nav-text">Kritik Saran</span>
                     <span class="line"></span>
                 </a>

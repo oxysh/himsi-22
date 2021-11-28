@@ -22,6 +22,7 @@ class ChsiController extends Controller
      */
     public function index()
     {
+        return redirect()->route('curhat.index');
         return view('client.chsi.index');
     }
 
@@ -60,6 +61,11 @@ class ChsiController extends Controller
             'token' => $token,
             'dibalas' => $request->respon ? true : false,
         ]);
+        
+        if(!$request->respon) {
+            $curhat->selesai = true;
+            $curhat->save();
+        }
 
         $pesan = PesanCurhat::create([
             'curhat_id' => $curhat->id,
@@ -68,6 +74,8 @@ class ChsiController extends Controller
         ]);
 
         return redirect()->route('curhat.chat', $token);
+     
+        
     }
 
     public function curhatchat($token)
@@ -140,6 +148,7 @@ class ChsiController extends Controller
         ]);
 
         return redirect()->route('kritik.index')->with('success', 'Terimakasih atas kritik dan sarannya');
+        
     }
 
     public function meditasiindex()
@@ -251,7 +260,7 @@ class ChsiController extends Controller
                 'MEDIA' => $MEDIA,
             ]);
         } else {
-            $krisar = Krisar::where('bidang', Auth::User()->email)->get();
+            $krisar = Krisar::where('bidang', Auth::User()->role)->get();
             return view('chsi.kritik.index', [
                 'krisar' => $krisar,
             ]);

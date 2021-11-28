@@ -10,7 +10,7 @@
         padding: 10px 0 !important;
     }
     .content {
-        padding-top: 0px !important;
+        padding: 0px 10px 10px 10px !important;
     }
 </style>
 @endsection

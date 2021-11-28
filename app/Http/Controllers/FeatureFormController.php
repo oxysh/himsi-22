@@ -20,7 +20,7 @@ class FeatureFormController extends Controller
      */
     public function index()
     {
-
+        $code = Str::random(10);
         return view('client.form.index');
     }
 
