@@ -15,7 +15,7 @@
             <img src="{{url('assets/image/akademiknew/Frame 15.png')}}" alt="">
             <span>Skripsi </span>
         </div>
-        <div onclick="window.open('https://drive.google.com/open?id=1JhWRoatAJO5qRjnLsOA43ltT6SY0o9k4')">
+        <div onclick="window.open('https://drive.google.com/drive/folders/1f3IuEUKyd8X0mDCVAhpZPWMoI9sU3Kxv?usp=sharing')">
             <img src="{{url('assets/image/akademiknew/Frame 16.png')}}" alt="" id="img2">
             <span>Bank Soal </span>
         </div>
