@@ -91,7 +91,7 @@ p {
 
 .form-group textarea {
     overflow: auto;
-    padding-top: 11.5px;
+    padding: 11.5px;
     resize: vertical;
     height: auto;
     min-height: 40px;

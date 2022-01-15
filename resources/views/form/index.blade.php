@@ -1,7 +1,7 @@
 @extends('template.cakrawala.admin.template')
 
 @section('title')
-
+ADMIN - FORM
 @endsection
 
 @section('extracss')
