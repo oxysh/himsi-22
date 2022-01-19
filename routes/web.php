@@ -154,3 +154,8 @@ Route::prefix('alumni')->group(function () {
         Route::get('/', 'AlumniController@adminindex')->name('admin.alumni.index');
     });
 });
+
+// OPREC 22 LANDING
+Route::get('/registration', function () {
+    return view('oprec-22.landing-page');
+});

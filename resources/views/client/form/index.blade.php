@@ -13,7 +13,8 @@
         <h3>Mengisi Form</h3>
         <div class="form-group">
             <label for="inputShortLink">himsiunair.com/f/</label>
-            <input type="text" data-link="{{route('form.bitly','')}}" class="form-control" id="inputShortLink" placeholder="pendaftaranPanitia">
+            <input type="text" data-link="{{ route('form.bitly', '') }}" class="form-control" id="inputShortLink"
+                placeholder="pendaftaranPanitia">
             <button type="submit" class="btn btn-primary" id="btnShortLink">isi FORM<img
                     src="{{ url('assets/img/send.svg') }}" alt=""></button>
         </div>
@@ -29,10 +30,8 @@
                 <span class="p">1 Masukkan email anda pada kolom <strong>‘buat form’</strong></span>
                 <span class="p">2 Sistem akan mengirimi anda sebuah email berisi token hak akses form</span>
                 <span class="p">3 Masukkan token tersebut ke dalam kolom <strong>‘edit form’</strong></span>
-                <span class="p">4 Anda akan menuju halaman edit form, dan disana anda dapat mengubah-ubah rincian
-                    form seperti
-                    yang
-                    anda inginkan</span>
+                <span class="p">4 Anda akan menuju halaman edit form, dan disana anda dapat mengubah-ubah
+                    rincian form seperti yang anda inginkan</span>
             </div>
         </div>
         <div class="field">
@@ -41,8 +40,8 @@
                 <label for="inputEmail">Email</label>
                 <form action="{{ route('f.form.email') }}" class="form-field" method="POST">
                     @csrf
-                    <input type="email" name="email" class="form-control" id="inputEmail" placeholder="example@example.com"
-                        required>
+                    <input type="email" name="email" class="form-control" id="inputEmail"
+                        placeholder="example@example.com" required>
                     <button type="submit" class="btn btn-primary">buat FORM<img src="{{ url('assets/img/send.svg') }}"
                             alt=""></button>
                 </form>
@@ -79,13 +78,13 @@
     <script>
         document.querySelector('#nav-new-feature').classList.add('selected');
         document.querySelector('#btnShortLink').addEventListener('click', () => {
-            window.open(document.querySelector('#inputShortLink').dataset.link + '/' + document.querySelector('#inputShortLink').value);
+            window.open(document.querySelector('#inputShortLink').dataset.link + '/' + document.querySelector(
+                '#inputShortLink').value);
         })
 
         document.querySelector('#btnFormToken').addEventListener('click', () => {
             var input = document.querySelector('#inputFormToken');
             location.replace(input.dataset.link + '/' + String(input.value));
         })
-
     </script>
 @endsection
