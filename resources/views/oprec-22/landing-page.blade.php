@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>
-        Welcome - Registration HIMSI 2022
+        Welcome - Registration HIMSI UNAIR 2022
     </title>
 
     <!-- Primary Style -->
@@ -65,7 +65,7 @@
                 </div>
                 <div class="head__text">
                     <h1>HIMSI 2022</h1>
-                    <p>Ayo daftarkan dirimu sekarang juga dan menjadi bagian dari kepengurusan HIMSI 2022!</p>
+                    <p>Ayo daftarkan dirimu sekarang juga dan menjadi bagian dari kepengurusan HIMSI UNAIR 2022!</p>
                     <a class="button btn-primary head__btn">Daftar Sekarang</a>
                 </div>
             </div>
