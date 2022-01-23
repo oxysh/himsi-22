@@ -66,11 +66,12 @@
                 <div class="head__text">
                     <h1>HIMSI 2022</h1>
                     <p>Ayo daftarkan dirimu sekarang juga dan menjadi bagian dari kepengurusan HIMSI UNAIR 2022!</p>
-                    <a class="button btn-primary head__btn">Daftar Sekarang</a>
+                    <a href="{{ url('f/OprecHIMSI2022') }}" class="button btn-primary head__btn">Daftar
+                        Sekarang</a>
                 </div>
             </div>
 
-            <div class="modal" id="modal-regis">
+            {{-- <div class="modal" id="modal-regis">
                 <div class="modal__main">
                     <div class="modal__close">&times</div>
                     <div class="modal__content">
@@ -78,7 +79,7 @@
                     </div>
                 </div>
                 <div class="modal__overlay"></div>
-            </div>
+            </div> --}}
 
             {{-- ornament --}}
             <img src="{{ url('assets/image/oprec-22/head-lefttop.svg') }}" class="orn orn--head-lefttop">
