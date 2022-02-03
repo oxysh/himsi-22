@@ -89,6 +89,294 @@
             <img src="{{ url('assets/image/oprec-22/sm-head-bottom.svg') }}" class="orn-sm orn-sm--head-bottom">
         </div>
 
+        <div class="pengumuman">
+            <div class="pengumuman__title">
+                <h3>PENGUMUMAN</h3>
+                <p class="center">Hasil wawancara rekruitmen staff</p>
+            </div>
+            <p class="pengumuman__desc">
+                Selamat bagi para mahasiswa S1 Sistem Informasi yang telah terpilih sebagai staff Himsi 2022! <br>
+                Jangan lupa untuk melakukan konfirmasi ke ID Line yang telah dicantumkan pada bidang yang kamu terima
+                ya! <br> <br> Bagi nama yang tidak tercantum pada list berikut, Tetap semangat! Jangan putus asa. <br>
+                Mari tetap berkontribusi dengan mengikuti agenda/program kerja HIMSI kedepan. HIMSI JAYAMAHE!
+            </p>
+            <div class="pengumuman__all">
+                <div class="pengumuman__row">
+                    <div class="pengumuman__bidang active">
+                        <div class="pengumuman__bidang-title">
+                            <h4>BPH</h4>
+                            <img src="{{ url('assets/image/oprec-22/arrow-bottom.svg') }}" alt=""
+                                class="dropdown">
+                        </div>
+                        <div class="pengumuman__bidang-list">
+                            <div class="pengumuman__nama" style="background: #87bfff2d">
+                                <p>Konfirmasi Line : </p>
+                                <a href="http://line.me/ti/p/~aryadwijasutha">aryadwijasutha</a>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Muammar Qois Al Qorni</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Christian Abraham Putra</p>
+                                <p>SI'21</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pengumuman__bidang">
+                        <div class="pengumuman__bidang-title">
+                            <h4>RISTEK</h4>
+                            <img src="{{ url('assets/image/oprec-22/arrow-bottom.svg') }}" alt=""
+                                class="dropdown">
+                        </div>
+                        <div class="pengumuman__bidang-list">
+                            <div class="pengumuman__nama" style="background: #87bfff2d">
+                                <p>Konfirmasi Line : </p>
+                                <a href="http://line.me/ti/p/~oxysh_">oxysh_</a>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Calvin Immanuel Siringoringo</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Darfito Danurdoro</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Cakra Kusuma Erlangga Ramdani</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Cherien Adelia</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Naufal Humam</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Naufal Aziz Kurnianto</p>
+                                <p>SI'21</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pengumuman__bidang">
+                        <div class="pengumuman__bidang-title">
+                            <h4>MEDIA</h4>
+                            <img src="{{ url('assets/image/oprec-22/arrow-bottom.svg') }}" alt=""
+                                class="dropdown">
+                        </div>
+                        <div class="pengumuman__bidang-list">
+                            <div class="pengumuman__nama" style="background: #87bfff2d">
+                                <p>Konfirmasi Line : </p>
+                                <a href="http://line.me/ti/p/~hanaanfirdaus17">hanaanfirdaus17</a>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Ferry Triwantono</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>William Tanardi</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Mochamad Taufiqul Hafizh</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Nicolas Noel Christianto</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Airlangga Dwi Satrio</p>
+                                <p>SI'21</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pengumuman__row">
+                    <div class="pengumuman__bidang">
+                        <div class="pengumuman__bidang-title">
+                            <h4>PSDM</h4>
+                            <img src="{{ url('assets/image/oprec-22/arrow-bottom.svg') }}" alt=""
+                                class="dropdown">
+                        </div>
+                        <div class="pengumuman__bidang-list">
+                            <div class="pengumuman__nama" style="background: #87bfff2d">
+                                <p>Konfirmasi Line : </p>
+                                <a href="http://line.me/ti/p/~fiikriaziz">fiikriaziz</a>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Angela Aivel Alan Putri</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Andromeda Arya Rajendra</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Rishad Safranatha</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Nadhifa Adennia</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>I Gusti Ngurah Agung Gde Satrya</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Nadita Febianti</p>
+                                <p>SI'21</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pengumuman__bidang">
+                        <div class="pengumuman__bidang-title">
+                            <h4>SERA</h4>
+                            <img src="{{ url('assets/image/oprec-22/arrow-bottom.svg') }}" alt=""
+                                class="dropdown">
+                        </div>
+                        <div class="pengumuman__bidang-list">
+                            <div class="pengumuman__nama" style="background: #87bfff2d">
+                                <p>Konfirmasi Line : </p>
+                                <a href="http://line.me/ti/p/~nabilaindhy">nabilaindhy</a>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Reyhan Eldwin Maulana</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Nabillah Deris Zulaeka</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Muhammad Rizal Yudianto</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Muhammad Alfatih </p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Asraf Ayyasi Putra</p>
+                                <p>SI'21</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pengumuman__bidang">
+                        <div class="pengumuman__bidang-title">
+                            <h4>KESTARI</h4>
+                            <img src="{{ url('assets/image/oprec-22/arrow-bottom.svg') }}" alt=""
+                                class="dropdown">
+                        </div>
+                        <div class="pengumuman__bidang-list">
+                            <div class="pengumuman__nama" style="background: #87bfff2d">
+                                <p>Konfirmasi Line : </p>
+                                <a href="http://line.me/ti/p/~astforthalia">astforthalia</a>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Moch.Rikza Lucky A</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Aretha Seno Putri</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>David Chandra</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Praja Muhammad Purnayuda</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Uswatun Nurjanah</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Aryasaty Kirana T. M.</p>
+                                <p>SI'21</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pengumuman__row">
+                    <div class="pengumuman__bidang">
+                        <div class="pengumuman__bidang-title">
+                            <h4>HUBLU</h4>
+                            <img src="{{ url('assets/image/oprec-22/arrow-bottom.svg') }}" alt=""
+                                class="dropdown">
+                        </div>
+                        <div class="pengumuman__bidang-list">
+                            <div class="pengumuman__nama" style="background: #87bfff2d">
+                                <p>Konfirmasi Line : </p>
+                                <a href="http://line.me/ti/p/~starbucks.maxx">starbucks.maxx</a>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Erika Dwi Puspitasari</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Ahmad Rayhan</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Vabela Dwi Seravin</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Nora Tamima Anggraini</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Muhammad Dimas faza</p>
+                                <p>SI'21</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pengumuman__bidang">
+                        <div class="pengumuman__bidang-title">
+                            <h4>AKADEMIK</h4>
+                            <img src="{{ url('assets/image/oprec-22/arrow-bottom.svg') }}" alt=""
+                                class="dropdown">
+                        </div>
+                        <div class="pengumuman__bidang-list">
+                            <div class="pengumuman__nama" style="background: #87bfff2d">
+                                <p>Konfirmasi Line : </p>
+                                <a href="http://line.me/ti/p/~bonbonawjsn">bonbonawjsn</a>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Anggun Pratiwi Silalahi</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Fariska Dwi Kartika Sari</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Najwa Almira Yasser</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Ach Sahal Septiananda</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Patricia Grace Nathania</p>
+                                <p>SI'21</p>
+                            </div>
+                            <div class="pengumuman__nama">
+                                <p>Annisa Isaura Alfiany</p>
+                                <p>SI'21</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="visi-misi">
             <h3>VISI DAN MISI</h3>
             <div class="visi-misi__visi">
@@ -201,262 +489,6 @@
             <img src="{{ url('assets/image/oprec-22/tupoksi-right.svg') }}" class="orn orn--tupoksi-right">
             <img src="{{ url('assets/image/oprec-22/sm-tupoksi-left.svg') }}" class="orn-sm orn-sm--tupoksi-left">
             <img src="{{ url('assets/image/oprec-22/sm-tupoksi-right.svg') }}" class="orn-sm orn-sm--tupoksi-right">
-        </div>
-
-        <div class="pengumuman">
-            <div class="pengumuman__title">
-                <h3>PENGUMUMAN</h3>
-                <p class="center">Hasil wawancara rekruitmen staff</p>
-            </div>
-            <p class="pengumuman__desc">
-                Selamat bagi para mahasiswa S1 Sistem Informasi yang diterima sebagai staff Himsi 2022!<br><br> Terima
-                kasih sudah mendaftar dan mengikuti tahapan wawancara dalam rekruitmen staff Himsi 2022. Bagi nama yang
-                tidak tercantum pada list berikut, jangan patah semangat!
-            </p>
-            <div class="pengumuman__all">
-                <div class="pengumuman__row">
-                    <div class="pengumuman__bidang active">
-                        <div class="pengumuman__bidang-title">
-                            <h4>BPH</h4>
-                            <img src="{{ url('assets/image/oprec-22/arrow-bottom.svg') }}" alt=""
-                                class="dropdown">
-                        </div>
-                        <div class="pengumuman__bidang-list">
-                            <div class="pengumuman__nama">
-                                <p>Muammar Qois Al Qorni</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Christian Abraham Putra</p>
-                                <p>SI'21</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pengumuman__bidang">
-                        <div class="pengumuman__bidang-title">
-                            <h4>RISTEK</h4>
-                            <img src="{{ url('assets/image/oprec-22/arrow-bottom.svg') }}" alt=""
-                                class="dropdown">
-                        </div>
-                        <div class="pengumuman__bidang-list">
-                            <div class="pengumuman__nama">
-                                <p>Calvin Immanuel Siringoringo</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Darfito Danurdoro</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Cakra Kusuma Erlangga Ramdani</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Cherien Adelia</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Naufal Humam</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Naufal Aziz Kurnianto</p>
-                                <p>SI'21</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pengumuman__bidang">
-                        <div class="pengumuman__bidang-title">
-                            <h4>MEDIA</h4>
-                            <img src="{{ url('assets/image/oprec-22/arrow-bottom.svg') }}" alt=""
-                                class="dropdown">
-                        </div>
-                        <div class="pengumuman__bidang-list">
-                            <div class="pengumuman__nama">
-                                <p>Ferry Triwantono</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>William Tanardi</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Mochamad Taufiqul Hafizh</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Nicolas Noel Christianto</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Airlangga Dwi Satrio</p>
-                                <p>SI'21</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pengumuman__row">
-                    <div class="pengumuman__bidang">
-                        <div class="pengumuman__bidang-title">
-                            <h4>PSDM</h4>
-                            <img src="{{ url('assets/image/oprec-22/arrow-bottom.svg') }}" alt=""
-                                class="dropdown">
-                        </div>
-                        <div class="pengumuman__bidang-list">
-                            <div class="pengumuman__nama">
-                                <p>Angela Aivel Alan Putri</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Andromeda Arya Rajendra</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Rishad Safranatha</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Nadhifa Adennia</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>I Gusti Ngurah Agung Gde Satrya</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Nadita Febianti</p>
-                                <p>SI'21</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pengumuman__bidang">
-                        <div class="pengumuman__bidang-title">
-                            <h4>SERA</h4>
-                            <img src="{{ url('assets/image/oprec-22/arrow-bottom.svg') }}" alt=""
-                                class="dropdown">
-                        </div>
-                        <div class="pengumuman__bidang-list">
-                            <div class="pengumuman__nama">
-                                <p>Reyhan Eldwin Maulana</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Nabillah Deris Zulaeka</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Muhammad Rizal Yudianto</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Muhammad Alfatih </p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Asraf Ayyasi Putra</p>
-                                <p>SI'21</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pengumuman__bidang">
-                        <div class="pengumuman__bidang-title">
-                            <h4>KESTARI</h4>
-                            <img src="{{ url('assets/image/oprec-22/arrow-bottom.svg') }}" alt=""
-                                class="dropdown">
-                        </div>
-                        <div class="pengumuman__bidang-list">
-                            <div class="pengumuman__nama">
-                                <p>Moch.Rikza Lucky A</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Aretha Seno Putri</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>David Chandra</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Praja Muhammad Purnayuda</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Uswatun Nurjanah</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Aryasaty Kirana T. M.</p>
-                                <p>SI'21</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pengumuman__row">
-                    <div class="pengumuman__bidang">
-                        <div class="pengumuman__bidang-title">
-                            <h4>HUBLU</h4>
-                            <img src="{{ url('assets/image/oprec-22/arrow-bottom.svg') }}" alt=""
-                                class="dropdown">
-                        </div>
-                        <div class="pengumuman__bidang-list">
-                            <div class="pengumuman__nama">
-                                <p>Erika Dwi Puspitasari</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Ahmad Rayhan</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Vabela Dwi Seravin</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Nora Tamima Anggraini</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Muhammad Dimas faza</p>
-                                <p>SI'21</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pengumuman__bidang">
-                        <div class="pengumuman__bidang-title">
-                            <h4>AKADEMIK</h4>
-                            <img src="{{ url('assets/image/oprec-22/arrow-bottom.svg') }}" alt=""
-                                class="dropdown">
-                        </div>
-                        <div class="pengumuman__bidang-list">
-                            <div class="pengumuman__nama">
-                                <p>Anggun Pratiwi Silalahi</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Fariska Dwi Kartika Sari</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Najwa Almira Yasser</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Ach Sahal Septiananda</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Patricia Grace Nathania</p>
-                                <p>SI'21</p>
-                            </div>
-                            <div class="pengumuman__nama">
-                                <p>Annisa Isaura Alfiany</p>
-                                <p>SI'21</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
