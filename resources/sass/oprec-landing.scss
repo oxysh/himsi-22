@@ -364,6 +364,7 @@ h4 {
     }
 
     &__bidang-title {
+        cursor: pointer;
         padding: 1.5rem 2rem;
         display: flex;
         align-items: center;
@@ -599,6 +600,17 @@ h4 {
 
     .tupoksi {
         &__content {
+            width: 100%;
+        }
+    }
+
+    .pengumuman {
+        &__all {
+            flex-wrap: wrap;
+            row-gap: 0;
+        }
+
+        &__row {
             width: 100%;
         }
     }
