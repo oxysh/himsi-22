@@ -39,7 +39,7 @@
 </head>
 
 <body>
-    <div>
+    <div class="oprec">
         @if ($message = Session::get('info'))
             <div class="alert alert-info-form">{{ $message }}</div>
         @endif
@@ -490,13 +490,12 @@
             <img src="{{ url('assets/image/oprec-22/sm-tupoksi-left.svg') }}" class="orn-sm orn-sm--tupoksi-left">
             <img src="{{ url('assets/image/oprec-22/sm-tupoksi-right.svg') }}" class="orn-sm orn-sm--tupoksi-right">
         </div>
-    </div>
 
-    <div class="back-to-top">
-        <div class="back-to-top__btn"><img src="https://img.icons8.com/ios-glyphs/24/000000/collapse-arrow.png" />
-            BACK TO TOP</div>
-    </div>
-    {{-- END CONTENT --}}
+        <div class="back-to-top">
+            <div class="back-to-top__btn"><img src="https://img.icons8.com/ios-glyphs/24/000000/collapse-arrow.png" />
+                BACK TO TOP</div>
+        </div>
+        {{-- END CONTENT --}}
     </div>
 
 

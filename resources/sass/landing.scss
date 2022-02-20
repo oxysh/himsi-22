@@ -1,0 +1,129 @@
+.landing {
+    padding: 0 60px;
+    width: auto;
+    margin: 0;
+
+    .layanan {
+        width: 100%;
+        margin-top: 5rem;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+
+        &__title {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        &__overflow {
+            width: 100%;
+            overflow-x: scroll;
+
+            &::-webkit-scrollbar {
+                height: 0;
+            }
+        }
+
+        &__all {
+            width: fit-content;
+            padding-top: 2rem;
+            padding-bottom: 6rem;
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        &__card {
+            width: 300px;
+            height: 300px;
+            padding: 1.25rem 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+
+            border-radius: 1.5rem;
+            background: linear-gradient(180deg, rgba(63, 142, 252, 0.09) 0%, rgba(0, 67, 133, 0.09) 100%);
+            box-shadow: -29px 30px 30px rgba(155, 151, 151, 0.1);
+            backdrop-filter: blur(250px);
+
+            h4,
+            p {
+                text-align: center;
+            }
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+
+        &__scroll {
+            width: 2.75rem;
+            height: 2.75rem;
+            position: absolute;
+            right: -2rem;
+            bottom: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: $white;
+            box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.16);
+            cursor: pointer;
+
+            &.left {
+                left: -2rem;
+            }
+        }
+    }
+
+    .orn {
+        $padding: -60px;
+
+        &--layanan {
+            &-left {
+                height: 18rem;
+                left: $padding;
+                bottom: 0;
+            }
+
+            &-right {
+                height: 28rem;
+                right: $padding;
+                top: 0;
+            }
+        }
+    }
+
+    .orn-sm {
+        $padding: -16px;
+
+        &--layanan {
+            right: $padding;
+            bottom: 0;
+        }
+    }
+}
+
+
+@media screen and (max-width:768px) {
+    .landing {
+        padding: 0 16px;
+
+        .layanan {
+            &__scroll {
+                bottom: 2rem;
+                right: calc(50% - 4rem);
+
+                &.left {
+                    left: calc(50% - 4rem);
+                }
+            }
+        }
+    }
+}

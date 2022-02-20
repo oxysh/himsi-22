@@ -23,7 +23,8 @@ Route::get('/', function (Request $request) {
     if ($request->getHost() == 'cakrawala.hismiunair.com') {
         return redirect()->route('admin.home');
     }
-    return view('landing-page-client');
+    // return view('landing-page-client');
+    return view('landing-client-22');
 })->name('home');
 
 
