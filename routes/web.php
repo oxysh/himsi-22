@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Artisan;
 /* CUSTOMER CLIENT    */
 
 Route::get('/', function (Request $request) {
-    if ($request->getHost() == 'cakrawala.hismiunair.com') {
+    if ($request->getHost() == 'koneksi.himsiunair.com') {
         return redirect()->route('admin.home');
     }
     return view('landing-page-client');
