@@ -251,15 +251,6 @@ class ChsiController extends Controller
     }
 
 
-    // public function psdmcurhatmotivasisubmit(Request $request, $token)
-    // {
-    //     $curhat = Curhat::where('token', $token)->first();
-    //     $curhat->quote = $request->motivasi;
-    //     $curhat->save();
-
-    //     return redirect()->route('chsi.admin.curhat.chat', $curhat->token);
-    // }
-
     public function psdmkritikindex()
     {
         if (Auth::User()->role == 'PSDM') {

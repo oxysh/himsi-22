@@ -66,13 +66,6 @@ Curhat - {{$data->token}}
         
                 </div>
             </form>
-                {{-- <form action="{{ route('chsi.admin.curhat.motivasi.submit', $data->token) }}" method="POST"
-                    class="form-group" style="flex-direction: column;">
-                    @csrf
-                    <textarea name="motivasi" id="" cols="" rows="3"></textarea>
-                    <button type="submit" class="btn-primary">Motivasi<img src="{{ url('assets/img/send.svg') }}"
-                            alt=""></button>
-                </form> --}}
             @else
                 @if ($data->quote != null)
                     <br><img src="/image/{!! $data->quote !!}">
