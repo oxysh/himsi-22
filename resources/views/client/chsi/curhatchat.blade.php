@@ -34,13 +34,23 @@
                 </form>
 
                 <div class="end-curhat">
-                    @if (count($data->chat->countBy('psdm')) != 1)
-                        <a href="{{ route('curhat.finish.token', $data->token) }}" class="btn-outline">
-                            <span>akhiri Chat</span>
-                            <img src="https://img.icons8.com/ios-filled/50/fa314a/break--v2.png"
-                                style="width: 25px; height: 25px;" /></a>
-                    @endif
+                    @if ($data->dibalas == true)
+                        
+                        @if (count($data->chat->countBy('psdm')) >= 2)
+                            <a href="{{ route('curhat.finish.token', $data->token) }}" class="btn-outline">
+                                <span>akhiri Chat</span>
+                                <img src="https://img.icons8.com/ios-filled/50/fa314a/break--v2.png"
+                                    style="width: 25px; height: 25px;" /></a>
+                        @endif
                     <span>Hanya dapat mengakhiri curhat apabila chat sudah dibalas oleh pengurus</span>
+                    @else 
+                        @if (count($data->chat->countBy('psdm')) != 1)
+                            <a href="{{ route('curhat.finish.token', $data->token) }}" class="btn-outline">
+                                <span>akhiri Chat</span>
+                                <img src="https://img.icons8.com/ios-filled/50/fa314a/break--v2.png"
+                                    style="width: 25px; height: 25px;" /></a>
+                        @endif
+                    @endif
                 </div>
             @endif
         </div>
