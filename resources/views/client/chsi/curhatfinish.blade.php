@@ -14,7 +14,7 @@
     <div class="box-message">
         <span class="h4">
             @if (Session::has('quote'))
-                {{ Session::get('quote') }}
+                <img src="/image/{!! Session::get('quote') !!}" style="width: 325px; height: 325px;" >
             @else
                 Tetap Semangat dan Jangan Menyerah
             @endif

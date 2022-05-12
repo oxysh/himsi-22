@@ -28,6 +28,7 @@ List Curhat
                 data-link="{{ route('chsi.admin.curhat.chat', $curhat->token) }}">
                 <div class="card-body p">
                     <span class="card-title">{{ $curhat->token }}</span>
+                    <span class="card-category">{{ strtoupper($curhat->kategori) }}</span>
                     <span class="">
                         @if ($curhat->dibalas)
                             DENGAN BALASAN
@@ -42,7 +43,15 @@ List Curhat
                             @endif
                         @else
                             TANPA BALASAN
-                            <span class="finished">Selesai</span>
+                            @if ($curhat->selesai)
+                                <span class="status finished">Selesai</span>
+                            @else
+                                @if ($curhat->quote == null)
+                                    <span class="status waiting">Menunggu Motivasi</span>
+                                @else
+                                    <span class="status unfinished">On Progress</span>
+                                @endif
+                            @endif
                         @endif
                     </span>
                 </div>
