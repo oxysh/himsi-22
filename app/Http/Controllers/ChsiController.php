@@ -68,6 +68,10 @@ class ChsiController extends Controller
         ]
         );
 
+        if ($request->respon==null){
+            $request->respon = false;
+        }
+
         if ($validator->fails()) {
             // flash('error')->error();
             return redirect()->back()->withErrors($validator)->withInput();
@@ -129,10 +133,10 @@ class ChsiController extends Controller
         return redirect()->route('curhat.chat', $request->token);
     }
 
-    public function curhatfinish()
-    {
-        return view('client.chsi.curhatfinish');
-    }
+    // public function curhatfinish()
+    // {
+    //     return view('client.chsi.curhatfinish');
+    // }
 
     public function curhatfinishtoken($token)
     {
@@ -142,7 +146,7 @@ class ChsiController extends Controller
             'selesai' => true,
         ]);
 
-        return redirect()->route('curhat.finish')->with('quote', $curhat->quote);
+        return redirect()->route('curhat.chat', $token);
     }
 
     public function curhatchatsubmit(Request $request, $token)

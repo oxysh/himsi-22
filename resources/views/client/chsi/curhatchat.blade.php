@@ -14,6 +14,25 @@
             <h2>Token : <span class="orange">{{ $data->token }}</span></h2>
             <span>Catat token diatas untuk meninjau balasan selanjutnya</span>
             <span>balon chat oranye adalah anda</span>
+            @if ($data->selesai)
+                <h1>curhat uda selesai, mode read-only</h1>
+
+            <div class="box-chat" style="background-image: url('{{ url('assets/image/chat-bg.png') }}');">
+                @foreach ($data->chat as $pesan)
+                    @if ($pesan->psdm)
+                        <span class="baloon baloon-left">{{ $pesan->chat }}</span>
+                    @else
+                        <span class="baloon baloon-right">{{ $pesan->chat }}</span>
+                    @endif
+                @endforeach
+                @if ($data->quote != NULL)
+                    <span class="baloon baloon-left"><img src="/image/{!! $data->quote !!}" style="width: 325px; height: 325px;"/></span>
+                @else
+                    <span class="baloon baloon-left"><img src="/image/default.png" style="width:325px; height:325px;"/></span>
+                @endif
+            </div>
+            
+            @else
             <div class="box-chat" style="background-image: url('{{ url('assets/image/chat-bg.png') }}');">
                 @foreach ($data->chat as $pesan)
                     @if ($pesan->psdm)
@@ -23,9 +42,6 @@
                     @endif
                 @endforeach
             </div>
-            @if ($data->selesai)
-                <h1>curhat uda selesai, mode read-only</h1>
-            @else
                 <form action="{{ route('curhat.chat.submit', $data->token) }}" method="POST" class="form-group">
                     @csrf
                     <textarea name="chat" id="" cols="" rows="3"></textarea>
@@ -44,7 +60,7 @@
                         @endif
                     <span>Hanya dapat mengakhiri curhat apabila chat sudah dibalas oleh pengurus</span>
                     @else 
-                        @if (count($data->chat->countBy('psdm')) != 1)
+                        @if (count($data->chat->countBy('psdm')) >= 1)
                             <a href="{{ route('curhat.finish.token', $data->token) }}" class="btn-outline">
                                 <span>akhiri Chat</span>
                                 <img src="https://img.icons8.com/ios-filled/50/fa314a/break--v2.png"

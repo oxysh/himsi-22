@@ -117,7 +117,7 @@ Route::prefix('chsi')->group(function () {
         Route::get('/chat/{token}', 'ChsiController@curhatchat')->name('curhat.chat');
         Route::post('/chat', 'ChsiController@curhatfind')->name('curhat.find');
         Route::post('/chat/{token}', 'ChsiController@curhatchatsubmit')->name('curhat.chat.submit');
-        Route::get('/finish', 'ChsiController@curhatfinish')->name('curhat.finish');
+        // Route::get('/finish', 'ChsiController@curhatfinish')->name('curhat.finish');
         Route::get('/finish/{token}', 'ChsiController@curhatfinishtoken')->name('curhat.finish.token');
     });
 
