@@ -20,12 +20,16 @@ use Illuminate\Support\Facades\Artisan;
 /* CUSTOMER CLIENT    */
 
 Route::get('/', function (Request $request) {
-    if ($request->getHost() == 'cakrawala.hismiunair.com') {
+    if ($request->getHost() == 'koneksi.hismiunair.com') {
         return redirect()->route('admin.home');
     }
     // return view('landing-page-client');
-    return view('landing-client-22');
+    return view('koneksi.landing');
 })->name('home');
+
+Route::get('about-us', function () {
+    return view('koneksi.about-us');
+})->name('about-us');
 
 
 /* untuk client */

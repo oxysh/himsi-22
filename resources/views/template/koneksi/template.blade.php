@@ -9,14 +9,20 @@
         @yield('title')
     </title>
 
+    <!-- SEO -->
+    <meta name="description" content="@yield('seo-desc')">
+    <meta name="canonical" href=""> {{-- ini buat optimize page --}}
+    <meta property="og:title" content="@yield('title')">
+    <meta property="og:description" content="@yield('seo-desc')">
+    <meta property="og:image" content="@yield('seo-img')">
+
     <!-- Primary Style -->
-    {{-- <link rel="stylesheet" href="{{ url('assets/css/style.css') }}"> --}}
     <link rel="stylesheet" href="{{ url('assets/scss/app.css') }}">
 
     <!-- Font -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Poppins:wght@500;600;700&display=swap"
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Poppins:wght@300;400;500&display=swap"
         rel="stylesheet">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -36,7 +42,7 @@
 
 </head>
 
-<body>
+<body class="@yield('bodyclass')">
     <div class="container @yield('container')">
         @if ($message = Session::get('info'))
             <div class="alert alert-info-form">{{ $message }}</div>
@@ -57,7 +63,9 @@
         @include('template.koneksi.navbar')
 
         @yield('content')
+
     </div>
+    @include('template.koneksi.footer')
 
 
 

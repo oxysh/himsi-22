@@ -1,6 +1,5 @@
 $('.nav .dropdown').click(e => {
     e.currentTarget.classList.toggle('active')
-    console.log(e.currentTarget)
 })
 
 $('body').click(e => {
