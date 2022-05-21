@@ -38,7 +38,7 @@
         <div class="about--bidang__top">
             <h1 class="about--bidang__title midnight-blue">Pemetaan Bidang HIMSI</h1>
             <p class="grey">HIMSI memliki 8 bidang yang berbeda dengan pekerjaan, agenda serta prokernya
-                masing-masing dalam </p>
+                masing-masing dalam mencapai tujuan, visi, dan misinya.</p>
         </div>
         <div class="about--bidang__cards">
             <div class="about--bidang__card">
