@@ -133,6 +133,18 @@ button.btn-primary:hover {
   background-color: #1C75BC;
 }
 
+.midnight-blue {
+  color: #241E7B;
+}
+
+.red {
+  color: #A0213E;
+}
+
+.grey {
+  color: #60637A;
+}
+
 .container {
   width: 100%;
   padding: 0 1rem;
@@ -743,6 +755,135 @@ button.btn-primary:hover {
   .landing--layanan__card {
     width: 80%;
     justify-self: center;
+  }
+}
+
+.about--header {
+  min-height: calc(100vh - 6rem);
+  padding-bottom: 6rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.about--header__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.about--header__koneksi {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 100;
+  font-size: 150px;
+  line-height: 150px;
+  letter-spacing: 0.115rem;
+}
+
+.about--header__relation {
+  font-family: "Poppins";
+  font-style: italic;
+}
+
+.about--header__ornament {
+  height: 100vh;
+  position: absolute;
+  transform: translateX(-25%);
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.about--tentang {
+  min-height: calc(100vh - 6rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.about--tentang > * {
+  text-align: center;
+}
+
+@media screen and (min-width: 992px) {
+  .about--tentang > * {
+    width: 80%;
+  }
+}
+
+.about--bidang {
+  margin-top: 4rem;
+  min-height: calc(100vh - 6rem);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+}
+
+.about--bidang__top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.about--bidang__top > * {
+  text-align: center;
+}
+
+.about--bidang__cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 6rem 4rem;
+}
+
+.about--bidang__card {
+  width: calc((100% - 8rem) / 3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.about--bidang__card > * {
+  text-align: center;
+}
+
+@media screen and (max-width: 991.9px) {
+  .about--bidang__card {
+    width: calc((100% - 4rem) / 2);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about--header__koneksi {
+    font-size: 64px;
+    line-height: 64px;
+  }
+
+  .about--header__ornament {
+    height: unset;
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    transform: none;
+  }
+}
+
+@media screen and (max-width: 575.9px) {
+  .about--bidang__card {
+    width: 80%;
   }
 }
 
