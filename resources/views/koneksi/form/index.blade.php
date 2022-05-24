@@ -72,17 +72,17 @@
             </div>
         </div>
 
-        <form action="{{ route('f.form.email') }}" method="POST" class="form-landing__dialog-form">
-            @csrf
+        <div class="form-landing__dialog-form">
             <div class="form__group">
                 <div class="form__head">
-                    <label for="inputEmail" class="form__label">Token</label>
+                    <label for="inputFormToken" class="form__label">Token</label>
                     <h6 class="form__helper">Cek email anda untuk mendapatkan token</h6>
                 </div>
-                <input type="email" name="email" id="inputEmail" class="form__control" placeholder="kWnjd9sGd" required>
+                <input type="text" name="inputFormToken" id="inputFormToken" class="form__control" placeholder="kWnjd9sGd"
+                    data-link="{{ route('f.form.show', '') }}" required>
             </div>
-            <button type="submit" class="btn btn-primary">Buka Form</button>
-        </form>
+            <button type="submit" class="btn btn-primary" id="btnFormToken">Buka Form</button>
+        </div>
 
         <div class="form-landing__linked">
             <h5 class="form-landing__linked-desc">Belum memiliki form?</h5>

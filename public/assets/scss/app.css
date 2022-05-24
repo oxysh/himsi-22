@@ -108,12 +108,18 @@ button {
   cursor: pointer;
   padding: 0.5rem 1.25rem;
   border-radius: 6px;
-  color: #06091B;
+  color: #120F3E;
+  background-color: #FAFDFF;
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .button:hover,
 button:hover {
-  color: #06091B;
+  color: #120F3E;
+  background-color: rgba(96, 99, 122, 0.1);
+  text-decoration: none;
 }
 
 .button:focus,
@@ -137,6 +143,46 @@ button.btn-primary {
 button.btn-primary:hover {
   color: #FAFDFF;
   background-color: #1C75BC;
+}
+
+.button.btn-secondary,
+button.btn-secondary {
+  color: #1C75BC;
+  background-color: #FAFDFF;
+  border: 1.5px solid #1C75BC;
+}
+
+.button.btn-secondary:hover,
+button.btn-secondary:hover {
+  color: #241E7B;
+  border-color: #241E7B;
+}
+
+table {
+  border: 0.5px solid rgba(96, 99, 122, 0.6);
+  border-radius: 0.75rem;
+  border-spacing: 0;
+}
+
+thead {
+  background-color: rgba(96, 99, 122, 0.1);
+}
+
+th {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  text-align: start;
+  color: #60637A;
+}
+
+tr:last-child td {
+  border: none;
+}
+
+td {
+  padding: 0.5rem 1rem;
+  color: #60637A;
+  border-bottom: 0.3px solid rgba(96, 99, 122, 0.6);
 }
 
 .midnight-blue {
@@ -1086,6 +1132,257 @@ button.btn-primary:hover {
   .form-landing__dialog {
     padding: 4rem 3rem;
     gap: 6rem;
+  }
+}
+
+.form-show {
+  min-height: calc(100vh - 6rem);
+  padding-top: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.form-show__title-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-show__title-section > * {
+  text-align: center;
+}
+
+.form-show__btns {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 0.25rem;
+}
+
+.form-show__content {
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-show__content-body {
+  width: 100%;
+  display: none;
+}
+
+.form-show__content-body.active {
+  display: flex;
+}
+
+.form-show__content-body--tampilan {
+  max-width: 700px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1.5rem;
+}
+
+.form-show__content-body--pertanyaan {
+  max-width: 900px;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.form-show__content-body--jawaban {
+  max-width: 900px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.form-show__desc {
+  width: 100%;
+  display: grid;
+  grid-template-columns: -webkit-min-content auto;
+  grid-template-columns: min-content auto;
+  grid-template-areas: "label-author value-author" "label-judul value-judul" "label-deadline value-deadline" "label-shortlink value-shortlink" "label-deskripsi value-deskripsi" "label-afterform value-afterform" "label-afterformlink value-afterformlink";
+  gap: 0.5rem 4rem;
+}
+
+.form-show__label {
+  white-space: nowrap;
+}
+
+.form-show__label--author {
+  grid-area: label-author;
+}
+
+.form-show__label--judul {
+  grid-area: label-judul;
+}
+
+.form-show__label--deadline {
+  grid-area: label-deadline;
+}
+
+.form-show__label--shortlink {
+  grid-area: label-shortlink;
+}
+
+.form-show__label--deskripsi {
+  grid-area: label-deskripsi;
+}
+
+.form-show__label--afterform {
+  grid-area: label-afterform;
+}
+
+.form-show__label--afterformlink {
+  grid-area: label-afterformlink;
+}
+
+.form-show__value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-show__value--author {
+  grid-area: value-author;
+}
+
+.form-show__value--judul {
+  grid-area: value-judul;
+}
+
+.form-show__value--deadline {
+  grid-area: value-deadline;
+}
+
+.form-show__value--shortlink {
+  grid-area: value-shortlink;
+}
+
+.form-show__value--deskripsi {
+  grid-area: value-deskripsi;
+}
+
+.form-show__value--afterform {
+  grid-area: value-afterform;
+}
+
+.form-show__value--afterformlink {
+  grid-area: value-afterformlink;
+}
+
+.form-show__option-btns {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3rem;
+}
+
+.form-show__option-btn {
+  background-color: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+.form-show__urutkan-pertanyaan {
+  padding: 0;
+  text-decoration: underline;
+  color: rgba(96, 99, 122, 0.6);
+  background-color: transparent;
+}
+
+.form-show__urutkan-pertanyaan:hover {
+  color: #60637A;
+}
+
+.form-show__tabel-pertanyaan {
+  width: 100%;
+}
+
+.form-show__no-pertanyaan {
+  text-align: center;
+}
+
+.form-show__aksi-pertanyaan {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.form-show__aksi-pertanyaan > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-show__aksi-pertanyaan > form {
+  display: none;
+}
+
+.form-show__tambah-pertanyaan {
+  text-align: center;
+  color: #241E7B;
+}
+
+.form-show__jawaban-filter {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.form-show__tidak-sesuai {
+  color: #A0213E;
+}
+
+.form-show__sesuai {
+  color: #241E7B;
+}
+
+.form-show__responden {
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  border-radius: 1.5rem;
+  border: 0.5px solid #60637A;
+}
+
+.form-show__responden-row {
+  display: grid;
+  grid-template-columns: 0.75fr 1fr;
+  align-items: flex-start;
+}
+
+.form-show__responden-label {
+  font-weight: 500;
+  color: #241E7B;
+}
+
+.form-show__responden-value {
+  color: #60637A;
+}
+
+@media screen and (max-width: 575.9px) {
+  .form-show__content {
+    margin-top: 3rem;
+  }
+
+  .form-show__desc {
+    gap: 0.5rem 1rem;
   }
 }
 

@@ -1,0 +1,256 @@
+.form-show {
+    min-height: calc(100vh - 6rem);
+    padding-top: 2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+
+    &__title-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        >* {
+            text-align: center;
+        }
+    }
+
+    &__btns {
+        width: 100%;
+        max-width: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        gap: .25rem;
+    }
+
+    &__content {
+        width: 100%;
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__content-body {
+        width: 100%;
+        display: none;
+
+        &.active {
+            display: flex;
+        }
+
+        &--tampilan {
+            max-width: 700px;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 1.5rem;
+        }
+
+        &--pertanyaan {
+            max-width: 900px;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        &--jawaban {
+            max-width: 900px;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 1rem;
+        }
+    }
+
+    &__desc {
+        width: 100%;
+        display: grid;
+        grid-template-columns: min-content auto;
+        grid-template-areas:
+            'label-author value-author'
+            'label-judul value-judul'
+            'label-deadline value-deadline'
+            'label-shortlink value-shortlink'
+            'label-deskripsi value-deskripsi'
+            'label-afterform value-afterform'
+            'label-afterformlink value-afterformlink';
+        gap: .5rem 4rem;
+    }
+
+    &__label {
+        white-space: nowrap;
+
+        &--author {
+            grid-area: label-author;
+        }
+
+        &--judul {
+            grid-area: label-judul;
+        }
+
+        &--deadline {
+            grid-area: label-deadline;
+        }
+
+        &--shortlink {
+            grid-area: label-shortlink;
+        }
+
+        &--deskripsi {
+            grid-area: label-deskripsi;
+        }
+
+        &--afterform {
+            grid-area: label-afterform;
+        }
+
+        &--afterformlink {
+            grid-area: label-afterformlink;
+        }
+    }
+
+    &__value {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &--author {
+            grid-area: value-author;
+        }
+
+        &--judul {
+            grid-area: value-judul;
+        }
+
+        &--deadline {
+            grid-area: value-deadline;
+        }
+
+        &--shortlink {
+            grid-area: value-shortlink;
+        }
+
+        &--deskripsi {
+            grid-area: value-deskripsi;
+        }
+
+        &--afterform {
+            grid-area: value-afterform;
+        }
+
+        &--afterformlink {
+            grid-area: value-afterformlink;
+        }
+    }
+
+    &__option-btns {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 3rem;
+    }
+
+    &__option-btn {
+        background-color: transparent;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    &__urutkan-pertanyaan {
+        padding: 0;
+        text-decoration: underline;
+        color: $independence-60;
+        background-color: transparent;
+
+        &:hover {
+            color: $independence;
+        }
+    }
+
+    &__tabel-pertanyaan {
+        width: 100%;
+    }
+
+    &__no-pertanyaan {
+        text-align: center;
+    }
+
+    &__aksi-pertanyaan {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1rem;
+
+        >a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        >form {
+            display: none;
+        }
+    }
+
+    &__tambah-pertanyaan {
+        text-align: center;
+        color: $midnight-blue;
+    }
+
+    &__jawaban-filter {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    &__tidak-sesuai {
+        color: $big-dip-oruby;
+    }
+
+    &__sesuai {
+        color: $midnight-blue;
+    }
+
+    &__responden {
+        width: 100%;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: .5rem;
+        border-radius: 1.5rem;
+        border: .5px solid $independence;
+    }
+
+    &__responden-row {
+        display: grid;
+        grid-template-columns: .75fr 1fr;
+        align-items: flex-start;
+    }
+
+    &__responden-label {
+        font-weight: 500;
+        color: $midnight-blue;
+    }
+
+    &__responden-value {
+        color: $independence;
+    }
+
+    @media screen and (max-width: 575.9px) {
+        &__content {
+            margin-top: 3rem;
+        }
+
+        &__desc {
+            gap: .5rem 1rem;
+        }
+    }
+}

@@ -97,7 +97,8 @@ class FeatureFormController extends Controller
             $data->pertanyaan = $data->pertanyaan->sortBy('sorting')->all();
             $data['inputdeadline'] = join("T", explode(" ", $data->deadline));
 
-            return view('client.form.show', [
+            // return view('client.form.show', [
+            return view('koneksi.form.show', [
                 'data' => $data,
             ]);
         }else{
