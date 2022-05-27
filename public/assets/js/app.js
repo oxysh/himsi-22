@@ -19380,6 +19380,8 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./env */ "./resources/js/env.js");
+
 __webpack_require__(/*! ./navbar */ "./resources/js/navbar.js");
 
 /***/ }),
@@ -19413,6 +19415,28 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/env.js":
+/*!*****************************!*\
+  !*** ./resources/js/env.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var formValue = [];
+$('form').find('.form__control').each(function (x) {
+  formValue.push($('form').find('.form__control')[x].value);
+});
+$('.btn-close').click(function (e) {
+  e.preventDefault();
+  e.target.closest('.dialog').classList.remove('active');
+  $('.dialog__bg')[0].classList.remove('active');
+  $('form').find('.form__control').each(function (x) {
+    $('form').find('.form__control')[x].value = formValue[x];
+  });
+});
 
 /***/ }),
 

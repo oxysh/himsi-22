@@ -9,10 +9,24 @@
   transition: all 0.2s ease;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: rgba(36, 30, 123, 0.1);
+}
+
+::-webkit-scrollbar-corner {
+  background-color: rgba(96, 99, 122, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #241E7B;
+}
+
 span {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+  color: inherit;
 }
 
 .h1,
@@ -158,6 +172,23 @@ button.btn-secondary:hover {
   border-color: #241E7B;
 }
 
+.button.btn-danger,
+button.btn-danger {
+  color: #A0213E;
+  background-color: #FAFDFF;
+  border: 1.5px solid #A0213E;
+}
+
+.button.btn-danger:hover,
+button.btn-danger:hover {
+  color: #FAFDFF;
+  background-color: #A0213E;
+}
+
+textarea {
+  resize: none;
+}
+
 table {
   border: 0.5px solid rgba(96, 99, 122, 0.6);
   border-radius: 0.75rem;
@@ -195,6 +226,10 @@ td {
 
 .grey {
   color: #60637A;
+}
+
+.hidden {
+  display: none !important;
 }
 
 .container {
@@ -563,17 +598,50 @@ td {
 }
 
 .dialog {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: none;
+  z-index: 10;
 }
 
 .dialog.active {
   display: flex;
   -webkit-animation: fadein 0.2s ease-in-out;
           animation: fadein 0.2s ease-in-out;
+}
+
+.dialog__card {
+  padding: 3rem 2rem;
+  border-radius: 1.5rem;
+  border: 0.05px solid #FAFDFF;
+  background-color: #FAFDFF;
+  box-shadow: 0px 20px 40px rgba(36, 30, 123, 0.15);
+}
+
+.dialog__btns {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.25rem;
+}
+
+.dialog__bg {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: 9;
+  background-color: rgba(250, 253, 255, 0.7);
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+}
+
+.dialog__bg.active {
+  display: block;
 }
 
 @-webkit-keyframes fadein {
@@ -1211,7 +1279,7 @@ td {
   display: grid;
   grid-template-columns: -webkit-min-content auto;
   grid-template-columns: min-content auto;
-  grid-template-areas: "label-author value-author" "label-judul value-judul" "label-deadline value-deadline" "label-shortlink value-shortlink" "label-deskripsi value-deskripsi" "label-afterform value-afterform" "label-afterformlink value-afterformlink";
+  grid-template-areas: "label-shortlink value-shortlink" "divider divider" "label-author value-author" "label-judul value-judul" "label-token value-token" "label-deadline value-deadline" "label-deskripsi value-deskripsi" "label-afterform value-afterform" "label-afterformlink value-afterformlink";
   gap: 0.5rem 4rem;
 }
 
@@ -1225,6 +1293,10 @@ td {
 
 .form-show__label--judul {
   grid-area: label-judul;
+}
+
+.form-show__label--token {
+  grid-area: label-token;
 }
 
 .form-show__label--deadline {
@@ -1261,12 +1333,27 @@ td {
   grid-area: value-judul;
 }
 
+.form-show__value--token {
+  grid-area: value-token;
+}
+
 .form-show__value--deadline {
   grid-area: value-deadline;
 }
 
 .form-show__value--shortlink {
   grid-area: value-shortlink;
+}
+
+.form-show__value--shortlink > span {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.form-show__value--shortlink > span > img {
+  height: 16px;
 }
 
 .form-show__value--deskripsi {
@@ -1279,6 +1366,10 @@ td {
 
 .form-show__value--afterformlink {
   grid-area: value-afterformlink;
+}
+
+.form-show__desc-divider {
+  grid-area: divider;
 }
 
 .form-show__option-btns {
@@ -1294,6 +1385,11 @@ td {
   cursor: pointer;
 }
 
+.form-show__option-btn:hover {
+  background-color: transparent;
+  transform: scale(1.1);
+}
+
 .form-show__urutkan-pertanyaan {
   padding: 0;
   text-decoration: underline;
@@ -1303,6 +1399,7 @@ td {
 
 .form-show__urutkan-pertanyaan:hover {
   color: #60637A;
+  background-color: transparent;
 }
 
 .form-show__tabel-pertanyaan {
@@ -1318,21 +1415,18 @@ td {
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;
-}
-
-.form-show__aksi-pertanyaan > a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.form-show__aksi-pertanyaan > form {
-  display: none;
+  cursor: pointer;
 }
 
 .form-show__tambah-pertanyaan {
+  border-radius: 0 0 0.75rem 0.75rem;
   text-align: center;
   color: #241E7B;
+  cursor: pointer;
+}
+
+.form-show__tambah-pertanyaan:hover {
+  background-color: rgba(36, 30, 123, 0.1);
 }
 
 .form-show__jawaban-filter {
@@ -1376,6 +1470,127 @@ td {
   color: #60637A;
 }
 
+.form-show__edit-dialog {
+  max-height: 100vh;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.form-show__edit-dialog-content {
+  width: 100%;
+  max-width: 950px;
+  padding: 3rem 2rem;
+  display: grid;
+  align-items: start;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.25rem;
+}
+
+.form-show__edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.form-show__edit-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.form-show__live-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.form-show__live-preview > .btn-primary {
+  align-self: flex-end;
+}
+
+.form-show__live-preview--form {
+  gap: 1rem;
+}
+
+.form-show__live-preview--afterform {
+  gap: 0;
+}
+
+.form-show__edit-shortlink-dialog {
+  width: calc(100% - 2rem);
+  max-width: 440px;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.form-show__live-preview-divider {
+  border: 0.5px solid rgba(96, 99, 122, 0.6);
+}
+
+.form-show__delete-dialog {
+  width: calc(100% - 2rem);
+  max-width: 440px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.form-show__delete-dialog > * {
+  text-align: center;
+}
+
+.form-show__delete-dialog > .dialog__btns {
+  justify-content: center;
+}
+
+.form-show__form-add-pertanyaan {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.form-show__sort-pertanyaan-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.form-show__urutan-pertanyaan-sekarang {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.form-show__urutan-pertanyaans {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.75rem;
+}
+
+@media screen and (max-width: 991.9px) {
+  .form-show__edit-dialog {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media screen and (max-width: 575.9px) {
   .form-show__content {
     margin-top: 3rem;
@@ -1384,5 +1599,9 @@ td {
   .form-show__desc {
     gap: 0.5rem 1rem;
   }
+}
+
+.red-important {
+  color: #A0213E !important;
 }
 
