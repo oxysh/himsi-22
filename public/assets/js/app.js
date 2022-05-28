@@ -19371,6 +19371,21 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/alert.js":
+/*!*******************************!*\
+  !*** ./resources/js/alert.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$('.alert__close').click(function (e) {
+  e.target.parentElement.style.visibility = 'hidden';
+  e.target.parentElement.style.transform = 'translate(calc(-50% - 1rem), -50%)';
+  e.target.parentElement.style.opacity = 0;
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -19383,6 +19398,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 __webpack_require__(/*! ./env */ "./resources/js/env.js");
 
 __webpack_require__(/*! ./navbar */ "./resources/js/navbar.js");
+
+__webpack_require__(/*! ./alert */ "./resources/js/alert.js");
 
 /***/ }),
 

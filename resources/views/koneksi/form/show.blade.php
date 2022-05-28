@@ -8,6 +8,14 @@
 @section('container', 'form-show')
 
 @section('content')
+    <div class="alert alert--info form-show__alert-copied not-out hidden">
+        <div class="alert__content">
+            <img class="alert__img" src="{{ url('assets/img/alert-info.svg') }}" alt="">
+            <h4 class="alert__message">Berhasil menyalin shortlink.</h4>
+        </div>
+        <img class="alert__close" src="{{ url('assets/img/alert-close.svg') }}" alt="">
+    </div>
+
     <div class="form-show__title-section">
         <h2 class="midnight-blue">Edit Form</h2>
         <p>Ubah tampilan dan perbanyak pertanyaan pada form</p>

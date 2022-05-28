@@ -673,12 +673,19 @@ td {
   padding: 1rem 1.25rem;
   position: absolute;
   top: 1rem;
+  left: 50%;
+  transform: translateX(calc(-50% - 1rem));
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 3rem;
   border: 1px solid;
   border-radius: 6px;
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.4s ease-in-out;
+  -webkit-animation: fadeout 0.8s ease-in-out 30s forwards;
+          animation: fadeout 0.8s ease-in-out 30s forwards;
 }
 
 .alert--info {
@@ -711,6 +718,30 @@ td {
   align-items: center;
   justify-content: center;
   gap: 1rem;
+}
+
+.alert.not-out {
+  -webkit-animation: none;
+          animation: none;
+}
+
+.alert.add-out {
+  -webkit-animation: fadeout 0.8s ease-in-out 30s forwards;
+          animation: fadeout 0.8s ease-in-out 30s forwards;
+}
+
+@-webkit-keyframes fadeout {
+  to {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  to {
+    visibility: hidden;
+    opacity: 0;
+  }
 }
 
 .landing--top {

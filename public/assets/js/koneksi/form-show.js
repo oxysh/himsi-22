@@ -1,6 +1,8 @@
 $('.form-show__option-btn--copy-shortlink').click(() => {
     navigator.clipboard.writeText($('.form-show__value--shortlink')[0].innerText)
     // kasi alert kalo berhasil di copy
+    $('.form-show__alert-copied')[0].classList.remove('hidden');
+    $('.form-show__alert-copied')[0].classList.remove('not-out');
 })
 
 $('.form-show__btn').click(e => {
