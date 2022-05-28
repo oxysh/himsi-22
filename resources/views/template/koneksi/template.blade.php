@@ -46,19 +46,49 @@
 <body class="@yield('bodyclass')">
     <div class="container @yield('container')">
         @if ($message = Session::get('info'))
-            <div class="alert alert-info-form">{{ $message }}</div>
+            <div class="alert alert--info">
+                <div class="alert__content">
+                    <img class="alert__img" src="{{ url('assets/img/alert-info.svg') }}" alt="">
+                    <h4 class="alert__message">{{ $message }}</h4>
+                </div>
+                <img class="alert__close" src="{{ url('assets/img/alert-close.svg') }}" alt="">
+            </div>
         @endif
         @if ($message = Session::get('danger'))
-            <div class="alert alert-danger-form">{{ $message }}</div>
+            <div class="alert alert--danger">
+                <div class="alert__content">
+                    <img class="alert__img" src="{{ url('assets/img/alert-danger.svg') }}" alt="">
+                    <h4 class="alert__message">{{ $message }}</h4>
+                </div>
+                <img class="alert__close" src="{{ url('assets/img/alert-close.svg') }}" alt="">
+            </div>
         @endif
         @if ($message = Session::get('error'))
-            <div class="alert alert-danger-form">{{ $message }}</div>
+            <div class="alert alert--error">
+                <div class="alert__content">
+                    <img class="alert__img" src="{{ url('assets/img/alert-error.svg') }}" alt="">
+                    <h4 class="alert__message">{{ $message }}</h4>
+                </div>
+                <img class="alert__close" src="{{ url('assets/img/alert-close.svg') }}" alt="">
+            </div>
         @endif
         @if ($message = Session::get('warning'))
-            <div class="alert alert-warning-form">{{ $message }}</div>
+            <div class="alert alert--warning">
+                <div class="alert__content">
+                    <img class="alert__img" src="{{ url('assets/img/alert-warning.svg') }}" alt="">
+                    <h4 class="alert__message">{{ $message }}</h4>
+                </div>
+                <img class="alert__close" src="{{ url('assets/img/alert-close.svg') }}" alt="">
+            </div>
         @endif
         @if ($message = Session::get('success'))
-            <div class="alert alert-success-form">{{ $message }}</div>
+            <div class="alert alert--success">
+                <div class="alert__content">
+                    <img class="alert__img" src="{{ url('assets/img/alert-success.svg') }}" alt="">
+                    <h4 class="alert__message">{{ $message }}</h4>
+                </div>
+                <img class="alert__close" src="{{ url('assets/img/alert-close.svg') }}" alt="">
+            </div>
         @endif
 
         @include('template.koneksi.navbar')

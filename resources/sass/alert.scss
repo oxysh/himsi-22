@@ -1,0 +1,46 @@
+.alert {
+    width: fit-content;
+    max-width: 500px;
+    margin: 0 1rem;
+    padding: 1rem 1.25rem;
+    position: absolute;
+    top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    border: 1px solid;
+    border-radius: 6px;
+
+    &--info {
+        background-color: #E4F3FF;
+        border-color: $french-blue;
+    }
+
+    &--danger {
+        background-color: #FEEDD4;
+        border-color: $portland-orange;
+    }
+
+    &--error {
+        background-color: #FFE7EC;
+        border-color: $big-dip-oruby;
+    }
+
+    &--warning {
+        background-color: #FFFBD7;
+        border-color: #FFD600;
+    }
+
+    &--success {
+        background-color: #DCFFE4;
+        border-color: #1CBC3F;
+    }
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+}
