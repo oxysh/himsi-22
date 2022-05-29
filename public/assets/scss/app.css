@@ -236,6 +236,7 @@ td {
   width: 100%;
   padding: 0 1rem;
   margin: 6rem auto 0 auto;
+  position: relative;
 }
 
 @media screen and (min-width: 576px) {
@@ -1689,5 +1690,76 @@ td {
 
 .red-important {
   color: #A0213E !important;
+}
+
+.form-responden {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.form-responden__form {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 1.5rem;
+}
+
+.form-responden__title-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.25rem;
+}
+
+.form-responden__title-section > * {
+  text-align: center;
+}
+
+.form-responden__input-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 1.25rem;
+}
+
+.form-responden__input-form > .btn-primary {
+  align-self: flex-end;
+}
+
+.afterform {
+  min-height: calc(100vh - 6rem);
+  padding-bottom: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.afterform__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+}
+
+.afterform__description {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.afterform__description > * {
+  text-align: center;
 }
 

@@ -238,7 +238,8 @@ class RespondenController extends Controller
 
         $form = Form::find($request->formid);
         session()->flash('success', 'Form berhasil di isi');
-        return view('client.form.responden-thanks', [
+        // return view('client.form.responden-thanks', [
+        return view('koneksi.form.afterform', [
             'form' => $form,
         ]);
     }
@@ -258,7 +259,8 @@ class RespondenController extends Controller
         $diff = $origin->diff($deadline);
         if ($diff->invert) {
             session()->flash('expired', true);
-            return view('client.form.responden-thanks', [
+            // return view('client.form.responden-thanks', [
+            return view('koneksi.form.afterform', [
                 'form' => $form,
             ]);
         }
@@ -281,7 +283,8 @@ class RespondenController extends Controller
             }
         }
 
-        return view('client.form.responden', [
+        // return view('client.form.responden', [
+            return view('koneksi.form.responden', [
             'form'  => $form,
             'bitly' => $bitly,
         ]);
