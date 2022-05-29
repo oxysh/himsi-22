@@ -39,7 +39,8 @@ Route::get('/f/{token}', 'RespondenController@bitly')->name('form.bitly');
 Route::post('/f/{token}', 'RespondenController@submit')->name('form.bitly.submit');
 
 Route::get('akademik', function () {
-    return view('akademik', [
+    // return view('akademik', [
+    return view('koneksi.akademik.index', [
         'page' => 'akademik',
     ]);
 })->name('akademik');
