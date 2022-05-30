@@ -22,6 +22,10 @@
   background-color: #241E7B;
 }
 
+body {
+  background-color: #FAFDFF;
+}
+
 span {
   font-family: inherit;
   font-size: inherit;
@@ -578,23 +582,32 @@ td {
   border-color: #60637A;
 }
 
-.form__control::-moz-placeholder {
+.form__control-box {
+  width: 100%;
+  border: 0.5px solid rgba(96, 99, 122, 0.6);
+  border-radius: 4px;
+}
+
+.form__control::-moz-placeholder, .form__control-box::-moz-placeholder {
   color: rgba(96, 99, 122, 0.6);
 }
 
-.form__control:-ms-input-placeholder {
+.form__control:-ms-input-placeholder, .form__control-box:-ms-input-placeholder {
   color: rgba(96, 99, 122, 0.6);
 }
 
-.form__control::placeholder {
+.form__control::placeholder,
+.form__control-box::placeholder {
   color: rgba(96, 99, 122, 0.6);
 }
 
-.form__control:focus-visible {
+.form__control:focus-visible,
+.form__control-box:focus-visible {
   outline: none;
 }
 
-.form__control:focus {
+.form__control:focus,
+.form__control-box:focus {
   border-color: #241E7B;
 }
 
@@ -672,8 +685,8 @@ td {
   max-width: 500px;
   margin: 0 1rem;
   padding: 1rem 1.25rem;
-  position: absolute;
-  top: 1rem;
+  position: fixed;
+  top: 7rem;
   left: 50%;
   transform: translateX(calc(-50% - 1rem));
   display: flex;
@@ -682,6 +695,7 @@ td {
   gap: 3rem;
   border: 1px solid;
   border-radius: 6px;
+  z-index: 19;
   visibility: visible;
   opacity: 1;
   transition: all 0.4s ease-in-out;
@@ -1840,6 +1854,130 @@ td {
   }
 
   .akademik__card > img {
+    width: 40px;
+  }
+
+  .akademik__card > * {
+    text-align: start;
+  }
+}
+
+.krisar {
+  min-height: calc(100vh - 6rem);
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 3rem;
+}
+
+.krisar__title-section {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.krisar__title-section > * {
+  text-align: center;
+}
+
+.krisar__opsi {
+  width: 85%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.5rem 1.25rem;
+}
+
+.krisar__card {
+  width: calc((100% - 3.75rem) / 4);
+  padding: 2.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background-color: #FAFDFF;
+  cursor: pointer;
+}
+
+.krisar__card:hover {
+  transform: scale(1.1);
+}
+
+.krisar__card > * {
+  text-align: center;
+}
+
+.krisar__dialog {
+  width: calc(100% - 2rem);
+  max-width: 750px;
+  padding: 4rem 3rem;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.krisar__dialog-left,
+.krisar__dialog-right {
+  width: calc((100% - 3rem) / 2);
+}
+
+.krisar__dialog-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.krisar__dialog-title-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.krisar__dialog-right {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.krisar__dialog-right > .dialog__btns {
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 767.9px) {
+  .krisar__title-section,
+  .krisar__opsi {
+    width: calc(100% - 2rem);
+  }
+
+  .krisar__card {
+    width: calc((100% - 1.25rem) / 2);
+  }
+
+  .krisar__dialog {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .krisar__dialog-left,
+  .krisar__dialog-right {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 575.9px) {
+  .krisar__card > img {
     width: 40px;
   }
 }

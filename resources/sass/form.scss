@@ -30,7 +30,16 @@
         width: 100%;
         border-width: 0 0 2px 0;
         border-color: $independence;
+    }
 
+    &__control-box {
+        width: 100%;
+        border: .5px solid $independence-60;
+        border-radius: 4px;
+    }
+
+    &__control,
+    &__control-box {
         &::placeholder {
             color: $independence-60;
         }

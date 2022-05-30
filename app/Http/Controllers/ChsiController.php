@@ -130,7 +130,8 @@ class ChsiController extends Controller
 
     public function kritikindex()
     {
-        return view('client.chsi.kritikindex');
+        // return view('client.chsi.kritikindex');
+        return view('koneksi.chsi.kritikindex');
     }
 
     public function kritikform($bidang)
@@ -147,7 +148,7 @@ class ChsiController extends Controller
             'krisar' => $request->krisar,
         ]);
 
-        return redirect()->route('kritik.index')->with('success', 'Terimakasih atas kritik dan sarannya');
+        return redirect()->route('kritik.index')->with('info', 'Terimakasih atas kritik dan sarannya');
         
     }
 

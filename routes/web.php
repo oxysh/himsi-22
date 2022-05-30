@@ -162,6 +162,6 @@ Route::prefix('alumni')->group(function () {
 });
 
 // OPREC 22 LANDING
-Route::get('/registration', function () {
-    return view('oprec-22.landing-page');
-});
+// Route::get('/registration', function () {
+//     return view('oprec-22.landing-page');
+// });
