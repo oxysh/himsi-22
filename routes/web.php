@@ -113,7 +113,7 @@ Route::prefix('feature')->group(function () {
 
 Route::prefix('chsi')->group(function () {
     /* untuk client */
-    Route::get('/', 'ChsiController@index')->name('chsi.index');
+    // Route::get('/', 'ChsiController@index')->name('chsi.index');
     Route::prefix('curhat')->group(function () {
         Route::get('/', 'ChsiController@curhatindex')->name('curhat.index');
         Route::get('/new', 'ChsiController@curhatbaru')->name('curhat.baru');

@@ -32,7 +32,8 @@ class ChsiController extends Controller
      */
     public function curhatindex()
     {
-        return view('client.chsi.curhatindex');
+        // return view('client.chsi.curhatindex');
+        return view('koneksi.chsi.index');
     }
 
     /** 
@@ -41,7 +42,8 @@ class ChsiController extends Controller
     */
     public function curhatbaru()
     {
-        return view('client.chsi.curhatbaru');
+        // return view('client.chsi.curhatbaru');
+        return view('koneksi.chsi.add-curhat');
     }
 
     public function curhatBaruAtribut()

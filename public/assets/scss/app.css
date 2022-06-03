@@ -224,6 +224,10 @@ td {
   color: #241E7B;
 }
 
+.french-blue {
+  color: #1C75BC;
+}
+
 .red {
   color: #A0213E;
 }
@@ -563,6 +567,10 @@ td {
   gap: 0.5rem;
 }
 
+.form__group--oneline > .form__label {
+  white-space: nowrap;
+}
+
 .form__label {
   font-style: normal;
   font-weight: 400;
@@ -580,6 +588,7 @@ td {
   width: 100%;
   border-width: 0 0 2px 0;
   border-color: #60637A;
+  background-color: transparent;
 }
 
 .form__control-box {
@@ -1980,5 +1989,215 @@ td {
   .krisar__card > img {
     width: 40px;
   }
+}
+
+.chsi-landing {
+  min-height: calc(100vh - 6rem);
+  padding-bottom: 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.chsi-landing__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.chsi-landing__title,
+.chsi-landing__buka-curhat {
+  text-align: center;
+}
+
+.chsi-landing__form-content {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.chsi-landing__form-content > .btn-primary {
+  align-self: flex-end;
+}
+
+.chsi-landing__ornament {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60%;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+@media screen and (max-width: 991.9px) {
+  .chsi-landing__ornament {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 575.9px) {
+  .chsi-landing__title {
+    font-size: 24px;
+    line-height: 31px;
+  }
+
+  .chsi-landing__form-content {
+    width: 100%;
+  }
+}
+
+.chsi-add {
+  min-height: calc(100vh - 6rem);
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 3rem;
+}
+
+.chsi-add__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+}
+
+.chsi-add__kategori {
+  width: 85%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.chsi-add__kategori-opsi {
+  width: calc((100% - 5rem) / 5);
+  padding: 2.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background-color: #FAFDFF;
+  border: 0.5px solid rgba(96, 99, 122, 0.6);
+  border-radius: 0.75rem;
+  cursor: pointer;
+}
+
+.chsi-add__kategori-opsi:hover {
+  transform: scale(1.1);
+}
+
+.chsi-add__balasan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.chsi-add__balasan-opsi {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.chsi-add__balasan-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.chsi-add__balasan-label > span {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: transparent;
+  outline: 2px solid #60637A;
+  outline-offset: 2.5px;
+}
+
+.chsi-add__custom-token {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+@media screen and (max-width: 1199.9px) {
+  .chsi-add__kategori-opsi {
+    width: calc((100% - 2.5rem) / 3);
+  }
+}
+
+@media screen and (max-width: 767.9px) {
+  .chsi-add__kategori {
+    width: calc(100% - 2rem);
+  }
+
+  .chsi-add__balasan {
+    width: calc(100% - 6rem);
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .chsi-add__balasan > p {
+    text-align: center;
+  }
+
+  .chsi-add__custom-token {
+    width: calc(100% - 6rem);
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .chsi-add__custom-token > .form__control {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+}
+
+@media screen and (max-width: 575.9px) {
+  .chsi-add__title {
+    font-size: 24px;
+    line-height: 31px;
+  }
+
+  .chsi-add__kategori-opsi {
+    width: calc(100% - 6rem);
+    padding: 1.25rem 3.25rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .chsi-add__kategori-opsi > img {
+    width: 40px;
+  }
+
+  .chsi-add__kategori-opsi > * {
+    text-align: start;
+  }
+}
+
+input[name=kategori]:checked + .chsi-add__kategori-opsi {
+  border: 2px solid #241E7B;
+}
+
+input[name=respon]:checked + .chsi-add__balasan-label > span {
+  background-color: #241E7B;
+  outline-color: #241E7B;
 }
 
