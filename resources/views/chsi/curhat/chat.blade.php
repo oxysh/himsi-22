@@ -32,22 +32,46 @@ Curhat - {{$data->token}}
         @endif
 
     </div>
-    @if ($data->dibalas)
         <div class="motivasi">
             <h4>Motivasi untuk orang yang curhat</h4>
             <span>saat ini : {{ $data->quote ? $data->quote : 'masih kosong' }}</span>
             @if (!$data->selesai)
-                <form action="{{ route('chsi.admin.curhat.motivasi.submit', $data->token) }}" method="POST"
-                    class="form-group" style="flex-direction: column;">
-                    @csrf
-                    <textarea name="motivasi" id="" cols="" rows="3"></textarea>
-                    <button type="submit" class="btn-primary">Motivasi<img src="{{ url('assets/img/send.svg') }}"
-                            alt=""></button>
-                </form>
-            @endif
 
-        </div>
-    @endif
+                @if ($data->quote != null)
+                <br><img src="/image/{!! $data->quote !!}">
+                @endif
+
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                
+            <form action="{{ route('chsi.admin.curhat.motivasi.submit', $data->token) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="row">
+        
+                    <div class="col-md-6">
+                        <input type="file" name="image" class="form-control">
+                    </div>
+        
+                    <div class="col-md-6">
+                        <button type="submit" class="btn-primary">Upload</button>
+                    </div>
+        
+                </div>
+            </form>
+            @else
+                @if ($data->quote != null)
+                    <br><img src="/image/{!! $data->quote !!}">
+                @endif
+            @endif
+    </div>
 </div>
 
 @endsection

@@ -8,7 +8,7 @@ use App\PesanCurhat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\File;
 class ChsiController extends Controller
 {
 
@@ -232,11 +232,25 @@ class ChsiController extends Controller
     public function psdmcurhatmotivasisubmit(Request $request, $token)
     {
         $curhat = Curhat::where('token', $token)->first();
-        $curhat->quote = $request->motivasi;
-        $curhat->save();
 
+        // cek request
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,jfif',
+        ]);
+        
+        $folder = public_path('image');
+        File::delete($folder.'/'.$curhat->quote);
+        
+        // store image & image name
+        $imageName = $token.'.'.$request->image->extension();
+        $curhat->quote = $imageName;  
+        $curhat->save();
+     
+        $request->image->move(public_path('image'), $imageName);
+    
         return redirect()->route('chsi.admin.curhat.chat', $curhat->token);
     }
+
 
     public function psdmkritikindex()
     {
