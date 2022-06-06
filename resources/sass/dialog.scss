@@ -1,0 +1,54 @@
+.dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 10;
+
+    &.active {
+        display: flex;
+        animation: fadein .2s ease-in-out;
+    }
+
+    &__card {
+        padding: 3rem 2rem;
+        border-radius: 1.5rem;
+        border: 0.05px solid $white;
+        background-color: $white;
+        box-shadow: 0px 20px 40px rgba($midnight-blue, 0.15);
+    }
+
+    &__btns {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 1.25rem;
+    }
+
+    &__bg {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: none;
+        z-index: 9;
+        background-color: rgba($white, 0.7);
+        backdrop-filter: blur(4px);
+
+        &.active {
+            display: block;
+        }
+    }
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

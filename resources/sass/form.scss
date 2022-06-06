@@ -1,0 +1,55 @@
+.form {
+    &__group {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        gap: 1rem;
+
+        &--oneline {
+            flex-direction: row;
+            gap: .5rem;
+        }
+    }
+
+    &__label {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        letter-spacing: -0.03rem;
+        color: $midnight-blue;
+    }
+
+    &__helper {
+        color: $independence;
+    }
+
+    &__control {
+        width: 100%;
+        border-width: 0 0 2px 0;
+        border-color: $independence;
+    }
+
+    &__control-box {
+        width: 100%;
+        border: .5px solid $independence-60;
+        border-radius: 4px;
+    }
+
+    &__control,
+    &__control-box {
+        &::placeholder {
+            color: $independence-60;
+        }
+
+        &:focus-visible {
+            outline: none;
+        }
+
+        &:focus {
+            border-color: $midnight-blue;
+        }
+    }
+}

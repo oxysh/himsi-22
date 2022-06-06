@@ -21,7 +21,8 @@ class FeatureFormController extends Controller
     public function index()
     {
         $code = Str::random(10);
-        return view('client.form.index');
+        // return view('client.form.index');
+        return view('koneksi.form.index');
     }
 
     /**
@@ -76,7 +77,7 @@ class FeatureFormController extends Controller
         atau MUNGKIN bagian spam email'
         */
         session()->flash('success', 'Berhasil membuat form, silahkan cek email anda');
-        return redirect()->back();
+        return redirect()->back()->with('input_token', 'active');
     }
 
     /**
@@ -96,7 +97,8 @@ class FeatureFormController extends Controller
             $data->pertanyaan = $data->pertanyaan->sortBy('sorting')->all();
             $data['inputdeadline'] = join("T", explode(" ", $data->deadline));
 
-            return view('client.form.show', [
+            // return view('client.form.show', [
+            return view('koneksi.form.show', [
                 'data' => $data,
             ]);
         }else{

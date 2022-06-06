@@ -23,8 +23,13 @@ Route::get('/', function (Request $request) {
     if ($request->getHost() == 'koneksi.himsiunair.com') {
         return redirect()->route('admin.home');
     }
-    return view('landing-page-client');
+    // return view('landing-page-client');
+    return view('koneksi.landing');
 })->name('home');
+
+// Route::get('about-us', function () {
+//     return view('koneksi.about-us');
+// })->name('about-us');
 
 
 /* untuk client */
@@ -33,11 +38,12 @@ Route::get('/', function (Request $request) {
 Route::get('/f/{token}', 'RespondenController@bitly')->name('form.bitly');
 Route::post('/f/{token}', 'RespondenController@submit')->name('form.bitly.submit');
 
-Route::get('akademik', function () {
-    return view('akademik', [
-        'page' => 'akademik',
-    ]);
-})->name('akademik');
+// Route::get('akademik', function () {
+//     // return view('akademik', [
+//     return view('koneksi.akademik.index', [
+//         'page' => 'akademik',
+//     ]);
+// })->name('akademik');
 
 /* untuk admin*/
 Route::prefix('admin')->group(function () {
@@ -154,3 +160,8 @@ Route::prefix('alumni')->group(function () {
         Route::get('/', 'AlumniController@adminindex')->name('admin.alumni.index');
     });
 });
+
+// OPREC 22 LANDING
+// Route::get('/registration', function () {
+//     return view('oprec-22.landing-page');
+// });
