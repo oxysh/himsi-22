@@ -416,6 +416,11 @@ td {
   padding: 0.5rem;
 }
 
+.dropdown:hover {
+  color: #06091B;
+  background-color: transparent;
+}
+
 @media screen and (max-width: 768px) {
   .nav__mobile {
     display: flex;
