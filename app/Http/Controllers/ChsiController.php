@@ -20,11 +20,11 @@ class ChsiController extends Controller
      * method index
      * menampilkan menu dari CHSI
      */
-    public function index()
-    {
-        return redirect()->route('curhat.index');
-        return view('client.chsi.index');
-    }
+    // public function index()
+    // {
+    //     return redirect()->route('curhat.index');
+    //     return view('client.chsi.index');
+    // }
 
     /**
      * method curhatindex
@@ -46,10 +46,10 @@ class ChsiController extends Controller
         return view('koneksi.chsi.add-curhat');
     }
 
-    public function curhatBaruAtribut()
-    {
-        return view('client.chsi.curhatindex');
-    }
+    // public function curhatBaruAtribut()
+    // {
+    //     return view('client.chsi.curhatindex');
+    // }
     
     /**
      * method curhatsubmit
@@ -125,7 +125,8 @@ class ChsiController extends Controller
 
         //dd($data);
 
-        return view('client.chsi.curhatchat', [
+        // return view('client.chsi.curhatchat', [
+        return view('koneksi.chsi.chatroom', [
             'data' => $data,
         ]);
     }

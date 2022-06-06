@@ -117,7 +117,7 @@ Route::prefix('chsi')->group(function () {
     Route::prefix('curhat')->group(function () {
         Route::get('/', 'ChsiController@curhatindex')->name('curhat.index');
         Route::get('/new', 'ChsiController@curhatbaru')->name('curhat.baru');
-        Route::post('/new/kategori', 'ChsiController@curhatBaruAtribut')->name('curhat.baru.atribut');
+        // Route::post('/new/kategori', 'ChsiController@curhatBaruAtribut')->name('curhat.baru.atribut');
         Route::post('/submit', 'ChsiController@curhatsubmit')->name('curhat.submit');
         Route::get('/chat/{token}', 'ChsiController@curhatchat')->name('curhat.chat');
         Route::post('/chat', 'ChsiController@curhatfind')->name('curhat.find');

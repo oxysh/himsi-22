@@ -1,7 +1,8 @@
 @extends('template.koneksi.template')
 
 @section('title', 'CHSI - Selamat Datang di CHSI HIMSI')
-@section('seo-desc', 'CHSI merupakan akronim dari Curahan Hati Sistem Informasi.'){{-- ini buat deskripsi seo --}}
+@section('seo-desc', 'CHSI, Curahan Hati Sistem Informasi, merupakan fitur dari website Himsi Universitas Airlangga yang
+    ditujukan untuk berbagi curahan hati warga S1 Sistem Informasi.'){{-- ini buat deskripsi seo --}}
 @section('seo-img', '') {{-- ini buat gambar seo --}}
 
 @section('bodyclass', '') {{-- kalo butuh class buat body --}}

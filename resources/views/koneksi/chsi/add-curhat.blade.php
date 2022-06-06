@@ -60,5 +60,4 @@
 
 @section('extrajs')
     {{-- <script src="{{ url('assets/js/koneksi/chsi.js') }}"></script> --}}
-    <script></script>
 @endsection
