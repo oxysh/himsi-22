@@ -19399,6 +19399,8 @@ __webpack_require__(/*! ./env */ "./resources/js/env.js");
 
 __webpack_require__(/*! ./navbar */ "./resources/js/navbar.js");
 
+__webpack_require__(/*! ./sidebar */ "./resources/js/sidebar.js");
+
 __webpack_require__(/*! ./alert */ "./resources/js/alert.js");
 
 /***/ }),
@@ -19479,6 +19481,54 @@ $(document).ready(function () {
     e.currentTarget.classList.toggle("active");
     e.currentTarget.parentNode.nextElementSibling.classList.toggle("active");
   });
+});
+
+/***/ }),
+
+/***/ "./resources/js/sidebar.js":
+/*!*********************************!*\
+  !*** ./resources/js/sidebar.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// activate sidebar menu
+if (location.pathname == '/admin') {
+  $('.sidebar__menu').each(function (x) {
+    $('.sidebar__menu')[x].classList.remove('active');
+  });
+  $('.sidebar__menu--dashboard')[0].classList.add('active');
+} else if (location.pathname.includes("/chsi/admin/curhat")) {
+  $('.sidebar__menu').each(function (x) {
+    $('.sidebar__menu')[x].classList.remove('active');
+  });
+  $('.sidebar__menu--curhat')[0].classList.add('active');
+} else if (location.pathname.includes('/form')) {
+  $('.sidebar__menu').each(function (x) {
+    $('.sidebar__menu')[x].classList.remove('active');
+  });
+  $('.sidebar__menu--form')[0].classList.add('active');
+} else if (location.pathname.includes('/chsi/admin/kritik')) {
+  $('.sidebar__menu').each(function (x) {
+    $('.sidebar__menu')[x].classList.remove('active');
+  });
+  $('.sidebar__menu--krisar')[0].classList.add('active');
+} // change image on active sidebar menu
+
+
+$('.sidebar__menu').each(function (x) {
+  if ($('.sidebar__menu')[x].classList.contains('active')) {
+    $('.sidebar__icon .idle')[x].classList.add('hidden');
+    $('.sidebar__icon .active')[x].classList.remove('hidden');
+  } else {
+    $('.sidebar__icon .idle')[x].classList.remove('hidden');
+    $('.sidebar__icon .active')[x].classList.add('hidden');
+  }
+}); // toggler sidebar
+
+$('.sidebar__toggle').click(function () {
+  // console.log($('.sidebar__container')[0]);
+  $('.sidebar')[0].classList.toggle('sidebar__expander');
 });
 
 /***/ }),

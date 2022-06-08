@@ -24,7 +24,8 @@ Route::get('/', function (Request $request) {
         return redirect()->route('admin.home');
     }
     // return view('landing-page-client');
-    return view('koneksi.landing');
+    // return view('koneksi.landing');
+    return redirect()->route('admin.home');
 })->name('home');
 
 // Route::get('about-us', function () {
@@ -48,9 +49,7 @@ Route::post('/f/{token}', 'RespondenController@submit')->name('form.bitly.submit
 /* untuk admin*/
 Route::prefix('admin')->group(function () {
     /* ADMIN   */
-    Route::get('/', function () {
-        return view('landing-page-admin');
-    })->middleware('auth')->name('admin.home');
+    Route::get('/', 'AuthController@dashboard')->middleware('auth')->name('admin.home');
     Route::get('/login', 'AuthController@index')->middleware('guest')->name('login');
     Route::post('/login', 'AuthController@login')->name('auth.login');
     Route::get('/logout', 'AuthController@logout')->middleware('auth')->name('auth.logout');
