@@ -30,12 +30,12 @@
             <input type="radio" name="kategori" id="teman" value="teman" class="hidden">
             <label for="teman" class="chsi-add__kategori-opsi">
                 <img src="{{ url('assets/img/chsi-teman.svg') }}" alt="" class="chsi-add__kategori-img">
-                <h4>Ayang</h4>
+                <h4>Teman</h4>
             </label>
             <input type="radio" name="kategori" id="others" value="others" class="hidden">
             <label for="others" class="chsi-add__kategori-opsi">
                 <img src="{{ url('assets/img/chsi-lain.svg') }}" alt="" class="chsi-add__kategori-img">
-                <h4>Ayang</h4>
+                <h4>Lainnya</h4>
             </label>
         </div>
 
