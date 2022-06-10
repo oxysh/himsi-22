@@ -27,7 +27,7 @@
                     </span>
                 @else
                     <span class="chsi-chatroom__bubblechat chsi-chatroom__bubblechat--left">
-                        <img src="{{ url('assets/image/default.png') }}">
+                        <img src="{{ url('assets/image/default.jpg') }}">
                     </span>
                 @endif
             @endif
