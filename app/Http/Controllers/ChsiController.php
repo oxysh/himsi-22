@@ -20,11 +20,11 @@ class ChsiController extends Controller
      * method index
      * menampilkan menu dari CHSI
      */
-    public function index()
-    {
-        return redirect()->route('curhat.index');
-        return view('client.chsi.index');
-    }
+    // public function index()
+    // {
+    //     return redirect()->route('curhat.index');
+    //     return view('client.chsi.index');
+    // }
 
     /**
      * method curhatindex
@@ -32,9 +32,25 @@ class ChsiController extends Controller
      */
     public function curhatindex()
     {
-        return view('client.chsi.curhatindex');
+        // return view('client.chsi.curhatindex');
+        return view('koneksi.chsi.index');
     }
 
+    /** 
+     *method curhatbaru
+     * menampilkan pemilihan kategori
+    */
+    public function curhatbaru()
+    {
+        // return view('client.chsi.curhatbaru');
+        return view('koneksi.chsi.add-curhat');
+    }
+
+    // public function curhatBaruAtribut()
+    // {
+    //     return view('client.chsi.curhatindex');
+    // }
+    
     /**
      * method curhatsubmit
      * untuk store data
@@ -45,51 +61,72 @@ class ChsiController extends Controller
 
         // cek data-submit
         $validator = Validator::make($request->all(), [
-            'chat'    => 'required|string',
+            'kategori'    => 'required|string',
             'respon' => '',
-        ]);
+            'customToken' => 'unique:curhats,token',
+        ],
+        [
+            'customToken.unique'=>'Token sudah diambil orang'
+        ]
+        );
+
+        if ($request->respon==null){
+            $request->respon = false;
+        }
 
         if ($validator->fails()) {
             // flash('error')->error();
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-
-        // submit into database
-        $token = $this->getName(10);
-        $curhat = Curhat::create([
-            'token' => $token,
-            'dibalas' => $request->respon ? true : false,
-        ]);
-        
-        if(!$request->respon) {
-            $curhat->selesai = true;
-            $curhat->save();
+        // cek custom token (jika ada)
+        if ($request->customToken != ''){
+            $token=$request->customToken;
+        }else{
+            $token = $this->getName(10);
         }
 
-        $pesan = PesanCurhat::create([
-            'curhat_id' => $curhat->id,
-            'chat' => $request->chat,
-            'psdm' => false,
+        // pesan default
+        if ($request->respon == true){
+            $pesan = "Hai kak, tokenmu untuk curhatan ini " . $token . ". Catat baik-baik ya! Curhatanmu tidak bisa diakhiri sebelum kami membalasnya yaa. Yuk sini curhat~";
+        }else{
+            $pesan = "Hai kak, tokenmu untuk curhatan ini " . $token . ".  Catat baik-baik ya! Yuk sini curhat~";
+        };
+
+        // submit into database
+        $curhat = Curhat::create([
+            'token' => $token,
+            'dibalas' => $request->respon,
+            'kategori' => $request->kategori,
         ]);
+        
+        $pesanDefault = PesanCurhat::create([
+            'curhat_id' => $curhat->id,
+            'chat' => $pesan,
+            'psdm' => true,
+        ]);
+        // if(!$request->respon) {
+        //     $curhat->selesai = true;
+        //     $curhat->save();
+        // }
 
         return redirect()->route('curhat.chat', $token);
-     
         
     }
 
     public function curhatchat($token)
     {
         // cek di database
-        $data = Curhat::with('chat')->where('token', $token)->where('dibalas', true)->first();
+        $data = Curhat::with('chat')->where('token', $token)->first();
 
         if (!$data) {
             return redirect()->route('curhat.index')->with('error', 'curhatan anda tidak ditembukan atau token anda salah');
         }
 
-        // dd($data);
+        //dd($data);
 
-        return view('client.chsi.curhatchat', [
+        // return view('client.chsi.curhatchat', [
+        return view('koneksi.chsi.chatroom', [
             'data' => $data,
         ]);
     }
@@ -99,10 +136,10 @@ class ChsiController extends Controller
         return redirect()->route('curhat.chat', $request->token);
     }
 
-    public function curhatfinish()
-    {
-        return view('client.chsi.curhatfinish');
-    }
+    // public function curhatfinish()
+    // {
+    //     return view('client.chsi.curhatfinish');
+    // }
 
     public function curhatfinishtoken($token)
     {
@@ -112,7 +149,7 @@ class ChsiController extends Controller
             'selesai' => true,
         ]);
 
-        return redirect()->route('curhat.finish')->with('quote', $curhat->quote);
+        return redirect()->route('curhat.chat', $token);
     }
 
     public function curhatchatsubmit(Request $request, $token)

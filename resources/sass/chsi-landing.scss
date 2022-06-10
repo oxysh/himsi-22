@@ -1,0 +1,61 @@
+.chsi-landing {
+    min-height: calc(100vh - 6rem);
+    padding-bottom: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+    }
+
+    &__title,
+    &__buka-curhat {
+        text-align: center;
+    }
+
+    &__form-content {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        >.btn-primary {
+            align-self: flex-end;
+        }
+    }
+
+    &__ornament {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 60%;
+        z-index: -1;
+        opacity: .1;
+    }
+
+    @media screen and (max-width: 991.9px) {
+        &__ornament {
+            width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 575.9px) {
+        &__title {
+            font-size: 24px;
+            line-height: 31px;
+        }
+
+        &__form-content {
+            width: 100%;
+        }
+    }
+}
