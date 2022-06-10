@@ -111,14 +111,16 @@ Route::prefix('responden')->middleware('auth')->group(function () {
 
 Route::prefix('chsi')->group(function () {
     /* untuk client */
-    Route::get('/', 'ChsiController@index')->name('chsi.index');
+    // Route::get('/', 'ChsiController@index')->name('chsi.index');
     Route::prefix('curhat')->group(function () {
         Route::get('/', 'ChsiController@curhatindex')->name('curhat.index');
+        Route::get('/new', 'ChsiController@curhatbaru')->name('curhat.baru');
+        // Route::post('/new/kategori', 'ChsiController@curhatBaruAtribut')->name('curhat.baru.atribut');
         Route::post('/submit', 'ChsiController@curhatsubmit')->name('curhat.submit');
         Route::get('/chat/{token}', 'ChsiController@curhatchat')->name('curhat.chat');
         Route::post('/chat', 'ChsiController@curhatfind')->name('curhat.find');
         Route::post('/chat/{token}', 'ChsiController@curhatchatsubmit')->name('curhat.chat.submit');
-        Route::get('/finish', 'ChsiController@curhatfinish')->name('curhat.finish');
+        // Route::get('/finish', 'ChsiController@curhatfinish')->name('curhat.finish');
         Route::get('/finish/{token}', 'ChsiController@curhatfinishtoken')->name('curhat.finish.token');
     });
 
@@ -130,7 +132,7 @@ Route::prefix('chsi')->group(function () {
 
     // Route::prefix('meditasi')->group(function () {
     //     Route::get('/', 'ChsiController@meditasiindex')->name('meditasi.index');
-    //     // Route::get('/{kategori}', 'ChsiController@meditasikategori')->name('meditasi.kategori');
+    //     Route::get('/{kategori}', 'ChsiController@meditasikategori')->name('meditasi.kategori');
     // });
 
     /* untuk admin */

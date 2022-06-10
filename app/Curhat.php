@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Curhat extends Model
 {
-    protected $fillable = ['token','quote','selesai','dibalas'];
+    protected $fillable = ['token','quote','selesai','dibalas','kategori'];
     
     public function chat()
     {
