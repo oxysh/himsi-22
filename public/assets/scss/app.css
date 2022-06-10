@@ -133,13 +133,6 @@ button {
   white-space: nowrap;
 }
 
-.button:hover,
-button:hover {
-  color: #120F3E;
-  background-color: rgba(96, 99, 122, 0.1);
-  text-decoration: none;
-}
-
 .button:focus,
 .button:focus-within,
 .button:hover,
