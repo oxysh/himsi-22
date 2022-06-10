@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Form;
+use App\Krisar;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -16,7 +19,8 @@ class AuthController extends Controller
      */
     public function index()
     {
-        return view('auth.login');
+        // return view('auth.login');
+        return view('koneksi.landing-admin');
     }
 
     public function login(Request $request)
@@ -47,6 +51,21 @@ class AuthController extends Controller
     {
         Auth::logout();
         return redirect()->route('login');
+    }
+
+    public function dashboard()
+    {
+        $form = Form::where('pemilik','HIMSI')->orWhere('pemilik',Auth::user()->role)->with('penjawab')->latest()->take(3)->get();
+        $krisar = Krisar::where('bidang', Auth::User()->role)->latest()->take(3)->get();
+        if (Auth::User()->role == 'PSDM') {
+            $krisar = Krisar::latest()->take(3)->get(); 
+        };
+
+        // return view('landing-page-admin');
+        return view('koneksi.admin.dashboard', [
+            'form' => $form,
+            'krisar' => $krisar,
+        ]);
     }
 
     public function create()

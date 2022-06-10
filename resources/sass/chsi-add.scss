@@ -1,0 +1,145 @@
+.chsi-add {
+    min-height: calc(100vh - 6rem);
+    padding-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 3rem;
+
+    &__form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1.5rem;
+    }
+
+    &__kategori {
+        width: 85%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 1.25rem;
+    }
+
+    &__kategori-opsi {
+        width: calc((100% - 5rem)/5);
+        padding: 2.5rem 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        background-color: $white;
+        border: .5px solid $independence-60;
+        border-radius: .75rem;
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    &__balasan {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+    }
+
+    &__balasan-opsi {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    &__balasan-label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .75rem;
+
+        >span {
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background-color: transparent;
+            outline: 2px solid $independence;
+            outline-offset: 2.5px;
+        }
+    }
+
+    &__custom-token {
+        width: fit-content;
+    }
+
+    @media screen and (max-width: 1199.9px) {
+        &__kategori-opsi {
+            width: calc((100% - 2.5rem)/3);
+        }
+    }
+
+    @media screen and (max-width: 767.9px) {
+        &__kategori {
+            width: calc(100% - 2rem);
+        }
+
+        &__balasan {
+            width: calc(100% - 6rem);
+            flex-direction: column;
+            gap: .5rem;
+
+            >p {
+                text-align: center;
+            }
+        }
+
+        &__custom-token {
+            width: calc(100% - 6rem);
+            flex-direction: column;
+            align-items: center;
+
+            >.form__control {
+                width: fit-content;
+            }
+        }
+    }
+
+    @media screen and (max-width: 575.9px) {
+        &__title {
+            font-size: 24px;
+            line-height: 31px;
+        }
+
+        &__kategori-opsi {
+            width: calc(100% - 6rem);
+            padding: 1.25rem 3.25rem;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+
+            >img {
+                width: 40px;
+            }
+
+            >* {
+                text-align: start;
+            }
+        }
+    }
+}
+
+input[name="kategori"]:checked+.chsi-add__kategori-opsi {
+    border: 2px solid $midnight-blue;
+}
+
+input[name="respon"]:checked+.chsi-add__balasan-label {
+    >span {
+        background-color: $midnight-blue;
+        outline-color: $midnight-blue;
+    }
+}

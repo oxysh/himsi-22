@@ -12,6 +12,7 @@
     <div class="inner-content">
         <div class="main-content">
             <h2>Sesi <span class="orange">Curhat</span></h2>
+            <a href="{{ route('curhat.baru')}}"><h2> BUAT BARU</h2></a>
             <span class="p">CURAHKAN ISI HATI TERDALAM KALIAN, KAMI SELALU ADA UNTUK MENJADI PENDENGAR ATAU
                 BAHKAN MEMBERI JALAN KELUAR JIKA DIBUTUHKAN. JANGAN KHAWATIR DENGAN IDENTITAS KALIAN, KAMI PASTIKAN TERJAGA.
                 YUK NGOBROL!?</span>

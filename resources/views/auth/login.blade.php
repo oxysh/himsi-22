@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Selamat Datang Admin!</title>
+    <link rel="shortcut icon" href="{{ url('image/logo.png') }}" type="image/x-icon">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&display=swap" rel="stylesheet">
@@ -23,7 +24,7 @@
     <div class="container">
         <div class="container-title">
             <h2>Login</h2>
-            <span class="p">Selamat Datang Admin HIMSI CAKRAWALA</span>
+            <span class="p">Selamat Datang Admin HIMSI KONEKSI</span>
         </div>
         <div class="container-body">
             <form action="{{ route('auth.login') }}" method="POST">
@@ -55,7 +56,7 @@
             </form>
         </div>
         <div class="container-footer caption">
-            cakrawala.himsiunair.com
+            koneksi.himsiunair.com
         </div>
     </div>
 
@@ -67,7 +68,6 @@
                 document.querySelector('form').submit();
             }
         })
-
     </script>
 </body>
 

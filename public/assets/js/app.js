@@ -19371,6 +19371,21 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/alert.js":
+/*!*******************************!*\
+  !*** ./resources/js/alert.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$('.alert__close').click(function (e) {
+  e.target.parentElement.style.visibility = 'hidden';
+  e.target.parentElement.style.transform = 'translate(calc(-50% - 1rem), -50%)';
+  e.target.parentElement.style.opacity = 0;
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -19379,6 +19394,14 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+__webpack_require__(/*! ./env */ "./resources/js/env.js");
+
+__webpack_require__(/*! ./navbar */ "./resources/js/navbar.js");
+
+__webpack_require__(/*! ./sidebar */ "./resources/js/sidebar.js");
+
+__webpack_require__(/*! ./alert */ "./resources/js/alert.js");
 
 /***/ }),
 
@@ -19411,6 +19434,110 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/env.js":
+/*!*****************************!*\
+  !*** ./resources/js/env.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var formValue = [];
+$('form').find('.form__control').each(function (x) {
+  formValue.push($('form').find('.form__control')[x].value);
+});
+$('.btn-close').click(function (e) {
+  e.preventDefault();
+  e.target.closest('.dialog').classList.remove('active');
+  $('.dialog__bg')[0].classList.remove('active');
+  $('form').find('.form__control').each(function (x) {
+    $('form').find('.form__control')[x].value = formValue[x];
+  });
+});
+$('.dialog__bg-close').click(function () {
+  $('.dialog').each(function (x) {
+    if ($('.dialog')[x].classList.contains('active')) {
+      $('.dialog')[x].classList.remove('active');
+    }
+  });
+  $('.dialog__bg')[0].classList.remove('active');
+});
+
+/***/ }),
+
+/***/ "./resources/js/navbar.js":
+/*!********************************!*\
+  !*** ./resources/js/navbar.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$('.nav .dropdown').click(function (e) {
+  e.currentTarget.classList.toggle('active');
+});
+$('body').click(function (e) {
+  if (!e.target.classList.contains('dropdown')) {
+    $('.dropdown').map(function (ddown) {
+      $('.dropdown')[ddown].classList.remove('active');
+    });
+  }
+});
+$(document).ready(function () {
+  $(".nav__burger").click(function (e) {
+    e.currentTarget.classList.toggle("active");
+    e.currentTarget.parentNode.nextElementSibling.classList.toggle("active");
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/sidebar.js":
+/*!*********************************!*\
+  !*** ./resources/js/sidebar.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// activate sidebar menu
+if (location.pathname == '/admin') {
+  $('.sidebar__menu').each(function (x) {
+    $('.sidebar__menu')[x].classList.remove('active');
+  });
+  $('.sidebar__menu--dashboard')[0].classList.add('active');
+} else if (location.pathname.includes("/chsi/admin/curhat")) {
+  $('.sidebar__menu').each(function (x) {
+    $('.sidebar__menu')[x].classList.remove('active');
+  });
+  $('.sidebar__menu--curhat')[0].classList.add('active');
+} else if (location.pathname.includes('/form')) {
+  $('.sidebar__menu').each(function (x) {
+    $('.sidebar__menu')[x].classList.remove('active');
+  });
+  $('.sidebar__menu--form')[0].classList.add('active');
+} else if (location.pathname.includes('/chsi/admin/kritik')) {
+  $('.sidebar__menu').each(function (x) {
+    $('.sidebar__menu')[x].classList.remove('active');
+  });
+  $('.sidebar__menu--krisar')[0].classList.add('active');
+} // change image on active sidebar menu
+
+
+$('.sidebar__menu').each(function (x) {
+  if ($('.sidebar__menu')[x].classList.contains('active')) {
+    $('.sidebar__icon .idle')[x].classList.add('hidden');
+    $('.sidebar__icon .active')[x].classList.remove('hidden');
+  } else {
+    $('.sidebar__icon .idle')[x].classList.remove('hidden');
+    $('.sidebar__icon .active')[x].classList.add('hidden');
+  }
+}); // toggler sidebar
+
+$('.sidebar__toggle').click(function () {
+  // console.log($('.sidebar__container')[0]);
+  $('.sidebar')[0].classList.toggle('sidebar__expander');
+});
 
 /***/ }),
 

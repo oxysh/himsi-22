@@ -5,14 +5,46 @@
 @endsection
 
 @section('extracss')
-<style>
-    .h2 {
-        padding: 10px 0 !important;
-    }
-    .content {
-        padding: 0px 10px 10px 10px !important;
-    }
-</style>
+    <style>
+        .h2 {
+            padding: 10px 0 !important;
+        }
+
+        .content {
+            padding: 0px 10px 10px 10px !important;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            box-shadow: -29px 30px 30px rgba(155, 151, 151, 0.1);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(.5rem);
+        }
+
+        .nav-mobile {
+            background: transparent;
+        }
+
+        .nav .nav-item.active,
+        .nav .dropdown:hover .dropbtn,
+        .nav .dropdown.selected .dropbtn {
+            color: #3F8EFC;
+        }
+
+        @media screen and (max-width: 500px) {
+            .nav-group {
+                background: rgba(255, 255, 255);
+                border-color: #3F8EFC
+            }
+        }
+
+        .content {
+            margin-top: 5rem
+        }
+
+    </style>
+    <link rel="stylesheet" href="{{ url('assets/scss/app.css') }}">
 @endsection
 
 @section('content')
@@ -21,16 +53,17 @@
         <input type="hidden" name="formid" value="{{ $form->id }}">
 
         <!-- Judul Form -->
-        <span class="h2">{{ $form->judul }}</span>
+        <span class="h3">{{ $form->judul }}
+            <!-- Isi Form -->
+            @if ($form->deskripsi != '')
+                <div class="form-group">
+                    <p>{{ $form->deskripsi }}</p>
+                </div>
+            @endif
+        </span>
         <!-- pilihan alert = info; primary; success; danger -->
         <div class='alert alert-warning-form'>Mohon isi Kolom Wajib</div>
 
-        <!-- Isi Form -->
-        @if ($form->deskripsi != '')
-            <div class="form-group">
-                <p>{{ $form->deskripsi }}</p>
-            </div>
-        @endif
 
         @foreach ($form->pertanyaan as $p)
             <div class="form-group">
@@ -72,6 +105,8 @@
                     alt=""></button>
         </div>
     </form>
+    <img src="{{ url('assets/image/oprec-22/form-lg.svg') }}" alt="" class="form__img form__img--lg">
+    <img src="{{ url('assets/image/oprec-22/form-sm.svg') }}" alt="" class="form__img form__img--sm">
 @endsection
 
 @section('modal')
@@ -79,17 +114,16 @@
 @endsection
 
 @section('extrajs')
-<script>
-    document.querySelector('#nav-new-feature').classList.add('selected');
-    var btnsubmit = document.querySelector('button[type=submit]');
-    var formnya = document.querySelector('form');
-    console.log(formnya);
-    btnsubmit.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (validation(formnya)) {
-            formnya.submit();
-        }
-    })
-
-</script>
+    <script>
+        document.querySelector('#nav-new-feature').classList.add('selected');
+        var btnsubmit = document.querySelector('button[type=submit]');
+        var formnya = document.querySelector('form');
+        console.log(formnya);
+        btnsubmit.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (validation(formnya)) {
+                formnya.submit();
+            }
+        })
+    </script>
 @endsection
