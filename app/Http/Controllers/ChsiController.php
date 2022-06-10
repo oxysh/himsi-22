@@ -202,7 +202,8 @@ class ChsiController extends Controller
                 }
             }
         }
-        return view('chsi.curhat.index', [
+        // return view('chsi.curhat.index', [
+        return view('koneksi.admin.list-curhat', [
             'data' => $data,
         ]);
     }
@@ -211,7 +212,8 @@ class ChsiController extends Controller
     {
         $data = Curhat::with('chat')->where('token', $token)->first();
 
-        return view('chsi.curhat.chat', [
+        // return view('chsi.curhat.chat', [
+        return view('koneksi.admin.chsi-chatroom', [
             'data' => $data,
         ]);
     }
@@ -264,7 +266,8 @@ class ChsiController extends Controller
             $BPH = Krisar::where('bidang', 'BPH')->get();
             $MEDIA = Krisar::where('bidang', 'MEDIA')->get();
             // dd($krisar);
-            return view('chsi.kritik.psdm', [
+            // return view('chsi.kritik.psdm', [
+            return view('koneksi.admin.kritik-saran-psdm', [
                 'PSDM' => $PSDM,
                 'RISTEK' => $RISTEK,
                 'SERA' => $SERA,
@@ -276,16 +279,17 @@ class ChsiController extends Controller
             ]);
         } else {
             $krisar = Krisar::where('bidang', Auth::User()->role)->get();
-            return view('chsi.kritik.index', [
+            // return view('chsi.kritik.index', [
+            return view('koneksi.admin.kritik-saran', [
                 'krisar' => $krisar,
             ]);
         }
     }
 
-    public function psdmmeditasiindex()
-    {
-        return view('chsi.meditasi.index');
-    }
+    // public function psdmmeditasiindex()
+    // {
+    //     return view('chsi.meditasi.index');
+    // }
 
     public function create()
     {

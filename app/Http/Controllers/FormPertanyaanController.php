@@ -39,7 +39,7 @@ class FormPertanyaanController extends Controller
             'pertanyaan'    => $request->pertanyaan,
             'opsi'          => $request->opsi,
             'sorting'       => count($form->pertanyaan) + 1,
-            'mandatory'     => $request->required == "ya" ? true : false,
+            'mandatory'     => $request->required == "Iya" ? true : false,
         ]);
 
         Session::flash('success', 'Sukses menambah pertanyaan');

@@ -2055,6 +2055,7 @@ td {
   background-color: #FAFDFF;
   border-radius: 0 1rem 1rem 0;
   box-shadow: 0px 20px 40px rgba(36, 30, 123, 0.15);
+  z-index: 1;
 }
 
 .sidebar__blue {
@@ -2193,10 +2194,6 @@ td {
 }
 
 @media screen and (max-width: 575.9px) {
-  .sidebar {
-    z-index: 1;
-  }
-
   .sidebar__expander {
     transform: translateX(-100%);
   }
@@ -2263,10 +2260,15 @@ td {
   background-color: #FAFDFF;
   box-shadow: 0px 20px 40px rgba(36, 30, 123, 0.15);
   border-radius: 0.5rem;
+  cursor: pointer;
 }
 
 .adm-dashboard__card--krisar {
   align-items: stretch;
+}
+
+.adm-dashboard__card:hover {
+  transform: scale(1.1);
 }
 
 @media screen and (max-width: 1199.9px) {
@@ -2307,8 +2309,190 @@ td {
   background-color: rgba(96, 99, 122, 0.6);
 }
 
+.adm-krisar {
+  min-height: calc(100vh - 6rem);
+  padding-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .adm-krisar__krisar {
   margin-bottom: 0.25rem;
   color: #1C75BC;
+}
+
+.adm-krisar__dialog {
+  width: 100%;
+  max-width: 500px;
+  min-height: 300px;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.adm-krisar__dialog--top,
+.adm-krisar__dialog--bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.adm-form {
+  min-height: calc(100vh - 6rem);
+  padding-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.adm-form__add-form {
+  width: calc((100% - 2.5rem) / 3);
+  min-height: 180px;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed rgba(96, 99, 122, 0.6);
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1199.9px) {
+  .adm-form__add-form {
+    width: calc((100% - 1.25rem) / 2);
+  }
+}
+
+@media screen and (max-width: 991.9px) {
+  .adm-form__add-form {
+    width: 100%;
+  }
+}
+
+.adm-chsi {
+  min-height: calc(100vh - 6rem);
+  padding-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.adm-chsi__title > span {
+  color: #1C75BC;
+}
+
+.adm-chsi__card-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1.25rem;
+}
+
+.adm-chsi__card {
+  width: calc((100% - 2.5rem) / 3);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid;
+  cursor: pointer;
+}
+
+.adm-chsi__card:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 1199.9px) {
+  .adm-chsi__card {
+    width: calc((100% - 1.25rem) / 2);
+  }
+}
+
+@media screen and (max-width: 991.9px) {
+  .adm-chsi__card {
+    width: 100%;
+  }
+}
+
+.adm-chsi__card--selesai {
+  border-color: #1C75BC;
+}
+
+.adm-chsi__card--selesai .adm-chsi__card-status {
+  background-color: #1C75BC;
+}
+
+.adm-chsi__card--on-progress {
+  border-color: #F26232;
+}
+
+.adm-chsi__card--on-progress .adm-chsi__card-status {
+  background-color: #F26232;
+}
+
+.adm-chsi__card--belum-dijawab {
+  border-color: #A0213E;
+}
+
+.adm-chsi__card--belum-dijawab .adm-chsi__card-status {
+  background-color: #A0213E;
+}
+
+.adm-chsi__card-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.adm-chsi__card-status {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: #FAFDFF;
+}
+
+.adm-chatroom__chat-motivasi {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.adm-chatroom .chsi-chatroom__chatbox {
+  height: calc(100vh - 14rem);
+}
+
+.adm-chatroom__motivasi {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.adm-chatroom__motivasi > h2 {
+  white-space: nowrap;
+}
+
+.adm-chatroom__img-motivasi {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 0.5rem;
+  border: 1.5px solid rgba(96, 99, 122, 0.6);
+}
+
+.adm-chatroom__img-motivasi-dialog {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 1rem;
+  border: 1.5px solid rgba(96, 99, 122, 0.6);
 }
 

@@ -1,0 +1,27 @@
+.adm-form {
+    min-height: calc(100vh - 6rem);
+    padding-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &__add-form {
+        width: calc((100% - 2.5rem) / 3);
+        min-height: 180px;
+        align-self: stretch;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px dashed $independence-60;
+        border-radius: .5rem;
+        cursor: pointer;
+
+        @media screen and (max-width: 1199.9px) {
+            width: calc((100% - 1.25rem)/2);
+        }
+
+        @media screen and (max-width: 991.9px) {
+            width: 100%;
+        }
+    }
+}

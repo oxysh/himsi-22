@@ -178,6 +178,8 @@ $('.form-show__edit-pertanyaan').click(e => {
 // delete pertanyaan.
 $('.form-show__delete-pertanyaan').click(e => {
     $('#deletePertanyaanDialog>p>span')[0].innerHTML = e.target.dataset.quest;
+    console.log(e.target.dataset.link);
+    $('#deletePertanyaanDialog')[0].action = e.target.dataset.link;
 
     // buka dialognya
     $('#deletePertanyaanDialog')[0].classList.add('active')

@@ -1,0 +1,31 @@
+.adm-krisar {
+    min-height: calc(100vh - 6rem);
+    padding-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &__krisar {
+        margin-bottom: .25rem;
+        color: $french-blue;
+    }
+
+    &__dialog {
+        width: 100%;
+        max-width: 500px;
+        min-height: 300px;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: space-between;
+        gap: 1rem;
+
+        &--top,
+        &--bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 1rem;
+        }
+    }
+}

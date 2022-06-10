@@ -21,7 +21,7 @@
                     </div>
                     @if (Auth::User()->email == 'psdm')
                         <div class="sidebar__menu sidebar__menu--curhat"
-                            onclick="window.location.href = '{{ route('chsi.admin.curhat.index') }}'">
+                            onclick="location.href = '{{ route('chsi.admin.curhat.index') }}'">
                             <span class="sidebar__icon">
                                 <img src="{{ url('assets/img/sidebar-curhat.svg') }}" class="idle">
                                 <img src="{{ url('assets/img/sidebar-active-curhat.svg') }}" class="active hidden">
@@ -30,7 +30,7 @@
                         </div>
                     @endif
                     <div class="sidebar__menu sidebar__menu--form"
-                        onclick="window.location.href = '{{ route('form.index') }}'">
+                        onclick="location.href = '{{ route('form.index') }}'">
                         <span class="sidebar__icon">
                             <img src="{{ url('assets/img/sidebar-form.svg') }}" class="idle">
                             <img src="{{ url('assets/img/sidebar-active-form.svg') }}" class="active hidden">
@@ -38,7 +38,7 @@
                         <p>Form</p>
                     </div>
                     <div class="sidebar__menu sidebar__menu--krisar"
-                        onclick="window.location.href = '{{ route('chsi.admin.kritik.index') }}'">
+                        onclick="location.href = '{{ route('chsi.admin.kritik.index') }}'">
                         <span class="sidebar__icon">
                             <img src="{{ url('assets/img/sidebar-krisar.svg') }}" class="idle">
                             <img src="{{ url('assets/img/sidebar-active-krisar.svg') }}" class="active hidden">
@@ -49,7 +49,7 @@
             </div>
             <div class="sidebar__footer">
                 <div class="sidebar__menu sidebar__menu--keluar"
-                    onclick="window.location.href = '{{ route('auth.logout') }}'">
+                    onclick="location.href = '{{ route('auth.logout') }}'">
                     <span class="sidebar__icon">
                         <img src="{{ url('assets/img/sidebar-keluar.svg') }}" class="idle">
                         <img src="{{ url('assets/img/sidebar-active-keluar.svg') }}" class="active hidden">

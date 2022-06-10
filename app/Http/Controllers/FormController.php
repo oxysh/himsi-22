@@ -23,9 +23,13 @@ class FormController extends Controller
      */
     public function index()
     {
-        $form = Form::where('pemilik','HIMSI')->orWhere('pemilik',Auth::user()->role)->with('penjawab')->get();
+        $form = Form::where('pemilik','HIMSI')->orWhere('pemilik',Auth::user()->role)->with('penjawab')->latest()->get();
+        if (Auth::user() ->role == 'BPH') {
+            $form = Form::with('penjawab')->latest()->get();
+        };
 
-        return view('form.index',[
+        // return view('form.index',[
+        return view('koneksi.admin.form-page',[
             'form' => $form,
         ]);
     }
@@ -74,6 +78,14 @@ class FormController extends Controller
             'afterformlink' => null,
         ]);
 
+        $pertanyaan = FormPertanyaan::create([
+            'form_id'       => $form->id,
+            'tipe'          => 'text',
+            'pertanyaan'    => 'PERTANYAAN DISINI (mohon diganti/dihapus)',
+            'opsi'          => null,
+            'mandatory'     => true,
+        ]);
+
         return redirect()->route('form.show',$form->id);
     }
 
@@ -112,7 +124,8 @@ class FormController extends Controller
         */
         $form['inputdeadline'] = join("T", explode(" ", $form->deadline));
 
-        return view('form.detail',[
+        // return view('form.detail',[
+        return view('koneksi.admin.form-show',[
             'data' => $form,
         ]);
     }

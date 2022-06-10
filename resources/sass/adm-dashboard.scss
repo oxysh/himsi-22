@@ -38,9 +38,14 @@
         background-color: $white;
         box-shadow: 0px 20px 40px rgba(36, 30, 123, 0.15);
         border-radius: .5rem;
+        cursor: pointer;
 
         &--krisar {
             align-items: stretch;
+        }
+
+        &:hover {
+            transform: scale(1.1);
         }
 
         @media screen and (max-width: 1199.9px) {
@@ -75,9 +80,4 @@
             background-color: $independence-60;
         }
     }
-}
-
-.adm-krisar__krisar {
-    margin-bottom: .25rem;
-    color: $french-blue;
 }

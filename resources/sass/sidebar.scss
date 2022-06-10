@@ -7,6 +7,7 @@
     background-color: $white;
     border-radius: 0 1rem 1rem 0;
     box-shadow: 0px 20px 40px rgba(36, 30, 123, 0.15);
+    z-index: 1;
 
     &__blue {
         height: 100%;
@@ -150,8 +151,6 @@
 
 @media screen and (max-width: 575.9px) {
     .sidebar {
-        z-index: 1;
-
         &__expander {
             transform: translateX(-100%);
 

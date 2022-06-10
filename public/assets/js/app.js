@@ -19456,6 +19456,14 @@ $('.btn-close').click(function (e) {
     $('form').find('.form__control')[x].value = formValue[x];
   });
 });
+$('.dialog__bg-close').click(function () {
+  $('.dialog').each(function (x) {
+    if ($('.dialog')[x].classList.contains('active')) {
+      $('.dialog')[x].classList.remove('active');
+    }
+  });
+  $('.dialog__bg')[0].classList.remove('active');
+});
 
 /***/ }),
 

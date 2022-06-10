@@ -24,8 +24,7 @@ Route::get('/', function (Request $request) {
         return redirect()->route('admin.home');
     }
     // return view('landing-page-client');
-    // return view('koneksi.landing');
-    return redirect()->route('admin.home');
+    return view('koneksi.landing');
 })->name('home');
 
 // Route::get('about-us', function () {
@@ -129,14 +128,14 @@ Route::prefix('chsi')->group(function () {
         Route::post('/submit', 'ChsiController@kritiksubmit')->name('kritik.submit');
     });
 
-    Route::prefix('meditasi')->group(function () {
-        Route::get('/', 'ChsiController@meditasiindex')->name('meditasi.index');
-        // Route::get('/{kategori}', 'ChsiController@meditasikategori')->name('meditasi.kategori');
-    });
+    // Route::prefix('meditasi')->group(function () {
+    //     Route::get('/', 'ChsiController@meditasiindex')->name('meditasi.index');
+    //     // Route::get('/{kategori}', 'ChsiController@meditasikategori')->name('meditasi.kategori');
+    // });
 
     /* untuk admin */
     Route::prefix('admin')->middleware('auth')->group(function () {
-        Route::get('/', 'ChsiController@psdmindex')->name('chsi.admin.index');
+        // Route::get('/', 'ChsiController@psdmindex')->name('chsi.admin.index');
         Route::prefix('curhat')->group(function () {
             Route::get('/', 'ChsiController@psdmcurhatindex')->name('chsi.admin.curhat.index');
             Route::get('/chat/{token}', 'ChsiController@psdmcurhatchat')->name('chsi.admin.curhat.chat');
@@ -146,9 +145,9 @@ Route::prefix('chsi')->group(function () {
         Route::prefix('kritik')->group(function () {
             Route::get('/', 'ChsiController@psdmkritikindex')->name('chsi.admin.kritik.index');
         });
-        Route::prefix('meditasi')->group(function () {
-            Route::get('/', 'ChsiController@psdmmeditasiindex')->name('chsi.admin.meditasi.index');
-        });
+        // Route::prefix('meditasi')->group(function () {
+        //     Route::get('/', 'ChsiController@psdmmeditasiindex')->name('chsi.admin.meditasi.index');
+        // });
     });
 });
 
