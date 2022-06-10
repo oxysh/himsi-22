@@ -119,7 +119,8 @@
                                         data-wajib="{{ $p->mandatory ? '1' : '0' }}"
                                         data-link="{{ route('f.form.pertanyaan.update', [$data->token, $p->id]) }}">
                                     <img src="{{ url('assets/img/delete.svg') }}" class="form-show__delete-pertanyaan"
-                                        data-quest="{{ $p->pertanyaan }}">
+                                        data-quest="{{ $p->pertanyaan }}"
+                                        data-link="{{ route('f.form.pertanyaan.destroy', [$data->token, $p->id]) }}">
                                 </span>
                             </td>
                         </tr>
@@ -144,7 +145,7 @@
                 <div class="form__group">
                     <div class="form__head">
                         <label for="judul" class="form__label">Judul <span class="red">*</span></label>
-                        <h6 class="form__helper hidden" id="error-judul">Harus diisi</h6>
+                        <h6 class="form__helper red-important hidden" id="error-judul">Harus diisi</h6>
                     </div>
                     <input type="text" name="judul" id="judul" class="form__control form-previewed form__harus-diisi"
                         placeholder="Judul disini" value="{{ $data->judul }}" data-error="#error-judul"
@@ -154,7 +155,7 @@
                     <div class="form__head">
                         <label for="deadline" class="form__label">Batas Pengisian <span
                                 class="red">*</span></label>
-                        <h6 class="form__helper hidden" id="error-deadline">Harus diisi</h6>
+                        <h6 class="form__helper red-important hidden" id="error-deadline">Harus diisi</h6>
                     </div>
                     <input type="datetime-local" name="deadline" id="deadline" class="form__control form__harus-diisi"
                         value="{{ $data->inputdeadline }}" data-error="#error-deadline">
@@ -163,7 +164,7 @@
                     <div class="form__head">
                         <label for="deskripsi" class="form__label">Deskripsi <span
                                 class="red">*</span></label>
-                        <h6 class="form__helper hidden" id="error-deskripsi">Harus diisi</h6>
+                        <h6 class="form__helper red-important hidden" id="error-deskripsi">Harus diisi</h6>
                     </div>
                     <textarea type="text" name="deskripsi" id="deskripsi" class="form__control form-previewed"
                         placeholder="deskripsi disini" data-error="#error-deskripsi"
@@ -172,7 +173,7 @@
                 <div class="form__group">
                     <div class="form__head">
                         <label for="afterform" class="form__label">Afterform</label>
-                        <h6 class="form__helper hidden" id="error-afterform">Harus diisi</h6>
+                        <h6 class="form__helper red-important hidden" id="error-afterform">Harus diisi</h6>
                     </div>
                     <input type="text" name="afterform" id="afterform" class="form__control form-previewed"
                         placeholder="afterform disini" value="{{ $data->afterform }}" data-error="#error-afterform"
@@ -181,7 +182,7 @@
                 <div class="form__group">
                     <div class="form__head">
                         <label for="afterform-link" class="form__label">Afterform Link</label>
-                        <h6 class="form__helper hidden" id="error-afterform-link">Harus diisi</h6>
+                        <h6 class="form__helper red-important hidden" id="error-afterform-link">Harus diisi</h6>
                     </div>
                     <input type="text" name="afterformlink" id="afterform-link" class="form__control form-previewed"
                         placeholder="https://example.com" value="{{ $data->afterformlink }}"
@@ -230,7 +231,7 @@
         <div class="form__group">
             <div class="form__head">
                 <label for="shortlink" class="form__label">Shortlink <span class="red">*</span></label>
-                <h6 class="form__helper hidden" id="error-shortlink">Harus diisi</h6>
+                <h6 class="form__helper red-important hidden" id="error-shortlink">Harus diisi</h6>
             </div>
             <div class="form__group form__group--oneline">
                 <label for="shortlink" class="form__label">himsiunair.com/f/</label>
@@ -280,7 +281,7 @@
                     <div class="form__head">
                         <label for="tambah-pertanyaan-title" class="form__label">Judul <span
                                 class="red">*</span></label>
-                        <h6 class="form__helper hidden" id="error-tambah-pertanyaan-title">Harus diisi</h6>
+                        <h6 class="form__helper red-important hidden" id="error-tambah-pertanyaan-title">Harus diisi</h6>
                     </div>
                     <input type="text" name="pertanyaan" id="tambah-pertanyaan-title"
                         class="form__control form__harus-diisi" placeholder="Judul disini"
@@ -290,7 +291,7 @@
                     <div class="form__head">
                         <label for="tambah-pertanyaan-jenis" class="form__label">Tipe pertanyaan <span
                                 class="red">*</span></label>
-                        <h6 class="form__helper hidden" id="error-tambah-pertanyaan-jenis">Harus diisi</h6>
+                        <h6 class="form__helper red-important hidden" id="error-tambah-pertanyaan-jenis">Harus diisi</h6>
                     </div>
                     <select name="tipe" class="form__control form__harus-diisi" id="tambah-pertanyaan-jenis"
                         data-error="#error-tambah-pertanyaan-jenis">
@@ -316,7 +317,7 @@
                     <div class="form__head">
                         <label for="tambah-pertanyaan-wajib" class="form__label">Wajib dijawab <span
                                 class="red">*</span></label>
-                        <h6 class="form__helper hidden" id="error-tambah-pertanyaan-wajib">Harus diisi</h6>
+                        <h6 class="form__helper red-important hidden" id="error-tambah-pertanyaan-wajib">Harus diisi</h6>
                     </div>
                     <select name="required" class="form__control form__harus-diisi" id="tambah-pertanyaan-wajib"
                         data-error="#error-tambah-pertanyaan-wajib">
@@ -359,9 +360,9 @@
                     <div class="form__head">
                         <label for="sort-pertanyaan" class="form__label">Pertanyaan yang ingin dipindah <span
                                 class="red">*</span></label>
-                        <h6 class="form__helper hidden" id="error-sort-pertanyaan">Harus diisi</h6>
+                        <h6 class="form__helper red-important hidden" id="sort-pertanyaan-error">Harus diisi</h6>
                     </div>
-                    <select name="pertanyaan" id="sort-pertanyaan" class="form__control"
+                    <select name="pertanyaan" id="sort-pertanyaan" class="form__control form__harus-diisi"
                         data-error="#sort-pertanyaan-error">
                         <option value="" disabled selected>pilih</option>
                         @foreach ($data->pertanyaan as $p)
@@ -373,9 +374,10 @@
                     <div class="form__head">
                         <label for="sort-urutan" class="form__label">Pertanyaan dipindah ke posisi berapa? <span
                                 class="red">*</span></label>
-                        <h6 class="form__helper hidden" id="error-sort-urutan">Harus diisi</h6>
+                        <h6 class="form__helper red-important hidden" id="sort-urutan-error">Harus diisi</h6>
                     </div>
-                    <select name="number" id="sort-urutan" class="form__control" data-error="#sort-urutan-error">
+                    <select name="number" id="sort-urutan" class="form__control form__harus-diisi"
+                        data-error="#sort-urutan-error">
                         <option value="" disabled selected>pilih</option>
                         @foreach ($data->pertanyaan as $p)
                             <option value="{{ $loop->iteration }}">{{ $loop->iteration }}</option>

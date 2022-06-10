@@ -184,6 +184,26 @@ $('.form-show__delete-pertanyaan').click(e => {
     $('.dialog__bg')[0].classList.add('active');
 });
 
+// add pertanyaan handler
+$('#addPertanyaanDialog button[type="submit"]').click(e => {
+    $('#addPertanyaanDialog .form__harus-diisi').each(x => {
+        if ($('#addPertanyaanDialog .form__harus-diisi')[x].value == '') {
+            e.preventDefault();
+            $($('#addPertanyaanDialog .form__harus-diisi')[x].dataset.error)[0].classList.remove('hidden')
+        }
+    })
+})
+
+// sort pertanyaan handler
+$('#sortPertanyaanDialog button[type="submit"]').click(e => {
+    $('#sortPertanyaanDialog .form__harus-diisi').each(x => {
+        if ($('#sortPertanyaanDialog .form__harus-diisi')[x].value == '') {
+            e.preventDefault();
+            $($('#sortPertanyaanDialog .form__harus-diisi')[x].dataset.error)[0].classList.remove('hidden')
+        }
+    })
+})
+
 // dialog
 $('#formEdit').click(() => {
     $('#editDialog')[0].classList.add('active')

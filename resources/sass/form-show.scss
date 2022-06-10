@@ -26,6 +26,12 @@
         align-items: center;
         justify-content: space-evenly;
         gap: .25rem;
+
+        >button:hover {
+            color: $russian-violet;
+            background-color: $independence-10;
+            text-decoration: none;
+        }
     }
 
     &__content {
@@ -411,5 +417,5 @@
 }
 
 .red-important {
-    color: $big-dip-oruby !important;
+    color: $big-dip-oruby  !important;
 }
