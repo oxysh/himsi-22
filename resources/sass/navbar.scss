@@ -2,6 +2,7 @@
     width: 100%;
     position: fixed;
     left: 0;
+    top: 0;
     z-index: 9;
 
     &__mobile {
@@ -47,8 +48,7 @@
         align-items: center;
         justify-content: space-between;
 
-        background-color: rgba($white, .7);
-        backdrop-filter: blur(25px);
+        background-color: $white;
         border: 1px solid $white;
 
         img {
@@ -60,19 +60,21 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 4rem;
+        gap: 3rem;
     }
 
     &__item {
         font-family: Poppins;
         font-style: normal;
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 27px;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: -0.03rem;
+        color: $independence;
 
         &:hover,
         &.active {
-            color: $dark-blue;
+            color: $xiketic;
         }
     }
 }
@@ -80,9 +82,11 @@
 .dropdown {
     font-family: Poppins;
     font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 27px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.03rem;
+    color: $independence;
     background-color: transparent;
 
     padding-right: 18px;
@@ -98,11 +102,13 @@
         position: absolute;
         right: 0;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translateY(-30%);
         transition: all .2s ease;
     }
 
     &.active {
+        color: $xiketic;
+
         &::after {
             transform: translateY(-50%) rotate(180deg);
         }
@@ -120,13 +126,18 @@
         top: 5rem;
         display: none;
         flex-direction: column;
-        background-color: rgba($white, .8);
+        background-color: $white;
         border: 1px solid $white;
         border-radius: 0 0 10px 10px;
 
         .nav__item {
             padding: .5rem;
         }
+    }
+
+    &:hover {
+        color: $xiketic;
+        background-color: transparent;
     }
 }
 

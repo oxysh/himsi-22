@@ -49,7 +49,8 @@ class FormJawabanNew extends Component
 
         $this->pertanyaan = FormPertanyaan::where('form_id',$this->formid)->get();
 
-        return view('livewire.form-jawaban-new');
+        // return view('livewire.form-jawaban-new');
+        return view('livewire.form-jawaban-koneksi');
     }
 
     public function dofilter()

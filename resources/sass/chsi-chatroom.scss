@@ -1,0 +1,113 @@
+.chsi-chatroom {
+    min-height: calc(100vh - 6rem);
+    padding-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+
+    &__chatbox {
+        width: 100%;
+        height: calc(100vh - 22rem);
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        border-radius: .5rem;
+        border: 2px solid $midnight-blue;
+    }
+
+    &__chat-scroll {
+        height: 100%;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: .5rem;
+        overflow-y: auto;
+    }
+
+    &__bubblechat {
+        // width: 90%;
+        max-width: 600px;
+        padding: 1rem 1.5rem;
+        border-radius: 1rem;
+
+        color: $white;
+
+        &--left {
+            background-color: $french-blue;
+            border-radius: 0 1rem 1rem 1rem;
+        }
+
+        &--right {
+            align-self: flex-end;
+            background-color: $midnight-blue;
+            border-radius: 1rem 1rem 0 1rem;
+        }
+
+        >img {
+            width: 100%;
+        }
+
+        @media screen and (max-width: 767.9px) {
+            max-width: 90%;
+        }
+    }
+
+    &__chat-input {
+        width: 100%;
+        height: 3rem;
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        background-color: rgba($midnight-blue, .1);
+
+        &--ended {
+            align-items: center;
+        }
+    }
+
+    &__input-text {
+        width: 100%;
+        padding: .25rem .75rem;
+        border: none;
+        background-color: transparent;
+
+        &:focus,
+        &:focus-within,
+        &:hover {
+            outline: none;
+            border: none;
+            cursor: pointer;
+        }
+    }
+
+    &__send-btn {
+        padding: 0 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+
+        >img {
+            height: 1.5rem;
+        }
+    }
+
+    &__end {
+        max-width: 400px;
+        padding-top: .75rem;
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: .5rem;
+
+        >* {
+            text-align: center;
+        }
+    }
+}

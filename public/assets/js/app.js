@@ -19371,6 +19371,21 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/alert.js":
+/*!*******************************!*\
+  !*** ./resources/js/alert.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$('.alert__close').click(function (e) {
+  e.target.parentElement.style.visibility = 'hidden';
+  e.target.parentElement.style.transform = 'translate(calc(-50% - 1rem), -50%)';
+  e.target.parentElement.style.opacity = 0;
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -19380,7 +19395,11 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./env */ "./resources/js/env.js");
+
 __webpack_require__(/*! ./navbar */ "./resources/js/navbar.js");
+
+__webpack_require__(/*! ./alert */ "./resources/js/alert.js");
 
 /***/ }),
 
@@ -19416,6 +19435,28 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/env.js":
+/*!*****************************!*\
+  !*** ./resources/js/env.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var formValue = [];
+$('form').find('.form__control').each(function (x) {
+  formValue.push($('form').find('.form__control')[x].value);
+});
+$('.btn-close').click(function (e) {
+  e.preventDefault();
+  e.target.closest('.dialog').classList.remove('active');
+  $('.dialog__bg')[0].classList.remove('active');
+  $('form').find('.form__control').each(function (x) {
+    $('form').find('.form__control')[x].value = formValue[x];
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/navbar.js":
 /*!********************************!*\
   !*** ./resources/js/navbar.js ***!
@@ -19425,7 +19466,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 $('.nav .dropdown').click(function (e) {
   e.currentTarget.classList.toggle('active');
-  console.log(e.currentTarget);
 });
 $('body').click(function (e) {
   if (!e.target.classList.contains('dropdown')) {

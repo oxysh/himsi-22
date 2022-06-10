@@ -20,12 +20,16 @@ use Illuminate\Support\Facades\Artisan;
 /* CUSTOMER CLIENT    */
 
 Route::get('/', function (Request $request) {
-    if ($request->getHost() == 'cakrawala.hismiunair.com') {
+    if ($request->getHost() == 'koneksi.hismiunair.com') {
         return redirect()->route('admin.home');
     }
     // return view('landing-page-client');
-    return view('landing-client-22');
+    return view('koneksi.landing');
 })->name('home');
+
+Route::get('about-us', function () {
+    return view('koneksi.about-us');
+})->name('about-us');
 
 
 /* untuk client */
@@ -35,7 +39,8 @@ Route::get('/f/{token}', 'RespondenController@bitly')->name('form.bitly');
 Route::post('/f/{token}', 'RespondenController@submit')->name('form.bitly.submit');
 
 Route::get('akademik', function () {
-    return view('akademik', [
+    // return view('akademik', [
+    return view('koneksi.akademik.index', [
         'page' => 'akademik',
     ]);
 })->name('akademik');
@@ -108,14 +113,16 @@ Route::prefix('feature')->group(function () {
 
 Route::prefix('chsi')->group(function () {
     /* untuk client */
-    Route::get('/', 'ChsiController@index')->name('chsi.index');
+    // Route::get('/', 'ChsiController@index')->name('chsi.index');
     Route::prefix('curhat')->group(function () {
         Route::get('/', 'ChsiController@curhatindex')->name('curhat.index');
+        Route::get('/new', 'ChsiController@curhatbaru')->name('curhat.baru');
+        // Route::post('/new/kategori', 'ChsiController@curhatBaruAtribut')->name('curhat.baru.atribut');
         Route::post('/submit', 'ChsiController@curhatsubmit')->name('curhat.submit');
         Route::get('/chat/{token}', 'ChsiController@curhatchat')->name('curhat.chat');
         Route::post('/chat', 'ChsiController@curhatfind')->name('curhat.find');
         Route::post('/chat/{token}', 'ChsiController@curhatchatsubmit')->name('curhat.chat.submit');
-        Route::get('/finish', 'ChsiController@curhatfinish')->name('curhat.finish');
+        // Route::get('/finish', 'ChsiController@curhatfinish')->name('curhat.finish');
         Route::get('/finish/{token}', 'ChsiController@curhatfinishtoken')->name('curhat.finish.token');
     });
 
@@ -127,7 +134,7 @@ Route::prefix('chsi')->group(function () {
 
     Route::prefix('meditasi')->group(function () {
         Route::get('/', 'ChsiController@meditasiindex')->name('meditasi.index');
-        // Route::get('/{kategori}', 'ChsiController@meditasikategori')->name('meditasi.kategori');
+        Route::get('/{kategori}', 'ChsiController@meditasikategori')->name('meditasi.kategori');
     });
 
     /* untuk admin */
@@ -157,6 +164,6 @@ Route::prefix('alumni')->group(function () {
 });
 
 // OPREC 22 LANDING
-Route::get('/registration', function () {
-    return view('oprec-22.landing-page');
-});
+// Route::get('/registration', function () {
+//     return view('oprec-22.landing-page');
+// });
