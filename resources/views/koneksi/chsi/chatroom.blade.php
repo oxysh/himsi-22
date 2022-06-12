@@ -23,7 +23,7 @@
             @if ($data->selesai)
                 @if ($data->quote != null)
                     <span class="chsi-chatroom__bubblechat chsi-chatroom__bubblechat--left">
-                        <img src="/image/{!! $data->quote !!}">
+                        <img src="https://koneksi.himsiunair.com/image/{!! $data->quote !!}">
                     </span>
                 @else
                     <span class="chsi-chatroom__bubblechat chsi-chatroom__bubblechat--left">
