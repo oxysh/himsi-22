@@ -17,6 +17,7 @@
                 class="adm-chsi__card @if ($curhat->selesai) adm-chsi__card--selesai @else @if ($curhat->nunggu) adm-chsi__card--belum-dijawab @else adm-chsi__card--on-progress @endif @endif">
                 <h4>{{ $curhat->token }}</h4>
                 <h5>{{ strtoupper($curhat->kategori) }}</h5>
+                <h6 class="grey">{{ $curhat->created_at }}</h6>
                 <div class="adm-chsi__card-label">
                     <h5>{{ $curhat->dibalas ? 'Dengan balasan' : 'Tanpa balasan' }}</h5>
                     @if ($curhat->selesai)
