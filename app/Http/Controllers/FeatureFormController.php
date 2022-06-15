@@ -263,8 +263,8 @@ class FeatureFormController extends Controller
             $f->opsi = $request->opsi;
         }
 
-        if ($f->mandatory != ($request->required == 'ya')) {
-            $f->mandatory = $request->required == 'ya' ? true : false;
+        if ($f->mandatory != ($request->required == 'Iya')) {
+            $f->mandatory = $request->required == 'Iya' ? true : false;
         }
 
         $f->save();
