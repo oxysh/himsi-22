@@ -287,17 +287,25 @@ class FeatureFormController extends Controller
         }
 
         $f = FormPertanyaan::find($qid);
-
+        
         if (!$f) {
             session()->flash('error','ID untuk Pertanyaan salah');
             return redirect()->route('f.form.index');
         }
 
-        $f->delete();
+        $form = Form::where('token',$token)->get('id')->first()->id;
+        $pertanyaan = FormPertanyaan::where('form_id',$form)->get();
 
-        session()->flash('success', 'Sukses menghapus pertanyaan');
+        if(count($pertanyaan)>1){
+            $f->delete();
+            session()->flash('success', 'Sukses menghapus pertanyaan');
+            return redirect()->back();
+        }
+        else{
+            session()->flash('error', 'Gagal menghapus pertanyaan! Minimal ada 1 pertanyaan dalam form.');
+            return redirect()->back();
+        }
 
-        return redirect()->back();
     }
 
     /**
