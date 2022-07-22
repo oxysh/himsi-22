@@ -83,8 +83,8 @@ class FormPertanyaanController extends Controller
             $f->opsi = $request->opsi;
         }
 
-        if ($f->mandatory != ($request->mandatory == 'true')) {
-            $f->mandatory = $request->mandatory == 'true' ? true : false;
+        if ($f->mandatory != ($request->required == 'Iya')) {
+            $f->mandatory = $request->required == 'Iya' ? true : false;
         }
 
         $f->save();
