@@ -4,6 +4,17 @@
     left: 0;
     top: 0;
     z-index: 9;
+    box-shadow: -1px -23px 63px 19px rgba(0,0,0,0.4);
+    -webkit-box-shadow: -1px -23px 63px 19px rgba(0,0,0,0.1);
+    -moz-box-shadow: -1px -23px 63px 19px rgba(0,0,0,0.1);
+
+    &__left img {
+        margin-right: 30px;
+    }
+
+    &__left img:hover {
+        cursor: pointer;
+    }
 
     &__mobile {
         width: 100%;
@@ -13,6 +24,24 @@
         align-items: center;
         justify-content: space-between;
         background-color: $white;
+        width: 95%;
+        margin: auto;
+
+        &__left{
+            background-color: $white;
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+            justify-content: space-between;
+        }
+
+        &__left img{
+            margin-right: 30px;
+
+            &:hover{
+                cursor: pointer;
+            }
+        }
     }
 
     &__burger {
@@ -42,12 +71,12 @@
     }
 
     &__group {
-        width: 100%;
+        width: 95%;
         padding: 6px 60px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-
+        margin: auto;
         background-color: $white;
         border: 1px solid $white;
 

@@ -11,7 +11,7 @@
 
 ::-webkit-scrollbar {
   width: 10px;
-  background-color: rgba(36, 30, 123, 0.1);
+  background-color: rgba(53, 155, 211, 0.1);
 }
 
 ::-webkit-scrollbar-corner {
@@ -19,7 +19,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #241E7B;
+  background-color: #359BD3;
 }
 
 body {
@@ -110,7 +110,7 @@ a {
 
 .a:hover,
 a:hover {
-  color: #241E7B;
+  color: #359BD3;
   text-decoration: underline;
 }
 
@@ -147,7 +147,7 @@ button:hover {
 .button.btn-primary,
 button.btn-primary {
   color: #FAFDFF;
-  background-color: #241E7B;
+  background-color: #359BD3;
 }
 
 .button.btn-primary:hover,
@@ -165,8 +165,8 @@ button.btn-secondary {
 
 .button.btn-secondary:hover,
 button.btn-secondary:hover {
-  color: #241E7B;
-  border-color: #241E7B;
+  color: #359BD3;
+  border-color: #359BD3;
 }
 
 .button.btn-danger,
@@ -214,7 +214,7 @@ td {
 }
 
 .midnight-blue {
-  color: #241E7B;
+  color: #359BD3;
 }
 
 .french-blue {
@@ -283,6 +283,17 @@ td {
   left: 0;
   top: 0;
   z-index: 9;
+  box-shadow: -1px -23px 63px 19px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: -1px -23px 63px 19px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: -1px -23px 63px 19px rgba(0, 0, 0, 0.1);
+}
+
+.nav__left img {
+  margin-right: 30px;
+}
+
+.nav__left img:hover {
+  cursor: pointer;
 }
 
 .nav__mobile {
@@ -293,6 +304,24 @@ td {
   align-items: center;
   justify-content: space-between;
   background-color: #FAFDFF;
+  width: 95%;
+  margin: auto;
+}
+
+.nav__mobile__left {
+  background-color: #FAFDFF;
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+  justify-content: space-between;
+}
+
+.nav__mobile__left img {
+  margin-right: 30px;
+}
+
+.nav__mobile__left img:hover {
+  cursor: pointer;
 }
 
 .nav__burger {
@@ -320,11 +349,12 @@ td {
 }
 
 .nav__group {
-  width: 100%;
+  width: 95%;
   padding: 6px 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: auto;
   background-color: #FAFDFF;
   border: 1px solid #FAFDFF;
 }
@@ -475,7 +505,7 @@ td {
 .footer {
   margin-top: 20vh;
   padding: 2.5rem 0;
-  background-color: #241E7B;
+  background-color: #359BD3;
 }
 
 .footer > .container {
@@ -575,7 +605,7 @@ td {
   font-size: 1rem;
   line-height: 1.5rem;
   letter-spacing: -0.03rem;
-  color: #241E7B;
+  color: #359BD3;
 }
 
 .form__helper {
@@ -615,7 +645,7 @@ td {
 
 .form__control:focus,
 .form__control-box:focus {
-  border-color: #241E7B;
+  border-color: #359BD3;
 }
 
 .dialog {
@@ -638,7 +668,7 @@ td {
   border-radius: 1.5rem;
   border: 0.05px solid #FAFDFF;
   background-color: #FAFDFF;
-  box-shadow: 0px 20px 40px rgba(36, 30, 123, 0.15);
+  box-shadow: 0px 20px 40px rgba(53, 155, 211, 0.15);
 }
 
 .dialog__btns {
@@ -786,7 +816,7 @@ td {
 }
 
 .landing--top__title {
-  color: #241E7B;
+  color: #359BD3;
 }
 
 .landing--top__desc {
@@ -822,7 +852,7 @@ td {
 
 .landing--visi-misi__visi-title {
   white-space: nowrap;
-  color: #241E7B;
+  color: #359BD3;
 }
 
 .landing--visi-misi__visi-title span {
@@ -885,7 +915,7 @@ td {
 
 .landing--layanan__title {
   text-align: center;
-  color: #241E7B;
+  color: #359BD3;
 }
 
 .landing--layanan__title span {
@@ -927,7 +957,7 @@ td {
 }
 
 .landing--layanan__card-title {
-  color: #241E7B;
+  color: #359BD3;
 }
 
 .landing--layanan__card-desc {
@@ -1235,12 +1265,12 @@ td {
 }
 
 .form-landing__step--active .form-landing__step-number {
-  background-color: #241E7B;
+  background-color: #359BD3;
   color: #FAFDFF;
 }
 
 .form-landing__step--active .form-landing__step-desc {
-  color: #241E7B;
+  color: #359BD3;
 }
 
 .form-landing__step-number {
@@ -1250,9 +1280,9 @@ td {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  color: #241E7B;
+  color: #359BD3;
   background-color: #FAFDFF;
-  border: 1px solid #241E7B;
+  border: 1px solid #359BD3;
 }
 
 .form-landing__step-desc {
@@ -1263,7 +1293,7 @@ td {
 
 .form-landing__step-connector {
   width: 100%;
-  border: 0.5px solid #241E7B;
+  border: 0.5px solid #359BD3;
 }
 
 .form-landing__dialog-form {
@@ -1529,12 +1559,12 @@ td {
 .form-show__tambah-pertanyaan {
   border-radius: 0 0 0.75rem 0.75rem;
   text-align: center;
-  color: #241E7B;
+  color: #359BD3;
   cursor: pointer;
 }
 
 .form-show__tambah-pertanyaan:hover {
-  background-color: rgba(36, 30, 123, 0.1);
+  background-color: rgba(53, 155, 211, 0.1);
 }
 
 .form-show__jawaban-filter {
@@ -1549,7 +1579,7 @@ td {
 }
 
 .form-show__sesuai {
-  color: #241E7B;
+  color: #359BD3;
 }
 
 .form-show__responden {
@@ -1571,7 +1601,7 @@ td {
 
 .form-show__responden-label {
   font-weight: 500;
-  color: #241E7B;
+  color: #359BD3;
 }
 
 .form-show__responden-value {
@@ -2197,12 +2227,12 @@ td {
 }
 
 input[name=kategori]:checked + .chsi-add__kategori-opsi {
-  border: 2px solid #241E7B;
+  border: 2px solid #359BD3;
 }
 
 input[name=respon]:checked + .chsi-add__balasan-label > span {
-  background-color: #241E7B;
-  outline-color: #241E7B;
+  background-color: #359BD3;
+  outline-color: #359BD3;
 }
 
 .chsi-chatroom {
@@ -2222,7 +2252,7 @@ input[name=respon]:checked + .chsi-add__balasan-label > span {
   flex-direction: column;
   align-items: stretch;
   border-radius: 0.5rem;
-  border: 2px solid #241E7B;
+  border: 2px solid #359BD3;
 }
 
 .chsi-chatroom__chat-scroll {
@@ -2250,7 +2280,7 @@ input[name=respon]:checked + .chsi-add__balasan-label > span {
 
 .chsi-chatroom__bubblechat--right {
   align-self: flex-end;
-  background-color: #241E7B;
+  background-color: #359BD3;
   border-radius: 1rem 1rem 0 1rem;
 }
 
@@ -2270,7 +2300,7 @@ input[name=respon]:checked + .chsi-add__balasan-label > span {
   display: flex;
   align-items: stretch;
   justify-content: center;
-  background-color: rgba(36, 30, 123, 0.1);
+  background-color: rgba(53, 155, 211, 0.1);
 }
 
 .chsi-chatroom__chat-input--ended {
