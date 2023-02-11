@@ -1,6 +1,6 @@
 @extends('template.koneksi.template')
 
-@section('title', 'Koneksi - Tentang HIMSI UNAIR 2022')
+@section('title', 'Mercusuar - Tentang HIMSI UNAIR 2022')
 @section('seo-desc', ''){{-- ini buat deskripsi seo --}}
 @section('seo-img', '') {{-- ini buat gambar seo --}}
 
@@ -9,29 +9,25 @@
 
 @section('content')
     <div class="about--header">
-        <img src="{{ url('assets/image/logo-koneksi.png') }}" alt="" class="about--header__ornament">
+        <img src="{{ url('assets\image\logo-mercusuar-notitle.svg') }}" alt="" class="about--header__ornament">
         <div class="about--header__content">
-            <span class="about--header__koneksi midnight-blue">KONEKSI</span>
-            <h4 class="about--header__spelling grey">/KO • NEK • SI/</h4>
-            <h3 class="about--header__relation red">Relation</h3>
+            <span class="about--header__koneksi midnight-blue">MERCUSUAR</span>
+            <h4 class="about--header__spelling grey">/MER • CU • SU • AR/</h4>
+            <h3 class="about--header__relation gold">Lighthouse</h3>
         </div>
     </div>
 
     <div class="about--tentang">
         <h1 class="about--tentang__title">Tentang HIMSI</h1>
         <h4 class="grey">Himpunan Mahasiswa S-1 Sistem Informasi Universitas Airlangga (HIMSI) merupakan <span
-                class="red">wadah aspirasi atau fasilitator</span> mahasiswa S1 sistem informasi Universitas
-            Airlangga untuk <span class="midnight-blue">berkontribusi dan mengembangkan keilmuan dan keprofesian.</span>
+                class="gold">wadah aspirasi atau fasilitator</span> mahasiswa S1 sistem informasi Universitas
+            Airlangga untuk <span class="__purple">berkontribusi dan mengembangkan keilmuan dan keprofesian.</span>
         </h4>
         <h4 class="grey">HIMSI UNAIR berdiri sejak <span class="midnight-blue">26 November 2015</span>, dan pada
-            tahun ketujuh ini menggunakan nama kabinet <span class="red">Koneksi</span>. Sebuah <span
-                class="midnight-blue">koneksi atau hubungan dapat tercipta</span> dengan siapa saja, di mana saja, dan
-            kapan saja, entah itu baik atau buruk. Berbagai koneksi yang terjalin di antara individu yang berbeda, dengan
-            banyak jenis karakteristik dan sifat tetapi <span class="red">tetap terhubung sebagai satu</span>.
-            Berbagai koneksi yang terjalin antara individu dengan <span class="midnight-blue">pemikiran yang
-                berbeda</span>, tetapi untuk <span class="midnight-blue">mencapai hal yang sama</span>. Berbagai koneksi
-            yang terjalin antara individu yang <span class="red">berbagi rasa saling percaya</span>. Setiap orang
-            terikat satu sama lain dalam satu koneksi yang menakjubkan, <span class="midnight-blue">HIMSI.</span></h4>
+            tahun ketujuh ini menggunakan nama kabinet <span class="gold">Mercusuar</span>. Menara yang dibangun di pantai, pulau kecil
+            di tengah laut, daerah berbatu karang, dan  sebagainya, yang memancarkan sinar isyarat pada waktu malam hari untuk 
+            membantu navigasi. Seperti arti namanya, Kabinet <span class= midnight-blue>Mercusuar</span> ingin menjadi sebuah menara yang tinggi <span class = "gold">(Dikenal)</span> , 
+            dengan fondasi yang kokoh <span class = "gold">(Kekeluargaan)</span>, serta membawa cahaya yang terang <span class = "gold">(Berdampak)</span>.
     </div>
 
     <div class="about--bidang">

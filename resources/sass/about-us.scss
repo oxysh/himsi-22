@@ -33,10 +33,12 @@
         &__ornament {
             height: 100vh;
             position: absolute;
-            transform: translateX(-25%);
+            transform: translateX(0%);
             opacity: .3;
             z-index: -1;
+            
         }
+
     }
 
     &--tentang {
@@ -46,6 +48,7 @@
         align-items: center;
         justify-content: center;
         gap: 3rem;
+        
 
         >* {
             text-align: center;
@@ -116,10 +119,11 @@
 
             &__ornament {
                 height: unset;
-                width: 100%;
+                width: 80%;
                 max-width: 600px;
                 position: relative;
                 transform: none;
+                //transform: scale(0.7);
             }
         }
     }

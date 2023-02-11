@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="footer__bottom">
-            <h6>&copy; Copyright 2022</h6>
+            <h6>&copy; Copyright 2023</h6>
             <h6>HIMSI Universitas Airlangga</h6>
         </div>
     </div>
