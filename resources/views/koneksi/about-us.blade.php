@@ -13,7 +13,7 @@
         <div class="about--header__content">
             <span class="about--header__koneksi midnight-blue">MERCUSUAR</span>
             <h4 class="about--header__spelling grey">/MER • CU • SU • AR/</h4>
-            <h3 class="about--header__relation gold">Lighthouse</h3>
+            <h3 class="about--header__relation purple">Lighthouse</h3>
         </div>
     </div>
 
@@ -21,12 +21,12 @@
         <h1 class="about--tentang__title">Tentang HIMSI</h1>
         <h4 class="grey">Himpunan Mahasiswa S-1 Sistem Informasi Universitas Airlangga (HIMSI) merupakan <span
                 class="gold">wadah aspirasi atau fasilitator</span> mahasiswa S1 sistem informasi Universitas
-            Airlangga untuk <span class="__purple">berkontribusi dan mengembangkan keilmuan dan keprofesian.</span>
+            Airlangga untuk <span class="midnight-blue">berkontribusi dan mengembangkan keilmuan dan keprofesian.</span>
         </h4>
         <h4 class="grey">HIMSI UNAIR berdiri sejak <span class="midnight-blue">26 November 2015</span>, dan pada
-            tahun ketujuh ini menggunakan nama kabinet <span class="gold">Mercusuar</span>. Menara yang dibangun di pantai, pulau kecil
-            di tengah laut, daerah berbatu karang, dan  sebagainya, yang memancarkan sinar isyarat pada waktu malam hari untuk 
-            membantu navigasi. Seperti arti namanya, Kabinet <span class= midnight-blue>Mercusuar</span> ingin menjadi sebuah menara yang tinggi <span class = "gold">(Dikenal)</span> , 
+            tahun ketujuh ini menggunakan nama kabinet <span class="midnight-blue">Mercusuar</span>. Menara yang dibangun di pantai, pulau kecil
+            di tengah laut, daerah berbatu karang, dan  sebagainya, yang memancarkan sinar isyarat pada waktu malam hari untuk
+            membantu navigasi. Seperti arti namanya, Kabinet <span class= "midnight-blue">Mercusuar</span> ingin menjadi sebuah menara yang tinggi <span class = "gold">(Dikenal)</span> ,
             dengan fondasi yang kokoh <span class = "gold">(Kekeluargaan)</span>, serta membawa cahaya yang terang <span class = "gold">(Berdampak)</span>.
     </div>
 
