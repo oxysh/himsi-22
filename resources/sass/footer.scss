@@ -32,6 +32,16 @@
 
     &__menu {
         color: $white;
+        padding: 5px 12px 5px 12px;
+        border-radius: 8px;
+    }
+
+    &__menu:hover {
+        color: $midnight-blue;
+        background-color: $white;
+        text-decoration: none;
+
+
     }
 
     &__socials {
@@ -39,6 +49,8 @@
         align-items: center;
         justify-content: center;
         gap: .75rem;
+
+
     }
 
     &__social {
@@ -46,8 +58,12 @@
         align-items: center;
         justify-content: center;
 
-        >img {
+        >svg {
             width: 40px;
+        }
+
+        >svg:hover{
+            filter: drop-shadow(3px 5px 2px #00438548);
         }
     }
 
@@ -72,7 +88,7 @@
         }
 
         &__social {
-            >img {
+            >svg {
                 width: 30px;
             }
         }

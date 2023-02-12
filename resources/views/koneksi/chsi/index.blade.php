@@ -23,7 +23,7 @@
         <p class="grey">Atau mulai curhatanmu <a href="{{ route('curhat.baru') }}"
                 class="underline-link">disini</a></p>
     </div>
-    <img src="{{ url('assets/image/logo-koneksi.png') }}" alt="" class="chsi-landing__ornament">
+    <img src="{{ url('assets/image/logo-mercusuar-notitle.svg') }}" alt="" class="chsi-landing__ornament" height="95%">
 @endsection
 
 @section('extrajs')

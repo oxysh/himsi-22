@@ -545,6 +545,14 @@ td {
 
 .footer__menu {
   color: #FAFDFF;
+  padding: 5px 12px 5px 12px;
+  border-radius: 8px;
+}
+
+.footer__menu:hover {
+  color: #359BD3;
+  background-color: #FAFDFF;
+  text-decoration: none;
 }
 
 .footer__socials {
@@ -560,8 +568,12 @@ td {
   justify-content: center;
 }
 
-.footer__social > img {
+.footer__social > svg {
   width: 40px;
+}
+
+.footer__social > svg:hover {
+  filter: drop-shadow(3px 5px 2px #00438548);
 }
 
 .footer__bottom {
@@ -584,7 +596,7 @@ td {
     gap: 0.75rem;
   }
 
-  .footer__social > img {
+  .footer__social > svg {
     width: 30px;
   }
 }
