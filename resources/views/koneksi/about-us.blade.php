@@ -9,7 +9,7 @@
 
 @section('content')
     <div class="about--header">
-        <img src="{{ url('assets\image\logo-mercusuar-notitle.svg') }}" alt="" class="about--header__ornament">
+        <img src="{{ url('assets\image\logo-mercusuar-notitle.svg') }}" alt="" class="about--header__ornament" style="transform: scale(0.8); margin-top:80px">
         <div class="about--header__content">
             <span class="about--header__koneksi midnight-blue">MERCUSUAR</span>
             <h4 class="about--header__spelling grey">/MER • CU • SU • AR/</h4>
