@@ -38,49 +38,49 @@
         </div>
         <div class="about--bidang__cards">
             <div class="about--bidang__card">
-                <img src="{{ url('assets/img/bidang-bph.png') }}" alt="BPH" class="about--bidang__card-img">
+                <img src="{{ url('assets/img/mercusuar/BPH.svg') }}" alt="BPH" class="about--bidang__card-img" width="60px">
                 <h3 class="midnight-blue">Badan Pengurus Harian</h3>
                 <p class="grey">Pusat koordinasi bidang yang ada di HIMSI, serta memastikan proker dan agenda
                     yang direncanakan berjalan dengan sesuai.</p>
             </div>
             <div class="about--bidang__card">
-                <img src="{{ url('assets/img/bidang-akademik.png') }}" alt="Akademik" class="about--bidang__card-img">
+                <img src="{{ url('assets/img/mercusuar/Akademik.svg') }}" alt="Akademik" class="about--bidang__card-img" width="60px">
                 <h3 class="midnight-blue">Akademik</h3>
                 <p class="grey">Meningkatkan kualitas akademik dan pendampingan dalam pengembangan prestasi
                     mahasiswa S1 SI UNAIR.</p>
             </div>
             <div class="about--bidang__card">
-                <img src="{{ url('assets/img/bidang-ristek.png') }}" alt="Ristek" class="about--bidang__card-img">
+                <img src="{{ url('assets/img/mercusuar/Ristek.svg') }}" alt="Ristek" class="about--bidang__card-img" width="60px">
                 <h3 class="midnight-blue">Riset dan Teknologi</h3>
                 <p class="grey">Membantu, memfasilitasi dan memotivasi warga S1 SI UNAIR terhadap hal yang
                     berkaitan dengan keprofesian dan teknologi.</p>
             </div>
             <div class="about--bidang__card">
-                <img src="{{ url('assets/img/bidang-media.png') }}" alt="Media" class="about--bidang__card-img">
+                <img src="{{ url('assets/img/mercusuar/Media.svg') }}" alt="Media" class="about--bidang__card-img" width="60px">
                 <h3 class="midnight-blue">Media</h3>
                 <p class="grey">Membuat desain grafis, video serta pengelolaan media sosial sebagai sarana
                     informasi warga S1 Sistem Informasi UNAIR dan pihak eksternal.</p>
             </div>
             <div class="about--bidang__card">
-                <img src="{{ url('assets/img/bidang-sera.png') }}" alt="Sera" class="about--bidang__card-img">
+                <img src="{{ url('assets/img/mercusuar/Sera.svg') }}" alt="Sera" class="about--bidang__card-img" width="60px">
                 <h3 class="midnight-blue">Seni dan Olahraga</h3>
                 <p class="grey">Mewadahi dan memfasilitasi minat dan bakat warga S1 SI UNAIR di bidang
                     non-akademik khususnya dalam hal seni dan olahraga.</p>
             </div>
             <div class="about--bidang__card">
-                <img src="{{ url('assets/img/bidang-hublu.png') }}" alt="Hublu" class="about--bidang__card-img">
+                <img src="{{ url('assets/img/mercusuar/Hublu.svg') }}" alt="Hublu" class="about--bidang__card-img" width="60px">
                 <h3 class="midnight-blue">Hubungan Luar</h3>
                 <p class="grey">Ranah kerja eskternal yang bertanggung jawab sebagai penghubung HIMSI UNAIR dengan
                     external HIMSI UNAIR.</p>
             </div>
             <div class="about--bidang__card">
-                <img src="{{ url('assets/img/bidang-kestari.png') }}" alt="Kestari" class="about--bidang__card-img">
+                <img src="{{ url('assets/img/mercusuar/Kestari.svg') }}" alt="Kestari" class="about--bidang__card-img" width="60px">
                 <h3 class="midnight-blue">Kewirausahaan dan Inventaris</h3>
                 <p class="grey">Bertanggung jawab atas pemasukan dana kewirausahaan serta mengatur barang dan
                     berkas kesekretariatan HIMSI UNAIR.</p>
             </div>
             <div class="about--bidang__card">
-                <img src="{{ url('assets/img/bidang-psdm.png') }}" alt="PSDM" class="about--bidang__card-img">
+                <img src="{{ url('assets/img/mercusuar/PSDM.svg') }}" alt="PSDM" class="about--bidang__card-img" width="60px">
                 <h3 class="midnight-blue">Pengembangan Sumber Daya Mahasiswa</h3>
                 <p class="grey">Bertanggung jawab pada dalam hal koordinasi, optimalisasi dan pengawalan sumber
                     daya mahasiswa S1 SI UNAIR.</p>
