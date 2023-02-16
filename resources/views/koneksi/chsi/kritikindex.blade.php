@@ -18,35 +18,35 @@
 
     <div class="krisar__opsi">
         <div class="krisar__card" data-bidang="bph">
-            <img src="{{ url('assets/img/bidang-bph.png') }}" alt="">
+            <img src="{{ url('assets/img/mercusuar/BPH.svg') }}" width="60px">
             <p class="midnight-blue">Badan Pengurus Harian</p>
         </div>
         <div class="krisar__card" data-bidang="kestari">
-            <img src="{{ url('assets/img/bidang-kestari.png') }}" alt="">
+            <img src="{{ url('assets/img/mercusuar/Kestari.svg') }}" width="60px">
             <p class="midnight-blue">Kewirausahaan dan Inventaris</p>
         </div>
         <div class="krisar__card" data-bidang="psdm">
-            <img src="{{ url('assets/img/bidang-psdm.png') }}" alt="">
+            <img src="{{ url('assets/img/mercusuar/PSDM.svg') }}" width="60px">
             <p class="midnight-blue">Pengembangan Sumber Daya Mahasiswa</p>
         </div>
         <div class="krisar__card" data-bidang="hublu">
-            <img src="{{ url('assets/img/bidang-hublu.png') }}" alt="">
+            <img src="{{ url('assets/img/mercusuar/Hublu.svg') }}" width="60px">
             <p class="midnight-blue">Hubungan Luar</p>
         </div>
         <div class="krisar__card" data-bidang="sera">
-            <img src="{{ url('assets/img/bidang-sera.png') }}" alt="">
+            <img src="{{ url('assets/img/mercusuar/Sera.svg') }}" width="60px">
             <p class="midnight-blue">Seni dan Olahraga</p>
         </div>
         <div class="krisar__card" data-bidang="media">
-            <img src="{{ url('assets/img/bidang-media.png') }}" alt="">
+            <img src="{{ url('assets/img/mercusuar/Media.svg') }}" width="60px">
             <p class="midnight-blue">Media</p>
         </div>
         <div class="krisar__card" data-bidang="akademik">
-            <img src="{{ url('assets/img/bidang-akademik.png') }}" alt="">
+            <img src="{{ url('assets/img/mercusuar/Akademik.svg') }}" width="60px">
             <p class="midnight-blue">Akademik</p>
         </div>
         <div class="krisar__card" data-bidang="ristek">
-            <img src="{{ url('assets/img/bidang-ristek.png') }}" alt="">
+            <img src="{{ url('assets/img/mercusuar/Ristek.svg') }}" width="60px">
             <p class="midnight-blue">Riset dan Teknologi</p>
         </div>
     </div>

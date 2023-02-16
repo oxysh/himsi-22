@@ -954,7 +954,7 @@ td {
   align-items: flex-start;
   justify-content: center;
   gap: 0.75rem;
-  border-radius: 0.25rem;
+  border-radius: 0.75rem;
   border: 0.05px solid #FAFDFF;
   box-shadow: 0px 20px 40px rgba(36, 30, 123, 0.15);
   background-color: #FAFDFF;
@@ -974,6 +974,11 @@ td {
 
 .landing--layanan__card--kritik-saran {
   grid-area: kritik-saran;
+}
+
+.landing--layanan__card:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 40px 10px #359cd358;
 }
 
 .landing--layanan__card-title {

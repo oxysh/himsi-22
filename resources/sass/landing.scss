@@ -138,7 +138,7 @@
             align-items: flex-start;
             justify-content: center;
             gap: .75rem;
-            border-radius: .25rem;
+            border-radius: .75rem;
             border: 0.05px solid $white;
             box-shadow: 0px 20px 40px rgba(36, 30, 123, 0.15);
             background-color: $white;
@@ -158,6 +158,12 @@
             &--kritik-saran {
                 grid-area: kritik-saran;
             }
+        }
+
+        &__card:hover{
+            cursor: pointer;
+            box-shadow: 0px 0px 40px 10px #359cd358;
+
         }
 
         &__card-title {

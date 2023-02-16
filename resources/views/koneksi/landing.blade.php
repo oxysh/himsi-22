@@ -47,26 +47,34 @@
             <p class="landing--layanan__desc">Kami menyediakan layanan yang dapat diakses dimana saja dan kapan saja oleh
                 pengguna.</p>
         </div>
-        <div class="landing--layanan__card landing--layanan__card--curhat">
-            <img src="{{ url('assets/img/layanan-curhat.svg') }}" alt="" class="landing--layanan__img">
-            <h3 class="landing--layanan__card-title">Curhat</h3>
-            <p class="landing--layanan__card-desc">Mendengarkan dan memberikan jalan keluar dari curahan hari warga.</p>
-        </div>
-        <div class="landing--layanan__card landing--layanan__card--form">
-            <img src="{{ url('assets/img/layanan-form.svg') }}" alt="" class="landing--layanan__img">
-            <h3 class="landing--layanan__card-title">Form</h3>
-            <p class="landing--layanan__card-desc">Membantu pembuatan form dari pendaftaran sampai survei.</p>
-        </div>
-        <div class="landing--layanan__card landing--layanan__card--bank-akademik">
-            <img src="{{ url('assets/img/layanan-bank-akademik.svg') }}" alt="" class="landing--layanan__img">
-            <h3 class="landing--layanan__card-title">Bank Akademik</h3>
-            <p class="landing--layanan__card-desc">Menyediakan referensi perkuliahan yang berasal dari warga SI Unair.</p>
-        </div>
-        <div class="landing--layanan__card landing--layanan__card--kritik-saran">
-            <img src="{{ url('assets/img/layanan-kritik-saran.svg') }}" alt="" class="landing--layanan__img">
-            <h3 class="landing--layanan__card-title">Kritik Saran</h3>
-            <p class="landing--layanan__card-desc">Menampung aspirasi kinerja dengan memberikan kritik saran.</p>
-        </div>
+        <a href="{{ route('curhat.index') }}">
+            <div class="landing--layanan__card landing--layanan__card--curhat">
+                <img src="{{ url('assets/img/layanan-curhat.svg') }}" alt="" class="landing--layanan__img">
+                <h3 class="landing--layanan__card-title">Curhat</h3>
+                <p class="landing--layanan__card-desc">Mendengarkan dan memberikan jalan keluar dari curahan hari warga.</p>
+            </div>
+        </a>
+        <a href="{{ route('f.form.index') }}">
+            <div class="landing--layanan__card landing--layanan__card--form">
+                <img src="{{ url('assets/img/layanan-form.svg') }}" alt="" class="landing--layanan__img">
+                <h3 class="landing--layanan__card-title">Form</h3>
+                <p class="landing--layanan__card-desc">Membantu pembuatan form dari pendaftaran sampai survei.</p>
+            </div>
+        </a>
+        <a href="{{ route('akademik') }}">
+            <div class="landing--layanan__card landing--layanan__card--bank-akademik">
+                <img src="{{ url('assets/img/layanan-bank-akademik.svg') }}" alt="" class="landing--layanan__img">
+                <h3 class="landing--layanan__card-title">Bank Akademik</h3>
+                <p class="landing--layanan__card-desc">Menyediakan referensi perkuliahan yang berasal dari warga SI Unair.</p>
+            </div>
+        </a>
+        <a href="{{ route('kritik.index') }}">
+            <div class="landing--layanan__card landing--layanan__card--kritik-saran">
+                <img src="{{ url('assets/img/layanan-kritik-saran.svg') }}" alt="" class="landing--layanan__img">
+                <h3 class="landing--layanan__card-title">Kritik Saran</h3>
+                <p class="landing--layanan__card-desc">Menampung aspirasi kinerja dengan memberikan kritik saran.</p>
+            </div>
+        </a>
     </div>
 @endsection
 
