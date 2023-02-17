@@ -19380,6 +19380,8 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./navbar */ "./resources/js/navbar.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -19411,6 +19413,33 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/navbar.js":
+/*!********************************!*\
+  !*** ./resources/js/navbar.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$('.nav .dropdown').click(function (e) {
+  e.currentTarget.classList.toggle('active');
+  console.log(e.currentTarget);
+});
+$('body').click(function (e) {
+  if (!e.target.classList.contains('dropdown')) {
+    $('.dropdown').map(function (ddown) {
+      $('.dropdown')[ddown].classList.remove('active');
+    });
+  }
+});
+$(document).ready(function () {
+  $(".nav__burger").click(function (e) {
+    e.currentTarget.classList.toggle("active");
+    e.currentTarget.parentNode.nextElementSibling.classList.toggle("active");
+  });
+});
 
 /***/ }),
 

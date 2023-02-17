@@ -20,11 +20,16 @@ use Illuminate\Support\Facades\Artisan;
 /* CUSTOMER CLIENT    */
 
 Route::get('/', function (Request $request) {
-    if ($request->getHost() == 'cakrawala.hismiunair.com') {
+    if ($request->getHost() == 'koneksi.hismiunair.com') {
         return redirect()->route('admin.home');
     }
-    return view('landing-page-client');
+    // return view('landing-page-client');
+    return view('koneksi.landing');
 })->name('home');
+
+Route::get('about-us', function () {
+    return view('koneksi.about-us');
+})->name('about-us');
 
 
 /* untuk client */
@@ -34,21 +39,22 @@ Route::get('/f/{token}', 'RespondenController@bitly')->name('form.bitly');
 Route::post('/f/{token}', 'RespondenController@submit')->name('form.bitly.submit');
 
 Route::get('akademik', function () {
-    return view('akademik', [
+    // return view('akademik', [
+    return view('koneksi.akademik.index', [
         'page' => 'akademik',
     ]);
 })->name('akademik');
 
 /* untuk admin*/
-Route::prefix('admin')->group(function () {
-    /* ADMIN   */
-    Route::get('/', function () {
-        return view('landing-page-admin');
-    })->middleware('auth')->name('admin.home');
-    Route::get('/login', 'AuthController@index')->middleware('guest')->name('login');
-    Route::post('/login', 'AuthController@login')->name('auth.login');
-    Route::get('/logout', 'AuthController@logout')->middleware('auth')->name('auth.logout');
-});
+// Route::prefix('admin')->group(function () {
+//     /* ADMIN   */
+//     Route::get('/', function () {
+//         return view('landing-page-admin');
+//     })->middleware('auth')->name('admin.home');
+//     Route::get('/login', 'AuthController@index')->middleware('guest')->name('login');
+//     Route::post('/login', 'AuthController@login')->name('auth.login');
+//     Route::get('/logout', 'AuthController@logout')->middleware('auth')->name('auth.logout');
+// });
 
 /* untuk client  */
 Route::prefix('feature')->group(function () {
@@ -77,44 +83,46 @@ Route::prefix('feature')->group(function () {
 
 
 /* untuk admin */
-Route::prefix('form')->middleware('auth')->group(function () {
-    Route::get('/', 'FormController@index')->name('form.index');
-    Route::get('/create', 'FormController@index')->name('form.create');
-    Route::post('/store', 'FormController@store')->name('form.store');
-    Route::prefix('{id}')->group(function () {
-        Route::get('/', 'FormController@show')->name('form.show');
-        Route::post('/lock', 'FormController@lock')->name('form.lock');
-        Route::get('/excel', 'FormController@excel')->name('form.excel');
-        Route::put('/update', 'FormController@update')->name('form.update');
-        Route::put('/bitly', 'FormController@updateBitly')->name('form.bitly');
-        Route::delete('/destroy', 'FormController@destroy')->name('form.destroy');
-        Route::prefix('pertanyaan')->group(function () {
-            Route::post('/store', 'FormPertanyaanController@store')->name('pertanyaan.store');
-            Route::post('/update/{qid}', 'FormPertanyaanController@update')->name('pertanyaan.update');
-            Route::delete('/delete/{qid}', 'FormPertanyaanController@destroy')->name('pertanyaan.destroy');
-            Route::post('/sort', 'FormPertanyaanController@sort')->name('pertanyaan.sort');
-        });
-    });
-});
+// Route::prefix('form')->middleware('auth')->group(function () {
+//     Route::get('/', 'FormController@index')->name('form.index');
+//     Route::get('/create', 'FormController@index')->name('form.create');
+//     Route::post('/store', 'FormController@store')->name('form.store');
+//     Route::prefix('{id}')->group(function () {
+//         Route::get('/', 'FormController@show')->name('form.show');
+//         Route::post('/lock', 'FormController@lock')->name('form.lock');
+//         Route::get('/excel', 'FormController@excel')->name('form.excel');
+//         Route::put('/update', 'FormController@update')->name('form.update');
+//         Route::put('/bitly', 'FormController@updateBitly')->name('form.bitly');
+//         Route::delete('/destroy', 'FormController@destroy')->name('form.destroy');
+//         Route::prefix('pertanyaan')->group(function () {
+//             Route::post('/store', 'FormPertanyaanController@store')->name('pertanyaan.store');
+//             Route::post('/update/{qid}', 'FormPertanyaanController@update')->name('pertanyaan.update');
+//             Route::delete('/delete/{qid}', 'FormPertanyaanController@destroy')->name('pertanyaan.destroy');
+//             Route::post('/sort', 'FormPertanyaanController@sort')->name('pertanyaan.sort');
+//         });
+//     });
+// });
 
 /* untuk admin */
-Route::prefix('responden')->middleware('auth')->group(function () {
-    Route::get('/', 'RespondenController@index')->name('responden.index');
-    Route::get('/cari', 'RespondenController@cari')->name('responden.cari');
-    Route::get('/show/{id}', 'RespondenController@show')->name('responden.show');
-    Route::post('/store', 'RespondenController@store')->name('responden.store');
-});
+// Route::prefix('responden')->middleware('auth')->group(function () {
+//     Route::get('/', 'RespondenController@index')->name('responden.index');
+//     Route::get('/cari', 'RespondenController@cari')->name('responden.cari');
+//     Route::get('/show/{id}', 'RespondenController@show')->name('responden.show');
+//     Route::post('/store', 'RespondenController@store')->name('responden.store');
+// });
 
 Route::prefix('chsi')->group(function () {
     /* untuk client */
-    Route::get('/', 'ChsiController@index')->name('chsi.index');
+    // Route::get('/', 'ChsiController@index')->name('chsi.index');
     Route::prefix('curhat')->group(function () {
         Route::get('/', 'ChsiController@curhatindex')->name('curhat.index');
+        Route::get('/new', 'ChsiController@curhatbaru')->name('curhat.baru');
+        // Route::post('/new/kategori', 'ChsiController@curhatBaruAtribut')->name('curhat.baru.atribut');
         Route::post('/submit', 'ChsiController@curhatsubmit')->name('curhat.submit');
         Route::get('/chat/{token}', 'ChsiController@curhatchat')->name('curhat.chat');
         Route::post('/chat', 'ChsiController@curhatfind')->name('curhat.find');
         Route::post('/chat/{token}', 'ChsiController@curhatchatsubmit')->name('curhat.chat.submit');
-        Route::get('/finish', 'ChsiController@curhatfinish')->name('curhat.finish');
+        // Route::get('/finish', 'ChsiController@curhatfinish')->name('curhat.finish');
         Route::get('/finish/{token}', 'ChsiController@curhatfinishtoken')->name('curhat.finish.token');
     });
 
@@ -126,25 +134,25 @@ Route::prefix('chsi')->group(function () {
 
     Route::prefix('meditasi')->group(function () {
         Route::get('/', 'ChsiController@meditasiindex')->name('meditasi.index');
-        // Route::get('/{kategori}', 'ChsiController@meditasikategori')->name('meditasi.kategori');
+        Route::get('/{kategori}', 'ChsiController@meditasikategori')->name('meditasi.kategori');
     });
 
     /* untuk admin */
-    Route::prefix('admin')->middleware('auth')->group(function () {
-        Route::get('/', 'ChsiController@psdmindex')->name('chsi.admin.index');
-        Route::prefix('curhat')->group(function () {
-            Route::get('/', 'ChsiController@psdmcurhatindex')->name('chsi.admin.curhat.index');
-            Route::get('/chat/{token}', 'ChsiController@psdmcurhatchat')->name('chsi.admin.curhat.chat');
-            Route::post('/chat/{token}/chat', 'ChsiController@psdmcurhatchatsubmit')->name('chsi.admin.curhat.chat.submit');
-            Route::post('/chat/{token}/motivasi', 'ChsiController@psdmcurhatmotivasisubmit')->name('chsi.admin.curhat.motivasi.submit');
-        });
-        Route::prefix('kritik')->group(function () {
-            Route::get('/', 'ChsiController@psdmkritikindex')->name('chsi.admin.kritik.index');
-        });
-        Route::prefix('meditasi')->group(function () {
-            Route::get('/', 'ChsiController@psdmmeditasiindex')->name('chsi.admin.meditasi.index');
-        });
-    });
+    // Route::prefix('admin')->middleware('auth')->group(function () {
+    //     Route::get('/', 'ChsiController@psdmindex')->name('chsi.admin.index');
+    //     Route::prefix('curhat')->group(function () {
+    //         Route::get('/', 'ChsiController@psdmcurhatindex')->name('chsi.admin.curhat.index');
+    //         Route::get('/chat/{token}', 'ChsiController@psdmcurhatchat')->name('chsi.admin.curhat.chat');
+    //         Route::post('/chat/{token}/chat', 'ChsiController@psdmcurhatchatsubmit')->name('chsi.admin.curhat.chat.submit');
+    //         Route::post('/chat/{token}/motivasi', 'ChsiController@psdmcurhatmotivasisubmit')->name('chsi.admin.curhat.motivasi.submit');
+    //     });
+    //     Route::prefix('kritik')->group(function () {
+    //         Route::get('/', 'ChsiController@psdmkritikindex')->name('chsi.admin.kritik.index');
+    //     });
+    //     Route::prefix('meditasi')->group(function () {
+    //         Route::get('/', 'ChsiController@psdmmeditasiindex')->name('chsi.admin.meditasi.index');
+    //     });
+    // });
 });
 
 Route::prefix('alumni')->group(function () {
@@ -156,6 +164,6 @@ Route::prefix('alumni')->group(function () {
 });
 
 // OPREC 22 LANDING
-Route::get('/registration', function () {
-    return view('oprec-22.landing-page');
-});
+// Route::get('/registration', function () {
+//     return view('oprec-22.landing-page');
+// });

@@ -1,0 +1,158 @@
+.form-landing {
+    min-height: calc(100vh - 6rem);
+    padding-bottom: 6rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6rem;
+
+    &__title-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: .5rem;
+
+        >* {
+            text-align: center;
+        }
+    }
+
+    &__content {
+        width: 100%;
+        max-width: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4rem;
+    }
+
+    &__form {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    &__linked {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .5rem;
+    }
+
+    &__linked-desc {
+        color: $independence;
+    }
+
+    &__linked-btn {
+        padding: 0;
+        background-color: transparent;
+    }
+
+    &__dialog {
+        width: calc(100% - 2rem);
+        max-width: 600px;
+        padding: 4rem 6rem;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4rem;
+        border-radius: 1.5rem;
+        border: 0.05px solid $white;
+        box-shadow: 0px 20px 40px rgba(36, 30, 123, 0.15);
+        background-color: $white;
+    }
+
+    &__dialog-step {
+        width: 60%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__step {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &--active {
+            .form-landing__step-number {
+                background-color: $midnight-blue;
+                color: $white;
+            }
+
+            .form-landing__step-desc {
+                color: $midnight-blue;
+            }
+        }
+    }
+
+    &__step-number {
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: $midnight-blue;
+        background-color: $white;
+        border: 1px solid $midnight-blue;
+    }
+
+    &__step-desc {
+        position: absolute;
+        top: calc(100% + 4px);
+        white-space: nowrap;
+    }
+
+    &__step-connector {
+        width: 100%;
+        border: .5px solid $midnight-blue;
+    }
+
+    &__dialog-form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1.5rem;
+    }
+
+    @media screen and (max-width: 575.9px) {
+        gap: 8rem;
+
+        &__title-section {
+            >h1 {
+                font-size: 1.5rem;
+                line-height: 2rem;
+            }
+
+            >p {
+                font-weight: 300;
+                font-size: .875rem;
+                line-height: 1.375rem;
+            }
+        }
+
+        &__content {
+            gap: 6rem;
+        }
+
+        &__form {
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        &__dialog {
+            padding: 4rem 3rem;
+            gap: 6rem;
+        }
+    }
+}

@@ -1,0 +1,421 @@
+.form-show {
+    min-height: calc(100vh - 6rem);
+    padding-top: 2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+
+    &__title-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        >* {
+            text-align: center;
+        }
+    }
+
+    &__btns {
+        width: 100%;
+        max-width: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        gap: .25rem;
+
+        >button:hover {
+            color: $russian-violet;
+            background-color: $independence-10;
+            text-decoration: none;
+        }
+    }
+
+    &__content {
+        width: 100%;
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__content-body {
+        width: 100%;
+        display: none;
+
+        &.active {
+            display: flex;
+        }
+
+        &--tampilan {
+            max-width: 700px;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 1.5rem;
+        }
+
+        &--pertanyaan {
+            max-width: 900px;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        &--jawaban {
+            max-width: 900px;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 1rem;
+        }
+    }
+
+    &__desc {
+        width: 100%;
+        display: grid;
+        grid-template-columns: min-content auto;
+        grid-template-areas:
+            'label-shortlink value-shortlink'
+            'divider divider'
+            'label-author value-author'
+            'label-judul value-judul'
+            'label-token value-token'
+            'label-deadline value-deadline'
+            'label-deskripsi value-deskripsi'
+            'label-afterform value-afterform'
+            'label-afterformlink value-afterformlink';
+        gap: .5rem 4rem;
+    }
+
+    &__label {
+        white-space: nowrap;
+
+        &--author {
+            grid-area: label-author;
+        }
+
+        &--judul {
+            grid-area: label-judul;
+        }
+
+        &--token {
+            grid-area: label-token;
+        }
+
+        &--deadline {
+            grid-area: label-deadline;
+        }
+
+        &--shortlink {
+            grid-area: label-shortlink;
+        }
+
+        &--deskripsi {
+            grid-area: label-deskripsi;
+        }
+
+        &--afterform {
+            grid-area: label-afterform;
+        }
+
+        &--afterformlink {
+            grid-area: label-afterformlink;
+        }
+    }
+
+    &__value {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &--author {
+            grid-area: value-author;
+        }
+
+        &--judul {
+            grid-area: value-judul;
+        }
+
+        &--token {
+            grid-area: value-token;
+        }
+
+        &--deadline {
+            grid-area: value-deadline;
+        }
+
+        &--shortlink {
+            grid-area: value-shortlink;
+
+            >span {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 1rem;
+
+                >img {
+                    height: 16px;
+                }
+            }
+        }
+
+        &--deskripsi {
+            grid-area: value-deskripsi;
+        }
+
+        &--afterform {
+            grid-area: value-afterform;
+        }
+
+        &--afterformlink {
+            grid-area: value-afterformlink;
+        }
+    }
+
+    &__desc-divider {
+        grid-area: divider;
+    }
+
+    &__option-btns {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 3rem;
+    }
+
+    &__option-btn {
+        background-color: transparent;
+        padding: 0;
+        cursor: pointer;
+
+        &:hover {
+            background-color: transparent;
+            transform: scale(1.1);
+        }
+    }
+
+    &__urutkan-pertanyaan {
+        padding: 0;
+        text-decoration: underline;
+        color: $independence-60;
+        background-color: transparent;
+
+        &:hover {
+            color: $independence;
+            background-color: transparent;
+        }
+    }
+
+    &__tabel-pertanyaan {
+        width: 100%;
+    }
+
+    &__no-pertanyaan {
+        text-align: center;
+    }
+
+    &__aksi-pertanyaan {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1rem;
+        cursor: pointer;
+    }
+
+    &__tambah-pertanyaan {
+        border-radius: 0 0 .75rem .75rem;
+        text-align: center;
+        color: $midnight-blue;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $midnight-blue-10;
+        }
+    }
+
+    &__jawaban-filter {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    &__tidak-sesuai {
+        color: $big-dip-oruby;
+    }
+
+    &__sesuai {
+        color: $midnight-blue;
+    }
+
+    &__responden {
+        width: 100%;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: .5rem;
+        border-radius: 1.5rem;
+        border: .5px solid $independence;
+    }
+
+    &__responden-row {
+        display: grid;
+        grid-template-columns: .75fr 1fr;
+        align-items: flex-start;
+    }
+
+    &__responden-label {
+        font-weight: 500;
+        color: $midnight-blue;
+    }
+
+    &__responden-value {
+        color: $independence;
+    }
+
+    &__edit-dialog {
+        max-height: 100vh;
+        width: 100%;
+        align-items: flex-start;
+        justify-content: center;
+        overflow-y: auto;
+    }
+
+    &__edit-dialog-content {
+        width: 100%;
+        max-width: 950px;
+        padding: 3rem 2rem;
+        display: grid;
+        align-items: start;
+        grid-template-columns: 1fr 1fr;
+        gap: 3.25rem;
+    }
+
+    &__edit-form {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: space-between;
+        gap: 1.25rem;
+    }
+
+    &__edit-preview {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    &__live-preview {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        gap: 1.25rem;
+
+        >.btn-primary {
+            align-self: flex-end;
+        }
+
+        &--form {
+            gap: 1rem;
+        }
+
+        &--afterform {
+            gap: 0;
+        }
+    }
+
+    &__edit-shortlink-dialog {
+        width: calc(100% - 2rem);
+        max-width: 440px;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    &__live-preview-divider {
+        border: .5px solid $independence-60;
+    }
+
+    &__delete-dialog {
+        width: calc(100% - 2rem);
+        max-width: 440px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        >* {
+            text-align: center;
+        }
+
+        >.dialog__btns {
+            justify-content: center;
+        }
+    }
+
+    &__form-add-pertanyaan {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        gap: 1.25rem;
+    }
+
+    &__sort-pertanyaan-form {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        gap: 1.25rem;
+    }
+
+    &__urutan-pertanyaan-sekarang {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    &__urutan-pertanyaans {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: .75rem;
+    }
+
+    @media screen and (max-width: 991.9px) {
+        &__edit-dialog {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media screen and (max-width: 767.9px) {
+        &__edit-dialog-content {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media screen and (max-width: 575.9px) {
+        &__content {
+            margin-top: 3rem;
+        }
+
+        &__desc {
+            gap: .5rem 1rem;
+        }
+    }
+}
+
+.red-important {
+    color: $big-dip-oruby  !important;
+}

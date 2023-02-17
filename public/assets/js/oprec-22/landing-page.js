@@ -98,3 +98,10 @@ modals($(".head__btn"), $("#modal-regis"));
 $('.back-to-top__btn').on('click', function(e) {
     $("html, body").animate({scrollTop: 0}, 500);
 });
+
+// Pengumuman
+$('.pengumuman__bidang-title').click(function () {
+    // $(this).find('.dropdown').toggleClass('collapsed');
+    $(this).parent().toggleClass('active');
+  });
+  

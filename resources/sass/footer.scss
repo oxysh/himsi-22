@@ -1,0 +1,96 @@
+.footer {
+    margin-top: 20vh;
+    padding: 2.5rem 0;
+    background-color: $midnight-blue;
+
+    >.container {
+        margin-top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        gap: 4.5rem;
+    }
+
+    &__top {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__logo {
+        width: 60px;
+    }
+
+    &__menus {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+    }
+
+    &__menu {
+        color: $white;
+        padding: 5px 12px 5px 12px;
+        border-radius: 8px;
+    }
+
+    &__menu:hover {
+        color: $midnight-blue;
+        background-color: $white;
+        text-decoration: none;
+
+
+    }
+
+    &__socials {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .75rem;
+
+
+    }
+
+    &__social {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        >svg {
+            width: 40px;
+        }
+
+        >svg:hover{
+            filter: drop-shadow(3px 5px 2px #00438548);
+        }
+    }
+
+    &__bottom {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1rem;
+
+        >h6 {
+            color: $white;
+        }
+    }
+
+    @media screen and (max-width: 768.9px) {
+        &__logo {
+            width: 40px;
+        }
+
+        &__menus {
+            gap: .75rem;
+        }
+
+        &__social {
+            >svg {
+                width: 30px;
+            }
+        }
+    }
+}

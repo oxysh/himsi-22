@@ -1,0 +1,280 @@
+.landing {
+    &--top {
+        min-height: calc(100vh - 6rem);
+        padding-bottom: 6rem;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4rem;
+
+        &__left {
+            width: 46%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: .75rem;
+        }
+
+        &__title {
+            color: $midnight-blue;
+        }
+
+        &__desc {
+            color: $independence;
+        }
+
+        &__btn {
+            margin-top: 1rem;
+        }
+
+        &__right {
+            width: 50%;
+            filter: drop-shadow(0px 20px 40px rgba(36, 30, 123, 0.15));
+        }
+    }
+
+    &--visi-misi {
+        min-height: calc(100vh - 6rem);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4rem;
+
+        &__visi {
+            width: 80%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        &__visi-title {
+            white-space: nowrap;
+            color: $midnight-blue;
+
+            span {
+                color: $gold;
+            }
+        }
+
+        &__visi-desc {
+            color: $independence;
+        }
+
+        &__misi {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            gap: 3rem;
+        }
+
+        &__misi-card {
+            max-width: 250px;
+            padding: 1.5rem 1.75rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: .75rem;
+            border: 0.05px solid $white;
+            box-shadow: 0px 20px 40px rgba(36, 30, 123, 0.15);
+            border-radius: 1.5rem;
+        }
+
+        &__misi-img {
+            width: 70px;
+        }
+
+        &__misi-desc {
+            text-align: center;
+            color: $independence;
+        }
+    }
+
+    &--layanan {
+        min-height: calc(100vh - 6rem);
+        padding: 4rem 0;
+        position: relative;
+        display: grid;
+        align-content: center;
+        grid-template-columns: 1.3fr 1fr 1fr;
+        grid-template-areas:
+            'title curhat form'
+            'title bank-akademik kritik-saran';
+        gap: 2rem 5rem;
+
+        &__header {
+            grid-area: title;
+            align-self: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            grid-auto-flow: .5rem;
+        }
+
+        &__title {
+            text-align: center;
+            color: $midnight-blue;
+
+            span {
+                color: $gold;
+            }
+        }
+
+        &__desc {
+            text-align: center;
+            color: $independence;
+        }
+
+        &__card {
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: .75rem;
+            border-radius: .75rem;
+            border: 0.05px solid $white;
+            box-shadow: 0px 20px 40px rgba(36, 30, 123, 0.15);
+            background-color: $white;
+
+            &--curhat {
+                grid-area: curhat;
+            }
+
+            &--form {
+                grid-area: form;
+            }
+
+            &--bank-akademik {
+                grid-area: bank-akademik;
+            }
+
+            &--kritik-saran {
+                grid-area: kritik-saran;
+            }
+        }
+
+        &__card:hover{
+            cursor: pointer;
+            box-shadow: 0px 0px 40px 10px #359cd358;
+
+        }
+
+        &__card-title {
+            color: $midnight-blue;
+        }
+
+        &__card-desc {
+            color: $independence;
+        }
+    }
+
+    @media screen and (max-width: 1199.9px) {
+        &--visi-misi {
+            &__visi {
+                width: 100%;
+            }
+        }
+
+        &--layanan {
+            gap: 2rem;
+        }
+    }
+
+    @media screen and (max-width: 991.9px) {
+        &--top {
+            padding-bottom: 4rem;
+            flex-direction: column-reverse;
+            justify-content: flex-end;
+
+            &__left {
+                width: 80%;
+            }
+
+            &__right {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        &--visi-misi {
+            &__visi {
+                width: 80%;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: .75rem;
+            }
+
+            &__misi {
+                flex-direction: column;
+            }
+        }
+
+        &--layanan {
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas:
+                'title title'
+                'curhat form'
+                'bank-akademik kritik-saran';
+        }
+    }
+
+    @media screen and (max-width: 767.9px) {
+        &--top {
+            &__left {
+                width: 100%;
+            }
+
+            &__title {
+                font-size: 24px;
+                line-height: 31px;
+            }
+
+            &__desc {
+                font-weight: 300;
+                font-size: 12px;
+                line-height: 18px;
+            }
+        }
+
+        &--visi-misi {
+            &__visi {
+                width: 100%;
+            }
+        }
+    }
+
+    @media screen and (max-width: 575.9px) {
+        &--visi-misi {
+            &__visi-title {
+                white-space: normal;
+            }
+        }
+
+        &--layanan {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                'title'
+                'curhat'
+                'form'
+                'bank-akademik'
+                'kritik-saran';
+
+            &__title,
+            &__desc {
+                text-align: left;
+            }
+
+            &__card {
+                width: 80%;
+                justify-self: center;
+            }
+        }
+    }
+}

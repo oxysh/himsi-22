@@ -21,7 +21,8 @@ class FeatureFormController extends Controller
     public function index()
     {
         $code = Str::random(10);
-        return view('client.form.index');
+        // return view('client.form.index');
+        return view('koneksi.form.index');
     }
 
     /**
@@ -76,7 +77,7 @@ class FeatureFormController extends Controller
         atau MUNGKIN bagian spam email'
         */
         session()->flash('success', 'Berhasil membuat form, silahkan cek email anda');
-        return redirect()->back();
+        return redirect()->back()->with('input_token', 'active');
     }
 
     /**
@@ -96,7 +97,8 @@ class FeatureFormController extends Controller
             $data->pertanyaan = $data->pertanyaan->sortBy('sorting')->all();
             $data['inputdeadline'] = join("T", explode(" ", $data->deadline));
 
-            return view('client.form.show', [
+            // return view('client.form.show', [
+            return view('koneksi.form.show', [
                 'data' => $data,
             ]);
         }else{
@@ -223,7 +225,7 @@ class FeatureFormController extends Controller
             'pertanyaan'    => $request->pertanyaan,
             'opsi'          => $request->opsi,
             'sorting'       => count($form->pertanyaan) + 1,
-            'mandatory'     => $request->required == "ya" ? true : false,
+            'mandatory'     => $request->required == "Iya" ? true : false,
         ]);
 
         session()->flash('success', 'Sukses menambah pertanyaan');
@@ -261,8 +263,8 @@ class FeatureFormController extends Controller
             $f->opsi = $request->opsi;
         }
 
-        if ($f->mandatory != ($request->required == 'ya')) {
-            $f->mandatory = $request->required == 'ya' ? true : false;
+        if ($f->mandatory != ($request->required == 'Iya')) {
+            $f->mandatory = $request->required == 'Iya' ? true : false;
         }
 
         $f->save();
@@ -285,17 +287,25 @@ class FeatureFormController extends Controller
         }
 
         $f = FormPertanyaan::find($qid);
-
+        
         if (!$f) {
             session()->flash('error','ID untuk Pertanyaan salah');
             return redirect()->route('f.form.index');
         }
 
-        $f->delete();
+        $form = Form::where('token',$token)->get('id')->first()->id;
+        $pertanyaan = FormPertanyaan::where('form_id',$form)->get();
 
-        session()->flash('success', 'Sukses menghapus pertanyaan');
+        if(count($pertanyaan)>1){
+            $f->delete();
+            session()->flash('success', 'Sukses menghapus pertanyaan');
+            return redirect()->back();
+        }
+        else{
+            session()->flash('error', 'Gagal menghapus pertanyaan! Minimal ada 1 pertanyaan dalam form.');
+            return redirect()->back();
+        }
 
-        return redirect()->back();
     }
 
     /**
